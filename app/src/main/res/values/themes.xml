@@ -25,6 +25,12 @@
     <item name="fontFamily">sans-serif-condensed-medium</item>
   </style>
 
+  <style name="TitleStyle" parent="TextAppearance.Material3.HeadlineSmall">
+    <item name="android:textColor">@color/healthy_foods_green</item>
+    <item name="android:textStyle">bold</item>
+    <item name="fontFamily">sans-serif-condensed-medium</item>
+  </style>
+
   <style name="NormalTextStyle" parent="TextAppearance.Material3.BodyLarge">
     <item name="android:textColor">@color/healthy_foods_black</item>
     <item name="fontFamily">sans-serif-condensed-light</item>
