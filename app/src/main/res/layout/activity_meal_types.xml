@@ -14,10 +14,10 @@
       android:layout_marginStart="@dimen/screen_margin_horizontal_double"
       android:layout_marginTop="@dimen/screen_margin_vertical_triple"
       android:layout_marginEnd="@dimen/screen_margin_horizontal_double"
-      android:text="@string/welcome"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="@string/welcome" />
 
   <TextView
       android:id="@+id/meal_inquiry"
