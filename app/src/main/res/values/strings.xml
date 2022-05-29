@@ -29,4 +29,6 @@
   <string name="brunch">Brunch</string>
   <string name="teatime">Teatime</string>
   <string name="snack">Snack</string>
+  <string name="toast_required_input">All form inputs are required</string>
+  <string name="toast_correct_name_input">Name should have atleast four characters</string>
 </resources>
