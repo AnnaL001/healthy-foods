@@ -2,5 +2,20 @@
   <string name="app_name">HealthyFoods</string>
   <string name="splash_screen">Splash Screen</string>
   <string name="get_started">Get Started</string>
-  <string name="splash_screen_subtitle"> Your healthy lifestyle partner where your nutritional needs are taken care of</string>
+  <string name="splash_screen_subtitle"> Your healthy lifestyle partner where your healthy recipe needs are taken care of</string>
+  <string name="user_details_form_title">We\'re glad to be part of your journey</string>
+  <string name="user_details_form_subtitle">To begin, kindly provide the details below</string>
+  <string name="name">Your name</string>
+  <string name="select_diet">Select your diet</string>
+  <string name="low_carb_diet">Low Carb</string>
+  <string name="balanced_diet">Balanced</string>
+  <string name="keto_diet">Keto</string>
+  <string name="vegan_diet">Vegan</string>
+  <string name="select_allergies">What allergies do you have?</string>
+  <string name="none">none</string>
+  <string name="glutten_free">Glutten</string>
+  <string name="peanut_free">Peanut</string>
+  <string name="wheat_free">Wheat</string>
+  <string name="dairy_free">Dairy</string>
+  <string name="next">Next</string>
 </resources>
