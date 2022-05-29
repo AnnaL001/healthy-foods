@@ -18,4 +18,9 @@
   <string name="wheat_free">Wheat</string>
   <string name="dairy_free">Dairy</string>
   <string name="next">Next</string>
+  <string name="welcome">Welcome %1$s</string>
+  <string name="meal_inquiry">What would you like to eat today?</string>
+  <string name="meal_type">Meal type</string>
+  <string name="content_desc_meal_type">Meal type image</string>
+  <string name="recipe_title">Recipe title</string>
 </resources>
