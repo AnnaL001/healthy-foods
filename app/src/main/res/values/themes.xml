@@ -3,21 +3,34 @@
   <style name="Theme.HealthyFoods" parent="Theme.MaterialComponents.Light.DarkActionBar">
     <!-- Primary brand color. -->
     <item name="colorPrimary">@color/healthy_foods_green</item>
-    <item name="colorPrimaryVariant">@color/healthy_foods_dark_green</item>
+    <item name="colorPrimaryVariant">@color/healthy_foods_green</item>
     <item name="colorOnPrimary">@color/healthy_foods_white</item>
     <!-- Secondary brand color. -->
     <item name="colorSecondary">@color/healthy_foods_yellow</item>
     <item name="colorSecondaryVariant">@color/healthy_foods_yellow</item>
     <item name="colorOnSecondary">@color/healthy_foods_black</item>
     <!-- Status bar color. -->
-    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     <!-- Customize your theme here. -->
     <item name="bottomSheetDialogTheme">@style/BottomSheetStyle</item>
     <item name="textInputStyle">@style/TextInputLayoutStyle</item>
     <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Entry</item>
   </style>
 
-  <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar" />
+  <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="colorPrimary">@color/healthy_foods_green</item>
+    <item name="colorPrimaryVariant">@color/healthy_foods_green</item>
+    <item name="colorOnPrimary">@color/healthy_foods_white</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/healthy_foods_yellow</item>
+    <item name="colorSecondaryVariant">@color/healthy_foods_yellow</item>
+    <item name="colorOnSecondary">@color/healthy_foods_black</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    <item name="bottomSheetDialogTheme">@style/BottomSheetStyle</item>
+    <item name="textInputStyle">@style/TextInputLayoutStyle</item>
+    <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Entry</item>
+  </style>
 
   <style name="SplashScreenTitleStyle" parent="TextAppearance.Material3.HeadlineLarge">
     <item name="android:textColor">@color/healthy_foods_green</item>
@@ -45,7 +58,7 @@
   <style name="ButtonTextStyle" parent="NormalTextStyle">
     <item name="android:fontFamily">sans-serif-condensed-medium</item>
     <item name="android:textStyle">bold</item>
-    <item name="android:textSize">16sp</item>
+    <item name="android:textSize">@dimen/normal_font_size</item>
   </style>
 
   <style name="ButtonStyle" parent="Widget.Material3.Button">
@@ -56,6 +69,7 @@
 
   <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog">
     <item name="android:background">@color/white</item>
+    <item name="shapeAppearanceOverlay">@style/BottomSheetShapeAppearance</item>
   </style>
 
   <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -68,4 +82,11 @@
     <item name="cornerSize">@dimen/text_input_layout_corner_radius</item>
   </style>
 
+  <style name="BottomSheetShapeAppearance">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSizeTopLeft">@dimen/bottom_sheet_corner_radius</item>
+    <item name="cornerSizeTopRight">@dimen/bottom_sheet_corner_radius</item>
+  </style>
+
+  <dimen name="normal_font_size">16sp</dimen>
 </resources>
