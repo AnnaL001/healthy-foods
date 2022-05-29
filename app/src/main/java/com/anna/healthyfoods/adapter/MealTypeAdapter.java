@@ -47,7 +47,7 @@ public class MealTypeAdapter extends BaseAdapter {
       binding.mealTypeImage.setImageResource(mealTypeImages[i]);
       binding.mealTypeLabel.setText(mealTypeTitles[i]);
       // Set OnClickListener
-      binding.mealTypeImage.setOnClickListener(imageView -> listener.onClick());
+      binding.mealTypeImage.setOnClickListener(imageView -> listener.onClick(mealTypeTitles[i]));
     } else {
       gridView = view;
     }

@@ -3,19 +3,26 @@ package com.anna.healthyfoods;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.databinding.ActivityRecipeListBinding;
 
+import java.util.Objects;
+
 public class RecipeListActivity extends AppCompatActivity {
   private ActivityRecipeListBinding binding;
-  private String[] recipeTitles = {"Chicken Vesuvio", "Green Bean Casserole Pie Recipe", "Baked Sweet Potatoes and Pecans", "Vegetable Lasagna", "Fresh tuna tortillas"};
+  private final String[] recipeTitles = {"Chicken Vesuvio", "Green Bean Casserole Pie Recipe", "Baked Sweet Potatoes and Pecans", "Vegetable Lasagna", "Fresh tuna tortillas"};
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     binding = ActivityRecipeListBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
+
+    String title = getString(getIntent().getIntExtra("meal_type", 1));
+    Log.d("RecipeListActivity", title);
+    Objects.requireNonNull(this.getSupportActionBar()).setTitle(title);
 
     initializeAdapter();
   }

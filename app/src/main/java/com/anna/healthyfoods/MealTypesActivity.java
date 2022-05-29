@@ -33,7 +33,9 @@ public class MealTypesActivity extends AppCompatActivity implements ItemOnClickL
   }
 
   @Override
-  public void onClick() {
-    startActivity(new Intent(getApplicationContext(), RecipeListActivity.class));
+  public void onClick(int title) {
+    Intent intent = new Intent(getApplicationContext(), RecipeListActivity.class);
+    intent.putExtra("meal_type", title);
+    startActivity(intent);
   }
 }
