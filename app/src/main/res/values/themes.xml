@@ -12,6 +12,9 @@
     <!-- Status bar color. -->
     <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
     <!-- Customize your theme here. -->
+    <item name="bottomSheetDialogTheme">@style/BottomSheetStyle</item>
+    <item name="textInputStyle">@style/TextInputLayoutStyle</item>
+    <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Entry</item>
   </style>
 
   <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar" />
@@ -27,6 +30,11 @@
     <item name="fontFamily">sans-serif-condensed-light</item>
   </style>
 
+  <style name="BoldTextStyle" parent="NormalTextStyle">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/healthy_foods_green</item>
+  </style>
+
   <style name="ButtonTextStyle" parent="NormalTextStyle">
     <item name="android:textStyle">bold</item>
     <item name="android:textSize">16sp</item>
@@ -37,4 +45,19 @@
     <item name="android:textAppearance">@style/ButtonTextStyle</item>
     <item name="android:paddingVertical">@dimen/padding_vertical_double</item>
   </style>
+
+  <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog">
+    <item name="android:background">@color/white</item>
+  </style>
+
+  <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <item name="shapeAppearanceOverlay">@style/TextInputLayoutShapeAppearance</item>
+    <item name="android:textAppearance">@style/NormalTextStyle</item>
+  </style>
+
+  <style name="TextInputLayoutShapeAppearance">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">@dimen/text_input_layout_corner_radius</item>
+  </style>
+
 </resources>
