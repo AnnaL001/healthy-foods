@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.anna.healthyfoods.databinding.ActivityUserDetailsBinding;
+import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.anna.healthyfoods.utility.Validator;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -35,8 +36,8 @@ public class UserDetailsActivity extends AppCompatActivity {
 
       // Capture user input
       String name = Objects.requireNonNull(binding.nameTextInputLayout.getEditText()).getText().toString();
-      List<String> diets = getSelectedChips(binding.dietChipGroup);
-      List<String> allergies = getSelectedChips(binding.allergyChipGroup);
+      List<String> diets = UserInterfaceHelpers.getSelectedChips(binding.dietChipGroup);
+      List<String> allergies = UserInterfaceHelpers.getSelectedChips(binding.allergyChipGroup);
 
       // Validate user input before populating intent extras
       if(Validator.validateRequiredUserDetailsFormInput(name, diets, allergies)){
@@ -53,18 +54,5 @@ public class UserDetailsActivity extends AppCompatActivity {
         Log.e(TAG, "Error: All input values are required");
       }
     });
-  }
-
-  // Retrieve selected chips and their corresponding labels
-  private List<String> getSelectedChips(ChipGroup chipGroup){
-    List<Integer> selectedChips = chipGroup.getCheckedChipIds();
-    ArrayList<String> selectedOptions = new ArrayList<>();
-
-    for(int selectedChip: selectedChips){
-      Chip chip = chipGroup.findViewById(selectedChip);
-      selectedOptions.add(chip.getText().toString());
-    }
-
-    return selectedOptions;
   }
 }
