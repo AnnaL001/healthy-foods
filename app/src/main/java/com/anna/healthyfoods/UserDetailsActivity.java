@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.anna.healthyfoods.databinding.ActivityUserDetailsBinding;
+import com.anna.healthyfoods.utility.Validator;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -37,9 +38,9 @@ public class UserDetailsActivity extends AppCompatActivity {
       List<String> diets = getSelectedChips(binding.dietChipGroup);
       List<String> allergies = getSelectedChips(binding.allergyChipGroup);
 
-      // Validate user input
-      if(validateRequiredFormInput(name, diets, allergies)){
-        if(validateCorrectNameInput(name)){
+      // Validate user input before populating intent extras
+      if(Validator.validateRequiredUserDetailsFormInput(name, diets, allergies)){
+        if(Validator.validateCorrectNameInput(name)){
           intent.putExtra("name", name);
           startActivity(intent);
           Log.i(TAG, "Navigating to MealTypesActivity...");
@@ -65,15 +66,5 @@ public class UserDetailsActivity extends AppCompatActivity {
     }
 
     return selectedOptions;
-  }
-
-  // Returns false if form input values are empty and name is less than four characters
-  private boolean validateRequiredFormInput(String name, List<String> selectedDiets, List<String> selectedAllergies){
-    return !name.isEmpty() && selectedDiets.size() != 0 && selectedAllergies.size() != 0;
-  }
-
-  // Returns false if name is less than four characters
-  private boolean validateCorrectNameInput(String name){
-    return !(name.length() < 4);
   }
 }
