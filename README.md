@@ -30,6 +30,9 @@ The Mobile Application is still in development. Currently, the existing features
 ## Dependencies
 
 - Java
+- Espresso Testing Framework
+- Roboelectric Testing Frameowrk
+- JUnit Testing Framework
 
 ## Technologies Used
 
