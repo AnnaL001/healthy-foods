@@ -13,12 +13,19 @@ The Mobile Application is still in development. Currently, the existing features
 - To access the application's code from your GitHub repository, you can fork the repository main's branch via the 'Fork' button.
 - To access the application's code locally, you can clone the main branch or download the ZIP folder via the 'Code' button
 - Once locally, you can view/run the application's code via IDEs such as Eclipse and AndroidStudio(mostly used).
-- In the case of AndroidStudio, to navigate you can reference their user guide https://developer.android.com/studio/intro
 - Before running the code locally<br>
   ### Prerequisites
-  - Install [sdkman](https://sdkman.io/install) that allows for management of multiple Java versions
+  - Install [Sdkman](https://sdkman.io/install) that allows for management of multiple Java versions
   - Install [Java](https://sdkman.io/usage)
-    
+  ### Installing Android Studio
+  - You can download installer from https://developer.android.com/studio#downloads
+  - For Linux you can install via the command below
+    ```
+    $ sudo snap install android-studio --classic
+    ```
+  - For Linux(Ubuntu) you can install via Ubuntu Software
+  ### Navigating within Android Studio
+  - You can reference their user guide https://developer.android.com/studio/intro
 
 ## Dependencies
 
