@@ -13,6 +13,7 @@ import com.anna.healthyfoods.databinding.ActivityRecipeListBinding;
 import java.util.Objects;
 
 public class RecipeListActivity extends AppCompatActivity {
+  public static final String TAG = RecipeListActivity.class.getSimpleName();
   private ActivityRecipeListBinding binding;
   private final String[] recipeTitles = {"Chicken Vesuvio", "Green Bean Casserole Pie Recipe", "Baked Sweet Potatoes and Pecans", "Vegetable Lasagna", "Fresh tuna tortillas"};
 
@@ -39,6 +40,7 @@ public class RecipeListActivity extends AppCompatActivity {
   private void initializeOnClickListener(){
     binding.recipeListView.setOnItemClickListener((adapterView, view, i, l) -> {
       String recipe = ((TextView)view).getText().toString();
+      Log.d(TAG, "Recipe List Item Clicked: " + recipe);
       Toast.makeText(getApplicationContext(), recipe, Toast.LENGTH_LONG).show();
     });
   }

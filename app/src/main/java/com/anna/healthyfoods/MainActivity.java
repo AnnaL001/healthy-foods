@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.anna.healthyfoods.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+  public static final String TAG = MainActivity.class.getSimpleName();
   private ActivityMainBinding binding;
 
   @Override
@@ -21,5 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
   private void handleButtonClick(){
     binding.btnGetStarted.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), UserDetailsActivity.class)));
+    Log.i(TAG, "Navigating to UserDetailsActivity ...");
   }
 }
