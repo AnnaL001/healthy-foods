@@ -2,9 +2,11 @@ package com.anna.healthyfoods.utility;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserInterfaceHelpers {
   // Retrieve selected chips and their corresponding labels
@@ -18,5 +20,13 @@ public class UserInterfaceHelpers {
     }
 
     return selectedOptions;
+  }
+
+  public static void clearFormInput(TextInputLayout textInputLayout){
+    Objects.requireNonNull(textInputLayout.getEditText()).setText("");
+  }
+
+  public static void clearFormInput(ChipGroup chipGroup){
+    chipGroup.clearCheck();
   }
 }
