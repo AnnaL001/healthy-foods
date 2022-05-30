@@ -1,15 +1,10 @@
 package com.anna.healthyfoods;
 
 import static org.junit.Assert.*;
-
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.textfield.TextInputLayout;
-
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -43,4 +38,5 @@ public class MealTypesActivityTest {
     GridView gridView = activity.findViewById(R.id.meal_type_grid);
     assertNotNull(gridView);
   }
+
 }
