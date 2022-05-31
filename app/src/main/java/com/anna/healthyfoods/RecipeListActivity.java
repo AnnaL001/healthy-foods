@@ -26,6 +26,7 @@ public class RecipeListActivity extends AppCompatActivity {
     String title = getString(getIntent().getIntExtra("meal_type", R.string.breakfast));
     Log.d("RecipeListActivity", title);
 
+    // Set Action Bar title
     Objects.requireNonNull(this.getSupportActionBar()).setTitle(title);
 
     initializeAdapter();
@@ -40,7 +41,7 @@ public class RecipeListActivity extends AppCompatActivity {
   private void initializeOnClickListener(){
     binding.recipeListView.setOnItemClickListener((adapterView, view, i, l) -> {
       String recipe = ((TextView)view).getText().toString();
-      Log.d(TAG, "Recipe List Item Clicked: " + recipe);
+      Log.d(TAG, String.format("Recipe List Item Clicked: %s", recipe));
       Toast.makeText(getApplicationContext(), recipe, Toast.LENGTH_LONG).show();
     });
   }
