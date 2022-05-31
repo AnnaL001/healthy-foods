@@ -167,7 +167,7 @@
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/view_margin_vertical_triple"
+        android:layout_marginTop="@dimen/view_margin_vertical_double"
         android:text="@string/next"
         android:textColor="#455A64"
         app:layout_constraintEnd_toEndOf="parent"
