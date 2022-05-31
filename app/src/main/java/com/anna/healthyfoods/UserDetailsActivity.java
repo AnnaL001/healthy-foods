@@ -27,6 +27,7 @@ public class UserDetailsActivity extends AppCompatActivity {
     binding = ActivityUserDetailsBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    Log.i(TAG, "UserDetailsActivity opened");
     initializeButton();
   }
 
