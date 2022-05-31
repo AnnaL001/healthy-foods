@@ -24,9 +24,9 @@ public class RecipeListActivity extends AppCompatActivity {
     setContentView(binding.getRoot());
 
     String title = getString(getIntent().getIntExtra("meal_type", R.string.breakfast));
-    Log.d("RecipeListActivity", title);
+    Log.d("RecipeListActivity", String.format("Displaying %s recipes", title));
 
-    // Set Action Bar title
+    // Set Action Bar title to meal type passed via intent
     Objects.requireNonNull(this.getSupportActionBar()).setTitle(title);
 
     initializeAdapter();
@@ -38,6 +38,7 @@ public class RecipeListActivity extends AppCompatActivity {
     binding.recipeListView.setAdapter(adapter);
   }
 
+  // Initialize listener for clicks on list items
   private void initializeOnClickListener(){
     binding.recipeListView.setOnItemClickListener((adapterView, view, i, l) -> {
       String recipe = ((TextView)view).getText().toString();
