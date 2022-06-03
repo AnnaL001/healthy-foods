@@ -67,7 +67,7 @@
     <item name="android:paddingVertical">@dimen/padding_vertical_double</item>
   </style>
 
-  <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog">
+  <style name="BottomSheetStyle" parent="Widget.MaterialComponents.BottomSheet">
     <item name="android:background">@color/white</item>
     <item name="shapeAppearanceOverlay">@style/BottomSheetShapeAppearance</item>
   </style>
@@ -82,11 +82,9 @@
     <item name="cornerSize">@dimen/text_input_layout_corner_radius</item>
   </style>
 
-  <style name="BottomSheetShapeAppearance">
+  <style name="BottomSheetShapeAppearance" parent="">
     <item name="cornerFamily">rounded</item>
     <item name="cornerSizeTopLeft">@dimen/bottom_sheet_corner_radius</item>
     <item name="cornerSizeTopRight">@dimen/bottom_sheet_corner_radius</item>
   </style>
-
-  <dimen name="normal_font_size">16sp</dimen>
 </resources>
