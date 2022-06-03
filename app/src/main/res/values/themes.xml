@@ -77,6 +77,16 @@
     <item name="android:textAppearance">@style/NormalTextStyle</item>
   </style>
 
+  <style name="RoundCornersImageStyle" parent="">
+    <item name="cornerSize">20%</item>
+  </style>
+
+  <style name="CardViewStyle" parent="Widget.Material3.CardView.Elevated">
+    <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    <item name="cardElevation">@dimen/cardview_elevation</item>
+    <item name="cardUseCompatPadding">true</item>
+  </style>
+
   <style name="TextInputLayoutShapeAppearance">
     <item name="cornerFamily">rounded</item>
     <item name="cornerSize">@dimen/text_input_layout_corner_radius</item>
