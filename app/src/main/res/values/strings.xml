@@ -7,16 +7,19 @@
   <string name="user_details_form_subtitle">To begin, kindly provide the details below</string>
   <string name="name">Your name</string>
   <string name="select_diet">Select your diet</string>
-  <string name="low_carb_diet">Low Carb</string>
-  <string name="balanced_diet">Balanced</string>
-  <string name="keto_diet">Keto</string>
-  <string name="vegan_diet">Vegan</string>
-  <string name="select_allergies">What allergies do you have?</string>
+  <string name="low_carb">Low Carb</string>
+  <string name="balanced">Balanced</string>
+  <string name="high_fiber">High Fiber</string>
+  <string name="high_protein">High Protein</string>
+  <string name="low_fat">Low Fat</string>
+  <string name="low_sodium">Low Sodium</string>
+  <string name="select_preference">What are your other preferences?</string>
   <string name="none">None</string>
-  <string name="glutten_free">Glutten</string>
-  <string name="peanut_free">Peanut</string>
-  <string name="wheat_free">Wheat</string>
-  <string name="dairy_free">Dairy</string>
+  <string name="glutten_free">Glutten Free</string>
+  <string name="peanut_free">Peanut Free</string>
+  <string name="wheat_free">Wheat Free</string>
+  <string name="dairy_free">Dairy Free</string>
+  <string name="alcohol_free">Alcohol Free</string>
   <string name="next">Next</string>
   <string name="welcome">Welcome %1$s</string>
   <string name="meal_inquiry">What would you like to eat today?</string>
@@ -31,4 +34,11 @@
   <string name="snack">Snack</string>
   <string name="toast_required_input">All form inputs are required</string>
   <string name="toast_correct_name_input">Name should have atleast four alphabetical characters</string>
+  <string name="keto_friendly">Keto Friendly</string>
+  <string name="vegan">vegan</string>
+  <string name="pork_free">Pork Free</string>
+  <string name="red_meat_free">Red Meat Free</string>
+  <string name="vegetarian">Vegetarian</string>
+  <string name="sulfite_free">Sulfite Free</string>
+
 </resources>
