@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".RecipeListActivity">
 
-  <ListView
-      android:id="@+id/recipe_list_view"
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recipe_list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
+      android:layout_marginStart="@dimen/screen_margin_horizontal_double"
       android:layout_marginTop="@dimen/screen_margin_vertical_triple"
-      android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
+      android:layout_marginEnd="@dimen/screen_margin_horizontal_double"
+      android:layout_marginBottom="@dimen/screen_margin_vertical_triple"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent"
+      tools:listitem="@layout/item_recipe" />
 </androidx.constraintlayout.widget.ConstraintLayout>
