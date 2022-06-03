@@ -14,15 +14,15 @@
       android:theme="@style/Theme.HealthyFoods"
       tools:targetApi="31">
     <activity
-        android:name=".RecipeListActivity"
-        android:exported="false"/>
+        android:name=".HomeActivity"
+        android:exported="false" />
     <activity
-        android:name=".MealTypesActivity"
-        android:exported="false"/>
+        android:name=".RecipeListActivity"
+        android:exported="false" />
     <activity
         android:name=".UserDetailsActivity"
         android:exported="false"
-        android:theme="@style/NoActionBarTheme"/>
+        android:theme="@style/NoActionBarTheme" />
     <activity
         android:name=".MainActivity"
         android:exported="true"
