@@ -4,39 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card"
-    android:clickable="false">
+    android:clickable="true">
 
-  <TextView
-      android:id="@+id/meal_type_label"
-      style="@style/BoldTextStyle"
-      android:layout_width="wrap_content"
+  <com.google.android.material.card.MaterialCardView
+      style="@style/CardViewStyle"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
-      android:layout_marginTop="@dimen/view_margin_vertical"
-      android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
-      android:layout_marginBottom="@dimen/screen_margin_vertical_double"
-      android:clickable="true"
-      android:minHeight="48dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/meal_type_image"
-      tools:text="@string/meal_type" />
+      app:layout_constraintTop_toTopOf="parent">
 
-  <ImageView
-      android:id="@+id/meal_type_image"
-      android:layout_width="@dimen/grid_image_width"
-      android:layout_height="@dimen/grid_image_height"
-      android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
-      android:layout_marginTop="@dimen/view_margin_vertical_double"
-      android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
-      android:clickable="true"
-      android:contentDescription="@string/content_desc_meal_type"
-      android:scaleType="centerCrop"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_baseline_set_meal" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+      <com.google.android.material.imageview.ShapeableImageView
+          android:id="@+id/meal_type_image_view"
+          style="@style/RoundCornersImageStyle"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/grid_image_height"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
+          android:layout_marginTop="@dimen/view_margin_vertical_double"
+          android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+          android:scaleType="centerCrop"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:shapeAppearanceOverlay="@style/RoundCornersImageStyle"
+          tools:srcCompat="@drawable/breakfast" />
+
+      <View
+          android:id="@+id/divider"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/divider_height"
+          android:layout_marginStart="@dimen/divider_inset"
+          android:layout_marginTop="@dimen/view_margin_vertical_double"
+          android:layout_marginEnd="@dimen/divider_inset"
+          android:background="?attr/colorPrimary"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/meal_type_image_view" />
+
+      <TextView
+          android:id="@+id/meal_type_label"
+          style="@style/BoldTextStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
+          android:layout_marginTop="@dimen/view_margin_vertical_double"
+          android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+          android:layout_marginBottom="@dimen/view_margin_vertical_double"
+          android:gravity="center_horizontal"
+          android:textColor="@color/healthy_foods_black"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/divider"
+          tools:text="@string/meal_types" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
