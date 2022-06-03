@@ -23,7 +23,7 @@
   <string name="next">Next</string>
   <string name="welcome">Welcome %1$s</string>
   <string name="meal_inquiry">What would you like to eat today?</string>
-  <string name="meal_type">Meal type</string>
+  <string name="meal_types">Meal types</string>
   <string name="content_desc_meal_type">Meal type image</string>
   <string name="recipe_title">Recipe title</string>
   <string name="content_desc_recipe_image">Recipe image</string>
@@ -40,5 +40,12 @@
   <string name="red_meat_free">Red Meat Free</string>
   <string name="vegetarian">Vegetarian</string>
   <string name="sulfite_free">Sulfite Free</string>
+  <string name="search">Search</string>
+  <string name="starred">Starred</string>
+  <string name="recipe_source">Recipe source</string>
+  <string name="diet_label">Diet label</string>
+  <string name="cuisine">Cuisine type</string>
+  <string name="meal_type">Meal type</string>
+  <string name="dish_type">Dish type</string>
 
 </resources>
