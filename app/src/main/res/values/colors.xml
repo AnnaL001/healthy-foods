@@ -7,4 +7,5 @@
   <color name="healthy_foods_yellow">#FFFDC827</color>
   <color name="healthy_foods_white">#FFF5F2EB</color>
   <color name="healthy_foods_black">#FF39393A</color>
+  <color name="healthy_foods_darker_white">#E6E1E1</color>
 </resources>
