@@ -34,16 +34,11 @@ public class RecipeListActivity extends AppCompatActivity {
   }
 
   private void initializeAdapter(){
-    RecipeListAdapter adapter = new RecipeListAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, recipeTitles);
-    binding.recipeListView.setAdapter(adapter);
+    // Add code to initialize adapter
   }
 
   // Initialize listener for clicks on list items
   private void initializeOnClickListener(){
-    binding.recipeListView.setOnItemClickListener((adapterView, view, i, l) -> {
-      String recipe = ((TextView)view).getText().toString();
-      Log.d(TAG, String.format("Recipe List Item Clicked: %s", recipe));
-      Toast.makeText(getApplicationContext(), recipe, Toast.LENGTH_LONG).show();
-    });
+    // Add code for click listener
   }
 }
