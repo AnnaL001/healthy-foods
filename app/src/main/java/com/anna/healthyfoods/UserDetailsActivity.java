@@ -33,7 +33,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
   private void initializeButton(){
     binding.btnNext.setOnClickListener(view -> {
-      Intent intent = new Intent(getApplicationContext(), MealTypesActivity.class);
+      Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 
       // Capture user input
       String name = Objects.requireNonNull(binding.nameTextInputLayout.getEditText()).getText().toString();
