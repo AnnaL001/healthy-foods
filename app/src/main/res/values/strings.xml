@@ -47,5 +47,6 @@
   <string name="cuisine">Cuisine type</string>
   <string name="meal_type">Meal type</string>
   <string name="dish_type">Dish type</string>
+  <string name="home">Home</string>
 
 </resources>
