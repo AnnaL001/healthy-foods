@@ -153,13 +153,7 @@
         app:layout_constraintTop_toBottomOf="@+id/select_diet_label2">
 
       <com.google.android.material.chip.Chip
-          android:id="@+id/none"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/none" />
-
-      <com.google.android.material.chip.Chip
-          android:id="@+id/glutten_free"
+          android:id="@+id/gluten_free"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/glutten_free" />
