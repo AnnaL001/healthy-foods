@@ -1,19 +1,19 @@
 package com.anna.healthyfoods;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.anna.healthyfoods.databinding.ActivityUserDetailsBinding;
+import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.anna.healthyfoods.utility.Validator;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 
-import java.util.ArrayList;
+import org.parceler.Parcels;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -49,7 +49,8 @@ public class UserDetailsActivity extends AppCompatActivity {
   private void validateFormInputs(Intent intent, String name, List<String> diets, List<String> allergies){
     if(Validator.validateRequiredUserDetailsFormInput(name, diets, allergies)){
       if(Validator.validateCorrectNameInput(name)){
-        intent.putExtra("name", name);
+        Settings userSettings = new Settings(name, diets, allergies);
+        intent.putExtra("userSettings", Parcels.wrap(userSettings));
 
         // Clear form after capturing data
         clearFormInputs();
