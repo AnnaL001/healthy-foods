@@ -1,11 +1,14 @@
 package com.anna.healthyfoods.utility;
 
+import android.text.TextUtils;
+
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class UserInterfaceHelpers {
@@ -16,10 +19,18 @@ public class UserInterfaceHelpers {
 
     for(int selectedChip: selectedChips){
       Chip chip = chipGroup.findViewById(selectedChip);
-      selectedOptions.add(chip.getText().toString());
+      String transformed = transformString(chip.getText().toString());
+      selectedOptions.add(transformed);
     }
 
     return selectedOptions;
+  }
+
+  private static String transformString(String selection){
+    // Transform to an array
+    String[] stringArray = selection.toLowerCase().split(" ");
+    // Join array to string with hyphen
+    return TextUtils.join("-", stringArray);
   }
 
   public static void clearFormInput(TextInputLayout textInputLayout){
