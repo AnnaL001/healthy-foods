@@ -14,7 +14,6 @@
     <!-- Customize your theme here. -->
     <item name="bottomSheetDialogTheme">@style/BottomSheetStyle</item>
     <item name="textInputStyle">@style/TextInputLayoutStyle</item>
-    <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Entry</item>
   </style>
 
   <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -81,7 +80,7 @@
     <item name="cornerSize">18%</item>
   </style>
 
-  <style name="CardViewStyle" parent="Widget.Material3.CardView.Elevated">
+  <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
     <item name="cardCornerRadius">@dimen/card_corner_radius</item>
     <item name="cardElevation">@dimen/cardview_elevation</item>
     <item name="cardUseCompatPadding">true</item>
