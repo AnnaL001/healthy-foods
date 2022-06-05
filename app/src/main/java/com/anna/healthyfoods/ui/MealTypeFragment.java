@@ -66,11 +66,13 @@ public class MealTypeFragment extends Fragment {
   }
 
   private void initializeRecyclerView(){
+    // Set layout manager
     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.grid_columns));
     binding.mealTypeGrid.setLayoutManager(gridLayoutManager);
+    // Set adapter
     MealTypeAdapter adapter = new MealTypeAdapter(getContext(), mealTypeImages, new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.meal_types))));
     binding.mealTypeGrid.setAdapter(adapter);
-    Log.d(TAG, "Count: " + adapter.getItemCount());
+    Log.d(TAG, "Meal types count: " + adapter.getItemCount());
   }
 
   @Override
