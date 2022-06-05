@@ -27,17 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     userSettings = Parcels.unwrap(getIntent().getParcelableExtra("userSettings"));
     viewPagerAdapter = new HomeViewPagerAdapter(this, userSettings);
     binding.viewPager.setAdapter(viewPagerAdapter);
-
-//    initializeTabLayout(userSettings);
   }
 
-  private void initializeTabLayout(Settings userSettings){
-    new TabLayoutMediator(binding.tabLayout, binding.viewPager, ((tab, position) -> {
-      switch (position){
-        case 0:
-          MealTypeFragment.newInstance(userSettings);
-          break;
-      }
-    })).attach();
-  }
 }
