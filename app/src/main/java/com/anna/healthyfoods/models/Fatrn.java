@@ -1,9 +1,11 @@
 
 package com.anna.healthyfoods.models;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class Fatrn {
 
     @SerializedName("label")
@@ -11,7 +13,7 @@ public class Fatrn {
     private String label;
     @SerializedName("quantity")
     @Expose
-    private Integer quantity;
+    private Double quantity;
     @SerializedName("unit")
     @Expose
     private String unit;
@@ -29,7 +31,7 @@ public class Fatrn {
      * @param quantity
      * @param label
      */
-    public Fatrn(String label, Integer quantity, String unit) {
+    public Fatrn(String label, Double quantity, String unit) {
         super();
         this.label = label;
         this.quantity = quantity;
@@ -44,11 +46,11 @@ public class Fatrn {
         this.label = label;
     }
 
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 

@@ -1,9 +1,11 @@
 
 package com.anna.healthyfoods.models;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class Fibtg {
 
     @SerializedName("label")
@@ -11,7 +13,7 @@ public class Fibtg {
     private String label;
     @SerializedName("quantity")
     @Expose
-    private Integer quantity;
+    private Double quantity;
     @SerializedName("unit")
     @Expose
     private String unit;
@@ -29,7 +31,7 @@ public class Fibtg {
      * @param quantity
      * @param label
      */
-    public Fibtg(String label, Integer quantity, String unit) {
+    public Fibtg(String label, Double quantity, String unit) {
         super();
         this.label = label;
         this.quantity = quantity;
@@ -44,11 +46,11 @@ public class Fibtg {
         this.label = label;
     }
 
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 

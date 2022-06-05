@@ -1,9 +1,11 @@
 
 package com.anna.healthyfoods.models;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class Ingredient {
 
     @SerializedName("text")
@@ -20,7 +22,7 @@ public class Ingredient {
     private String food;
     @SerializedName("weight")
     @Expose
-    private Integer weight;
+    private Double weight;
     @SerializedName("foodCategory")
     @Expose
     private String foodCategory;
@@ -49,7 +51,7 @@ public class Ingredient {
      * @param foodCategory
      * @param food
      */
-    public Ingredient(String text, Double quantity, String measure, String food, Integer weight, String foodCategory, String foodId, String image) {
+    public Ingredient(String text, Double quantity, String measure, String food, Double weight, String foodCategory, String foodId, String image) {
         super();
         this.text = text;
         this.quantity = quantity;
@@ -93,11 +95,11 @@ public class Ingredient {
         this.food = food;
     }
 
-    public Integer getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
