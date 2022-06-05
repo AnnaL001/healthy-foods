@@ -25,11 +25,9 @@
 
     <View
         android:id="@+id/divider"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/divider_width"
         android:layout_height="@dimen/divider_height"
-        android:layout_marginStart="@dimen/divider_inset"
         android:layout_marginTop="@dimen/view_margin_vertical_double"
-        android:layout_marginEnd="@dimen/divider_inset"
         android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -10,8 +10,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_meal_types.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_user_details.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_meal_types.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_user_details.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_meal_types.xml" value="0.14391951006124235" />
         <entry key="app/src/main/res/layout/item_meal_type.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_recipe.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_recipe_list.xml" value="0.25" />
