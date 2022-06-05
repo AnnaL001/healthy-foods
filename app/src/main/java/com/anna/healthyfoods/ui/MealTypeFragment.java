@@ -62,7 +62,9 @@ public class MealTypeFragment extends Fragment {
   }
 
   private void updateTextViewContent(){
-    binding.welcomeText.setText(getString(R.string.welcome, userSettings.getName()));
+    if(userSettings != null){
+      binding.welcomeText.setText(getString(R.string.welcome, userSettings.getName()));
+    }
   }
 
   private void initializeRecyclerView(){
@@ -70,7 +72,7 @@ public class MealTypeFragment extends Fragment {
     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), getResources().getInteger(R.integer.grid_columns));
     binding.mealTypeGrid.setLayoutManager(gridLayoutManager);
     // Set adapter
-    MealTypeAdapter adapter = new MealTypeAdapter(getContext(), mealTypeImages, new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.meal_types))));
+    MealTypeAdapter adapter = new MealTypeAdapter(getContext(), mealTypeImages, new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.meal_types))), userSettings);
     binding.mealTypeGrid.setAdapter(adapter);
     Log.d(TAG, "Meal types count: " + adapter.getItemCount());
   }
