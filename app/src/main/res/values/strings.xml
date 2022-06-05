@@ -23,9 +23,10 @@
   <string name="next">Next</string>
   <string name="welcome">Welcome %1$s</string>
   <string name="meal_inquiry">What would you like to eat today?</string>
+  <string name="meal_type_label">Meal type label</string>
   <string name="meal_types">Meal types</string>
   <string name="content_desc_meal_type">Meal type image</string>
-  <string name="recipe_title">Recipe title</string>
+  <string name="recipe_label">Recipe label</string>
   <string name="content_desc_recipe_image">Recipe image</string>
   <string name="breakfast">Breakfast</string>
   <string name="lunch">Lunch</string>
@@ -48,5 +49,6 @@
   <string name="meal_type">Meal type</string>
   <string name="dish_type">Dish type</string>
   <string name="home">Home</string>
+  <string name="content_desc_meal_type_screen">Meal types screen</string>
 
 </resources>
