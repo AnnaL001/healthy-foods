@@ -15,7 +15,7 @@
   <string name="low_sodium">Low Sodium</string>
   <string name="select_preference">What are your other preferences?</string>
   <string name="none">None</string>
-  <string name="glutten_free">Glutten Free</string>
+  <string name="glutten_free">Gluten Free</string>
   <string name="peanut_free">Peanut Free</string>
   <string name="wheat_free">Wheat Free</string>
   <string name="dairy_free">Dairy Free</string>
@@ -44,11 +44,11 @@
   <string name="search">Search</string>
   <string name="starred">Starred</string>
   <string name="recipe_source">Recipe source</string>
-  <string name="diet_label">Diet label</string>
-  <string name="cuisine">Cuisine type</string>
-  <string name="meal_type">Meal type</string>
-  <string name="dish_type">Dish type</string>
   <string name="home">Home</string>
   <string name="content_desc_meal_type_screen">Meal types screen</string>
+  <string name="error">Error</string>
+  <string name="failure_feedback">Something went wrong. Please check your Internet connection and try again later</string>
+  <string name="unsuccessful_feedback">Something went wrong. Please try again later</string>
+  <string name="no_recipes_found">Sorry, no recipes found</string>
 
 </resources>
