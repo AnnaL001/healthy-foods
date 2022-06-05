@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.anna.healthyfoods">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:allowBackup="true"
       android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,7 +21,11 @@
         android:label="@string/home"/>
     <activity
         android:name=".RecipeListActivity"
-        android:exported="false" />
+        android:exported="false">
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value="com.anna.healthyfoods.HomeActivity" />
+    </activity>
     <activity
         android:name=".UserDetailsActivity"
         android:exported="false"
