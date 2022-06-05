@@ -10,7 +10,7 @@ import com.anna.healthyfoods.ui.MealTypeFragment;
 
 public class HomeViewPagerAdapter extends FragmentStateAdapter {
   private static final int NUM_PAGES = 3;
-  private Settings userSettings;
+  private final Settings userSettings;
 
   public HomeViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, Settings userSettings) {
     super(fragmentActivity);
