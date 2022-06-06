@@ -49,5 +49,12 @@
   <string name="failure_feedback">Something went wrong. Please check your Internet connection and try again later</string>
   <string name="unsuccessful_feedback">Something went wrong. Please try again later</string>
   <string name="no_recipes_found">Sorry, no recipes found</string>
+  <string name="search_recipes">Search for recipes</string>
+  <string name="calories">Calories</string>
+  <string name="quantity">Quantity</string>
+  <string name="yield">Yield</string>
+  <string name="ingredient_label">Ingredient label</string>
+  <string name="ingredient_quantity">Ingredient quantity</string>
+  <string name="cholestrol">Cholestrol</string>
 
 </resources>
