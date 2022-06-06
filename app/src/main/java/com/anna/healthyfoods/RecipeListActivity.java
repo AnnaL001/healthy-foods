@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
@@ -16,6 +15,7 @@ import com.anna.healthyfoods.interfaces.EdamamApi;
 import com.anna.healthyfoods.models.RecipeSearchResponse;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
+import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 
 import org.parceler.Parcels;
 
@@ -56,7 +56,7 @@ public class RecipeListActivity extends AppCompatActivity {
     call.enqueue(new Callback<RecipeSearchResponse>() {
       @Override
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
-        hideProgressBar();
+        UserInterfaceHelpers.hideProgressBar(binding.progressBar, false);
 
         if(response.isSuccessful()){
           assert response.body() != null;
@@ -65,44 +65,23 @@ public class RecipeListActivity extends AppCompatActivity {
           binding.recipeList.setAdapter(adapter);
 
           if(adapter.getItemCount() > 0){
-            showRecipes();
+            UserInterfaceHelpers.showRecipes(binding.recipeList);
           } else {
-            showNoRecipesFound();
+            UserInterfaceHelpers.showNoRecipesFound(binding.errorText, getApplicationContext());
           }
         } else {
-          showUnsuccessfulFeedback();
+          UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorText, getApplicationContext());
         }
       }
 
       @Override
       public void onFailure(@NonNull Call<RecipeSearchResponse> call, @NonNull Throwable t) {
-        hideProgressBar();
-        showFailureFeedback();
+        UserInterfaceHelpers.hideProgressBar(binding.progressBar, false);
+        UserInterfaceHelpers.showFailureFeedback(binding.errorText, getApplicationContext());
         Log.e(TAG, "Error: ", t);
       }
     });
   }
 
-  private void hideProgressBar(){
-    binding.progressBar.setVisibility(View.GONE);
-  }
 
-  private void showRecipes(){
-    binding.recipeList.setVisibility(View.VISIBLE);
-  }
-
-  private void showUnsuccessfulFeedback(){
-    binding.errorText.setText(getString(R.string.unsuccessful_feedback));
-    binding.errorText.setVisibility(View.VISIBLE);
-  }
-
-  private void showFailureFeedback(){
-    binding.errorText.setText(getString(R.string.failure_feedback));
-    binding.errorText.setVisibility(View.VISIBLE);
-  }
-
-  private void showNoRecipesFound(){
-    binding.errorText.setText(getString(R.string.no_recipes_found));
-    binding.errorText.setVisibility(View.VISIBLE);
-  }
 }
