@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.ui.MealTypeFragment;
+import com.anna.healthyfoods.ui.SearchFragment;
 
 public class HomeViewPagerAdapter extends FragmentStateAdapter {
   private static final int NUM_PAGES = 3;
@@ -24,6 +25,9 @@ public class HomeViewPagerAdapter extends FragmentStateAdapter {
     switch (position){
       case 0:
         fragment = MealTypeFragment.newInstance(userSettings);
+        break;
+      case 1:
+        fragment = SearchFragment.newInstance(userSettings);
         break;
     }
     return fragment;
