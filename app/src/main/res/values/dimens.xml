@@ -21,8 +21,8 @@
   <dimen name="view_margin_horizontal">8dp</dimen>
   <dimen name="divider_height">4dp</dimen>
   <dimen name="divider_width">40dp</dimen>
-  <dimen name="divider_inset_2">40dp</dimen>
   <dimen name="cardview_elevation">4dp</dimen>
   <dimen name="recipe_list_image_width">100dp</dimen>
   <dimen name="recipe_list_image_height">100dp</dimen>
+  <dimen name="search_padding">10dp</dimen>
 </resources>
