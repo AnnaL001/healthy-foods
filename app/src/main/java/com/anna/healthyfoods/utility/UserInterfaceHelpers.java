@@ -1,7 +1,14 @@
 package com.anna.healthyfoods.utility;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.anna.healthyfoods.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
@@ -39,5 +46,32 @@ public class UserInterfaceHelpers {
 
   public static void clearFormInput(ChipGroup chipGroup){
     chipGroup.clearCheck();
+  }
+
+  public static void hideProgressBar(ProgressBar progressBar, boolean show){
+    if(show){
+      progressBar.setVisibility(View.VISIBLE);
+    } else {
+      progressBar.setVisibility(View.GONE);
+    }
+  }
+
+  public static void showRecipes(RecyclerView recyclerView){
+    recyclerView.setVisibility(View.VISIBLE);
+  }
+
+  public static void showUnsuccessfulFeedback(TextView textView, Context context){
+    textView.setText(context.getString(R.string.unsuccessful_feedback));
+    textView.setVisibility(View.VISIBLE);
+  }
+
+  public static void showFailureFeedback(TextView textView, Context context){
+    textView.setText(context.getString(R.string.failure_feedback));
+    textView.setVisibility(View.VISIBLE);
+  }
+
+  public static void showNoRecipesFound(TextView textView, Context context){
+    textView.setText(context.getString(R.string.no_recipes_found));
+    textView.setVisibility(View.VISIBLE);
   }
 }
