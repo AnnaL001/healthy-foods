@@ -47,7 +47,7 @@ public class RecipeListActivity extends AppCompatActivity {
     String[] preferences = new String[userSettings.getPreferences().size()];
 
     EdamamApi client = EdamamClient.getClient();
-    Call<RecipeSearchResponse> call = client.getRecipesByMealType("public", "breakfast", Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, mealType, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
+    Call<RecipeSearchResponse> call = client.getRecipesByMealType("public", "", Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, mealType, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
 
     loadRecipes(call);
   }
