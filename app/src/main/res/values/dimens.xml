@@ -25,4 +25,5 @@
   <dimen name="recipe_list_image_width">100dp</dimen>
   <dimen name="recipe_list_image_height">100dp</dimen>
   <dimen name="search_padding">10dp</dimen>
+  <dimen name="screen_margin_horizontal_triple">24dp</dimen>
 </resources>
