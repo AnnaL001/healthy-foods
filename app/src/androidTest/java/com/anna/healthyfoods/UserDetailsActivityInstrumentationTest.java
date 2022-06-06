@@ -4,6 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
@@ -62,6 +63,8 @@ public class UserDetailsActivityInstrumentationTest {
 
   @Test
   public void initializeButton_nameIsSentToMealTypesActivity() {
+    onView(withId(R.id.name_text_input_layout)).perform(swipeUp());
+
     // Enter name
     onView(allOf(
             isDescendantOfA(withId(R.id.name_text_input_layout)),
@@ -86,8 +89,8 @@ public class UserDetailsActivityInstrumentationTest {
             withId(R.id.glutten)
     )).perform(click()).check(matches(isChecked()));
 
-    onView(withId(R.id.btn_next)).perform(scrollTo()).perform(click());
-    onView(withId(R.id.welcome_text)).check(matches(withText(context.getString(R.string.welcome, "Anna"))));
+    onView(withId(R.id.btn_next)).perform(click());
+    onView(withId(R.id.welcome_text)).check(matches(withText("Welcome Anna")));
   }
 }
 
