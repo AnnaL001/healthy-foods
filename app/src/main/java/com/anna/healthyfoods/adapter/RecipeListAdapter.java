@@ -1,6 +1,7 @@
 package com.anna.healthyfoods.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anna.healthyfoods.databinding.ItemRecipeListBinding;
+import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.Hit;
 import com.bumptech.glide.Glide;
 
@@ -16,10 +18,12 @@ import java.util.List;
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeListViewHolder> {
   private final Context context;
   private final List<Hit> hits;
+  private final ItemOnClickListener listener;
 
-  public RecipeListAdapter(Context context, List<Hit> hits) {
+  public RecipeListAdapter(Context context, List<Hit> hits, ItemOnClickListener listener) {
     this.context = context;
     this.hits = hits;
+    this.listener = listener;
   }
 
   @NonNull
@@ -31,6 +35,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
   @Override
   public void onBindViewHolder(@NonNull RecipeListViewHolder holder, int position) {
     holder.bindRecipe(hits.get(position));
+    holder.binding.getRoot().setOnClickListener(view -> {
+      String uri = hits.get(position).getRecipe().getUri();
+      String recipeId = uri.substring(uri.indexOf("#") + 1);
+      listener.onClick(hits.get(position).getRecipe().getLabel(), recipeId);
+    });
   }
 
   @Override

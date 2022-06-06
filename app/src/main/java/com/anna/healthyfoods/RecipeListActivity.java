@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -12,6 +13,7 @@ import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
 import com.anna.healthyfoods.databinding.ActivityRecipeListBinding;
 import com.anna.healthyfoods.interfaces.EdamamApi;
+import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.RecipeSearchResponse;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
@@ -25,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecipeListActivity extends AppCompatActivity {
+public class RecipeListActivity extends AppCompatActivity implements ItemOnClickListener {
   public static final String TAG = RecipeListActivity.class.getSimpleName();
   private ActivityRecipeListBinding binding;
   private RecipeListAdapter adapter;
@@ -60,7 +62,7 @@ public class RecipeListActivity extends AppCompatActivity {
 
         if(response.isSuccessful()){
           assert response.body() != null;
-          adapter = new RecipeListAdapter(RecipeListActivity.this, response.body().getHits());
+          adapter = new RecipeListAdapter(RecipeListActivity.this, response.body().getHits(), RecipeListActivity.this);
           binding.recipeList.setLayoutManager(new LinearLayoutManager(RecipeListActivity.this));
           binding.recipeList.setAdapter(adapter);
 
@@ -84,4 +86,12 @@ public class RecipeListActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  public void onClick(String title, String id) {
+    Intent intent = new Intent(getApplicationContext(), RecipeDetailsActivity.class);
+    intent.putExtra("recipe_title", title);
+    intent.putExtra("recipe_id", id);
+    Log.d(TAG, "Recipe ID: " + id);
+    startActivity(intent);
+  }
 }

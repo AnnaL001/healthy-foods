@@ -15,6 +15,7 @@ import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
 import com.anna.healthyfoods.databinding.FragmentSearchBinding;
 import com.anna.healthyfoods.interfaces.EdamamApi;
+import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.RecipeSearchResponse;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
@@ -27,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements ItemOnClickListener {
   public static final String TAG = SearchFragment.class.getSimpleName();
   private FragmentSearchBinding binding;
   private Settings userSettings;
@@ -81,7 +82,7 @@ public class SearchFragment extends Fragment {
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
         if(response.isSuccessful()){
           assert response.body() != null;
-          adapter = new RecipeListAdapter(getContext(), response.body().getHits());
+          adapter = new RecipeListAdapter(getContext(), response.body().getHits(), SearchFragment.this);
           binding.recipeResultList.setLayoutManager(new LinearLayoutManager(getContext()));
           binding.recipeResultList.setAdapter(adapter);
 
@@ -107,5 +108,10 @@ public class SearchFragment extends Fragment {
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
+  }
+
+  @Override
+  public void onClick(String title, String id) {
+
   }
 }
