@@ -1,5 +1,6 @@
 package com.anna.healthyfoods.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.anna.healthyfoods.RecipeDetailsActivity;
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
 import com.anna.healthyfoods.databinding.FragmentSearchBinding;
@@ -105,13 +107,17 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
   }
 
   @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    binding = null;
+  public void onClick(String title, String id) {
+    Intent intent = new Intent(getContext(), RecipeDetailsActivity.class);
+    intent.putExtra("recipe_title", title);
+    intent.putExtra("recipe_id", id);
+    Log.d(TAG, "Recipe ID: " + id);
+    startActivity(intent);
   }
 
   @Override
-  public void onClick(String title, String id) {
-
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 }
