@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
@@ -14,6 +15,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.parceler.Parcels;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
@@ -22,6 +24,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @RunWith(RobolectricTestRunner.class)
 public class UserDetailsActivityTest {
@@ -70,14 +73,14 @@ public class UserDetailsActivityTest {
   @Test
   public void getSelectedChips_returnsSelectedChipsLabel() {
     // Select preferred diet
-    dietChipGroup.check(R.id.keto_diet);
+    dietChipGroup.check(R.id.high_protein_diet);
     // Select allergies
-    allergyChipGroup.check(R.id.glutten);
-    allergyChipGroup.check(R.id.dairy);
+    allergyChipGroup.check(R.id.gluten_free);
+    allergyChipGroup.check(R.id.vegan);
 
     // Expected list of diets and allergies
-    List<String> expectedSelectedDiets = new ArrayList<>(Collections.singletonList(activity.getString(R.string.keto_diet)));
-    List<String> expectedSelectedAllergies = new ArrayList<>(Arrays.asList(activity.getString(R.string.glutten_free), activity.getString(R.string.dairy_free)));
+    List<String> expectedSelectedDiets = new ArrayList<>(Collections.singletonList("high-protein"));
+    List<String> expectedSelectedAllergies = new ArrayList<>(Arrays.asList("gluten-free", "vegan"));
 
     assertEquals(expectedSelectedDiets, UserInterfaceHelpers.getSelectedChips(dietChipGroup));
     assertEquals(expectedSelectedAllergies, UserInterfaceHelpers.getSelectedChips(allergyChipGroup));
@@ -87,18 +90,28 @@ public class UserDetailsActivityTest {
   public void initializeButton_startsNextActivityWithDataUponAClick() {
     // Fill in the User details form
     Objects.requireNonNull(nameTextInputLayout.getEditText()).setText(name);
-    dietChipGroup.check(R.id.keto_diet);
-    allergyChipGroup.check(R.id.glutten);
+    dietChipGroup.check(R.id.high_protein_diet);
+    allergyChipGroup.check(R.id.gluten_free);
+
+    Settings userSettings = new Settings(
+            nameTextInputLayout.getEditText().getText().toString(),
+            UserInterfaceHelpers.getSelectedChips(dietChipGroup),
+            UserInterfaceHelpers.getSelectedChips(allergyChipGroup));
 
     // Click next button
     activity.findViewById(R.id.btn_next).performClick();
 
     //Expected Intent with extras
-    Intent expectedIntent = new Intent(activity, MealTypesActivity.class);
-    expectedIntent.putExtra("name", nameTextInputLayout.getEditText().getText().toString());
+    Intent expectedIntent = new Intent(activity, HomeActivity.class);
+    expectedIntent.putExtra("userSettings", Parcels.wrap(userSettings));
+    Settings expectedSettings = Parcels.unwrap(expectedIntent.getParcelableExtra("userSettings"));
 
     // Actual intent
     Intent actualIntent = shadowOf(activity).getNextStartedActivity();
-    assertEquals(expectedIntent.getStringExtra("name"), actualIntent.getStringExtra("name"));
+    Settings actualSettings = Parcels.unwrap(actualIntent.getParcelableExtra("userSettings"));
+
+    assertEquals(expectedSettings.getName(), actualSettings.getName());
+    assertEquals(expectedSettings.getDiets(), actualSettings.getDiets());
+    assertEquals(expectedSettings.getPreferences(), actualSettings.getPreferences());
   }
 }
