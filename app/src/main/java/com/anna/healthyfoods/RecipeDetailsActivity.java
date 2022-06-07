@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -67,6 +69,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     Glide.with(getApplicationContext()).asBitmap().load(recipe.getImages().getRegular().getUrl()).into(binding.recipeImage);
     binding.recipeLabel.setText(recipe.getLabel());
     binding.recipeSource.setText(recipe.getSource());
+
+    // Add listener to recipe source to open website
+    openWebsite(recipe.getUrl());
+
     binding.caloriesQuantity.setText(String.format(Locale.ENGLISH, "%.2f", recipe.getCalories()));
     binding.yieldQuantity.setText(String.format(Locale.ENGLISH, "%d", recipe.getYield()));
 
@@ -113,6 +119,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     binding.magnesiumQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getMg().getQuantity(), recipe.getTotalNutrients().getMg().getUnit()));
     binding.potassiumQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getK().getQuantity(), recipe.getTotalNutrients().getK().getUnit()));
     binding.ironQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getFe().getQuantity(), recipe.getTotalNutrients().getFe().getUnit()));
+  }
+
+  private void openWebsite(String websiteUrl){
+    binding.recipeSource.setOnClickListener(view -> {
+      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl));
+      startActivity(intent);
+    });
   }
 
 }
