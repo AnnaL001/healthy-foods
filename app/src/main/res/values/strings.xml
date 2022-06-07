@@ -64,4 +64,5 @@
   <string name="ingredients">Ingredients</string>
   <string name="diet_health_labels"><![CDATA[Diet & Health Labels]]></string>
   <string name="nutritional_info">Nutritional information</string>
+  <string name="no_starred_recipes">No starred recipes found</string>
 </resources>
