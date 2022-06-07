@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.RecipeDetailsActivity;
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
@@ -91,7 +92,7 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
           if(adapter.getItemCount() > 0){
             UserInterfaceHelpers.showRecipes(binding.recipeResultList);
           } else {
-            UserInterfaceHelpers.showNoRecipesFound(binding.errorText, requireContext());
+            UserInterfaceHelpers.showNoContentFound(binding.errorText, requireContext(), getString(R.string.no_recipes_found));
           }
         } else {
           UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorText, requireContext());
