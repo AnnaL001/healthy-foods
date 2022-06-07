@@ -71,12 +71,13 @@ public class UserDetailsActivityInstrumentationTest {
             withId(R.id.high_protein_diet))
     ).perform(click()).check(matches(isChecked()));
 
+    onView(withId(R.id.allergy_chip_group)).perform(swipeUp());
+
     // Select allergies
     onView(allOf(
             isDescendantOfA(withId(R.id.allergy_chip_group)),
             withId(R.id.gluten_free)
     )).perform(click()).check(matches(isChecked()));
-
 
     onView(withId(R.id.btn_next)).perform(click());
 
