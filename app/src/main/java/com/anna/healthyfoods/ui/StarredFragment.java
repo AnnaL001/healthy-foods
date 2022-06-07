@@ -31,7 +31,7 @@ public class StarredFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     //For now, until database connection is added
-    UserInterfaceHelpers.hideProgressBar(binding.progressBar, false);
+    UserInterfaceHelpers.hideProgressBar(binding.progressBar);
     UserInterfaceHelpers.showNoContentFound(binding.errorText, requireContext(), getString(R.string.no_starred_recipes));
   }
 
