@@ -71,8 +71,8 @@ public class UserInterfaceHelpers {
     textView.setVisibility(View.VISIBLE);
   }
 
-  public static void showNoRecipesFound(TextView textView, Context context){
-    textView.setText(context.getString(R.string.no_recipes_found));
+  public static void showNoContentFound(TextView textView, Context context, String message){
+    textView.setText(message);
     textView.setVisibility(View.VISIBLE);
   }
 }
