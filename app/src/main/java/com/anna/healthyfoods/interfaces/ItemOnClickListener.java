@@ -1,5 +1,5 @@
 package com.anna.healthyfoods.interfaces;
 
 public interface ItemOnClickListener {
-  void onClick(int title);
+  void onClick(String title, String id);
 }

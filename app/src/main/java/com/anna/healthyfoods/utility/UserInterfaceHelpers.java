@@ -1,10 +1,26 @@
 package com.anna.healthyfoods.utility;
 
+import static android.view.View.*;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.constraintlayout.widget.Group;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.anna.healthyfoods.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class UserInterfaceHelpers {
   // Retrieve selected chips and their corresponding labels
@@ -14,9 +30,54 @@ public class UserInterfaceHelpers {
 
     for(int selectedChip: selectedChips){
       Chip chip = chipGroup.findViewById(selectedChip);
-      selectedOptions.add(chip.getText().toString());
+      // Transform string to match allowed API query parameter values
+      String transformed = transformString(chip.getText().toString());
+      selectedOptions.add(transformed);
     }
 
     return selectedOptions;
+  }
+
+  private static String transformString(String selection){
+    // Transform to an array
+    String[] stringArray = selection.toLowerCase().split(" ");
+    // Join array to string with hyphen
+    return TextUtils.join("-", stringArray);
+  }
+
+  public static void clearFormInput(TextInputLayout textInputLayout){
+    Objects.requireNonNull(textInputLayout.getEditText()).setText("");
+  }
+
+  public static void clearFormInput(ChipGroup chipGroup){
+    chipGroup.clearCheck();
+  }
+
+  public static void hideProgressBar(ProgressBar progressBar){
+    progressBar.setVisibility(GONE);
+  }
+
+  public static void showRecipes(RecyclerView recyclerView){
+    recyclerView.setVisibility(VISIBLE);
+  }
+
+  public static void showRecipeDetails(ImageView imageView, Group group){
+    imageView.setVisibility(VISIBLE);
+    group.setVisibility(VISIBLE);
+  }
+
+  public static void showUnsuccessfulFeedback(TextView textView, Context context){
+    textView.setText(context.getString(R.string.unsuccessful_feedback));
+    textView.setVisibility(VISIBLE);
+  }
+
+  public static void showFailureFeedback(TextView textView, Context context){
+    textView.setText(context.getString(R.string.failure_feedback));
+    textView.setVisibility(VISIBLE);
+  }
+
+  public static void showNoContentFound(TextView textView, Context context, String message){
+    textView.setText(message);
+    textView.setVisibility(VISIBLE);
   }
 }

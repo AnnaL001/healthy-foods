@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.anna.healthyfoods">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:allowBackup="true"
       android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,15 +16,21 @@
       android:theme="@style/Theme.HealthyFoods"
       tools:targetApi="31">
     <activity
-        android:name=".RecipeListActivity"
-        android:exported="false"/>
+        android:name=".RecipeDetailsActivity"
+        android:exported="false" >
+    </activity>
     <activity
-        android:name=".MealTypesActivity"
-        android:exported="false"/>
+        android:name=".HomeActivity"
+        android:exported="false"
+        android:label="@string/home" />
+    <activity
+        android:name=".RecipeListActivity"
+        android:exported="false">
+    </activity>
     <activity
         android:name=".UserDetailsActivity"
         android:exported="false"
-        android:theme="@style/NoActionBarTheme"/>
+        android:theme="@style/NoActionBarTheme" />
     <activity
         android:name=".MainActivity"
         android:exported="true"

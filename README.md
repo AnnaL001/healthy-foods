@@ -26,6 +26,10 @@ The Mobile Application is still in development. Currently, the existing features
   - For Linux(Ubuntu) you can install via Ubuntu Software
   ### Navigating within Android Studio
   - You can reference their user guide https://developer.android.com/studio/intro
+  
+  ### Running tests
+  - The tests included are: Local tests and Instrumentation tests
+  - To run tests in Android Studio you can reference their user guide https://developer.android.com/studio/test/test-in-android-studio
 
 ## Dependencies
 
@@ -63,4 +67,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.<br>
 Copyright (c) 2022 **Lynn Nyangon**
-
