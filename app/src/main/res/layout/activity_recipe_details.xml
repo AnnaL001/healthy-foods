@@ -8,20 +8,26 @@
       android:background="@color/healthy_foods_white">
 
   <ImageView
-      android:id="@+id/imageView"
+      android:id="@+id/recipe_image"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_gravity="center_horizontal"
+      android:contentDescription="@string/content_desc_recipe_image"
       android:scaleType="centerCrop"
-      app:srcCompat="@drawable/breakfast"
-      tools:ignore="ContentDescription" />
+      tools:srcCompat="@drawable/breakfast" />
+
+  <androidx.core.widget.NestedScrollView
+      android:id="@+id/details_bottom_sheet"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      style="@style/BottomSheetStyle"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/details_bottom_sheet"
-        style="@style/BottomSheetStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        android:layout_height="wrap_content">
 
       <View
           android:id="@+id/divider"
@@ -66,6 +72,7 @@
 
       <com.google.android.material.chip.ChipGroup
           android:id="@+id/recipe_type_labels"
+          style="@style/Widget.MaterialComponents.ChipGroup"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginStart="@dimen/view_margin_horizontal"
@@ -168,30 +175,38 @@
 
       </com.google.android.material.card.MaterialCardView>
 
-      <androidx.core.widget.NestedScrollView
-          android:id="@+id/nested_scrolling_view"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/ingredient_list"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
+          android:layout_marginTop="@dimen/screen_margin_vertical_double"
+          android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/ingredient_title"
+          tools:listitem="@layout/item_ingredient_list">
+
+      </androidx.recyclerview.widget.RecyclerView>
+
+      <TextView
+          android:id="@+id/diet_health_title"
+          style="@style/BoldTextStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
+          android:layout_marginTop="@dimen/view_margin_vertical_triple"
+          android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+          android:gravity="center_horizontal"
+          android:text="@string/diet_health_labels"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/calories_card"
-          tools:context=".RecipeDetailsActivity">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredient_list"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
-            android:layout_marginTop="@dimen/screen_margin_vertical_double"
-            android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calories_card"
-            tools:listitem="@layout/item_ingredient_list" />
-      </androidx.core.widget.NestedScrollView>
+          app:layout_constraintTop_toBottomOf="@id/ingredient_list" />
 
       <com.google.android.material.chip.ChipGroup
           android:id="@+id/recipe_diet_health_labels"
+          style="@style/Widget.MaterialComponents.ChipGroup"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginStart="@dimen/view_margin_horizontal"
@@ -199,38 +214,233 @@
           android:layout_marginEnd="@dimen/view_margin_horizontal"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/nested_scrolling_view">
+          app:layout_constraintTop_toBottomOf="@id/diet_health_title">
 
       </com.google.android.material.chip.ChipGroup>
+
+      <TextView
+          android:id="@+id/nutrition_title"
+          style="@style/BoldTextStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
+          android:layout_marginTop="@dimen/view_margin_vertical_double"
+          android:gravity="center_horizontal"
+          android:text="@string/nutritional_info"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/recipe_diet_health_labels" />
 
       <com.google.android.material.card.MaterialCardView
           android:id="@+id/nutrients_card"
           style="@style/CardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/view_margin_vertical"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/recipe_diet_health_labels">
+          app:layout_constraintTop_toBottomOf="@id/nutrition_title">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
           <TextView
-              android:id="@+id/cholestrol_quantity"
+              android:id="@+id/cholestrol_label"
               style="@style/BoldTextStyle"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:layout_marginTop="@dimen/view_margin_vertical_double"
-              android:layout_marginEnd="@dimen/view_margin_horizontal_double"
               android:text="@string/cholestrol"
-              app:layout_constraintEnd_toEndOf="parent"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintEnd_toStartOf="@id/cholestrol_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+              android:id="@+id/cholestrol_quantity"
+              style="@style/NormalTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
+              android:layout_marginTop="@dimen/view_margin_vertical_double"
+              android:layout_marginEnd="@dimen/view_margin_horizontal"
+              app:layout_constraintEnd_toStartOf="@id/guideline3"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/cholestrol_label"
+              app:layout_constraintTop_toTopOf="parent"
+              tools:text="@string/quantity" />
+
+          <TextView
+              android:id="@+id/sodium_label"
+              style="@style/BoldTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical_double"
+              android:text="@string/sodium"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintEnd_toStartOf="@id/sodium_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/guideline3"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+              android:id="@+id/sodium_quantity"
+              style="@style/NormalTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical_double"
+              android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/sodium_label"
+              app:layout_constraintTop_toTopOf="parent"
+              tools:text="@string/quantity" />
+
+          <TextView
+              android:id="@+id/calcium_label"
+              style="@style/BoldTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginEnd="16dp"
+              android:text="@string/calcium"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintEnd_toStartOf="@+id/calcium_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/cholestrol_label" />
+
+          <TextView
+              android:id="@+id/calcium_quantity"
+              style="@style/NormalTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginEnd="@dimen/view_margin_horizontal"
+              app:layout_constraintEnd_toStartOf="@+id/magnesium_label"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/calcium_label"
+              app:layout_constraintTop_toBottomOf="@id/cholestrol_label"
+              tools:text="@string/quantity" />
+
+          <TextView
+              android:id="@+id/magnesium_label"
+              style="@style/BoldTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:text="@string/magnesium"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintEnd_toStartOf="@id/magnesium_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/guideline3"
+              app:layout_constraintTop_toBottomOf="@id/sodium_label" />
+
+          <TextView
+              android:id="@+id/magnesium_quantity"
+              style="@style/NormalTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/magnesium_label"
+              app:layout_constraintTop_toBottomOf="@id/sodium_label"
+              tools:text="@string/quantity" />
+
+          <TextView
+              android:id="@+id/potassium_label"
+              style="@style/BoldTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginBottom="@dimen/view_margin_vertical_double"
+              android:text="@string/potassium"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toStartOf="@+id/potassium_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/calcium_label" />
+
+          <TextView
+              android:id="@+id/potassium_quantity"
+              style="@style/NormalTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginEnd="@dimen/view_margin_horizontal"
+              android:layout_marginBottom="@dimen/view_margin_vertical_double"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toStartOf="@id/guideline3"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/potassium_label"
+              app:layout_constraintTop_toBottomOf="@id/calcium_label"
+              tools:text="@string/quantity" />
+
+          <TextView
+              android:id="@+id/iron_label"
+              style="@style/BoldTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:layout_marginBottom="16dp"
+              android:text="@string/iron"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toStartOf="@id/iron_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/guideline3"
+              app:layout_constraintTop_toBottomOf="@+id/magnesium_label" />
+
+          <TextView
+              android:id="@+id/iron_quantity"
+              style="@style/NormalTextStyle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+              android:layout_marginBottom="@dimen/view_margin_vertical_double"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toEndOf="@id/iron_label"
+              app:layout_constraintTop_toBottomOf="@id/magnesium_label"
+              app:layout_constraintVertical_bias="0.0"
+              tools:text="@string/quantity" />
+
+          <androidx.constraintlayout.widget.Guideline
+              android:id="@+id/guideline3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              app:layout_constraintGuide_percent="@fraction/guideline_percent_2" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
       </com.google.android.material.card.MaterialCardView>
 
+      <TextView
+          android:id="@+id/ingredient_title"
+          style="@style/BoldTextStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
+          android:layout_marginTop="@dimen/view_margin_vertical_double"
+          android:layout_marginEnd="@dimen/view_margin_horizontal_double"
+          android:gravity="center_horizontal"
+          android:text="@string/ingredients"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/calories_card" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.core.widget.NestedScrollView>
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
