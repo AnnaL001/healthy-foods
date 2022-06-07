@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/brunch_dining.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/card.xml" value="0.171" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle.xml" value="0.171" />
+        <entry key="app/src/main/res/drawable/ic_baseline_set_meal.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.171" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_meal_types.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/activity_recipe_details.xml" value="0.276006711409396" />
+        <entry key="app/src/main/res/layout/activity_recipe_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_user_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_meal_types.xml" value="0.14391951006124235" />
