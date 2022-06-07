@@ -16,6 +16,7 @@ import com.anna.healthyfoods.interfaces.EdamamApi;
 import com.anna.healthyfoods.models.Hit;
 import com.anna.healthyfoods.models.Recipe;
 import com.anna.healthyfoods.utility.Constants;
+import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 
@@ -52,14 +53,21 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     call.enqueue(new Callback<Hit>() {
       @Override
       public void onResponse(@NonNull Call<Hit> call, @NonNull Response<Hit> response) {
+        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
+
         if(response.isSuccessful()){
           assert response.body() != null;
           setRecipeDetails(response.body().getRecipe());
+          UserInterfaceHelpers.showRecipeDetails(binding.recipeImage, binding.detailsBottomSheetGroup);
+        } else {
+          UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorFeedback, getApplicationContext());
         }
       }
 
       @Override
       public void onFailure(@NonNull Call<Hit> call, @NonNull Throwable t) {
+        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
+        UserInterfaceHelpers.showFailureFeedback(binding.errorFeedback, getApplicationContext());
         Log.e(TAG, "Error while fetching recipe with ID: " + recipeId, t);
       }
     });

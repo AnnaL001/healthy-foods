@@ -58,7 +58,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
     call.enqueue(new Callback<RecipeSearchResponse>() {
       @Override
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
-        UserInterfaceHelpers.hideProgressBar(binding.progressBar, false);
+        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
 
         if(response.isSuccessful()){
           assert response.body() != null;
@@ -78,7 +78,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
 
       @Override
       public void onFailure(@NonNull Call<RecipeSearchResponse> call, @NonNull Throwable t) {
-        UserInterfaceHelpers.hideProgressBar(binding.progressBar, false);
+        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
         UserInterfaceHelpers.showFailureFeedback(binding.errorText, getApplicationContext());
         Log.e(TAG, "Error: ", t);
       }
