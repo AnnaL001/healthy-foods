@@ -66,7 +66,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
   }
 
   private void setRecipeDetails(Recipe recipe){
-    Glide.with(getApplicationContext()).asBitmap().load(recipe.getImages().getRegular().getUrl()).into(binding.recipeImage);
+    Glide.with(getApplicationContext()).asBitmap().load(recipe.getImages().getRegular().getUrl()).placeholder(R.drawable.brunch_dining).into(binding.recipeImage);
     binding.recipeLabel.setText(recipe.getLabel());
     binding.recipeSource.setText(recipe.getSource());
 
