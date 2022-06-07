@@ -22,11 +22,16 @@ import android.content.res.Resources;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(AndroidJUnit4.class)
+@LargeTest
 public class UserDetailsActivityInstrumentationTest {
   @Rule
   public ActivityScenarioRule<UserDetailsActivity> userDetailsActivityRule = new ActivityScenarioRule<>(UserDetailsActivity.class);
@@ -52,12 +57,12 @@ public class UserDetailsActivityInstrumentationTest {
   public void selectChips_validateChipGroups() {
     onView(allOf(
             isDescendantOfA(withId(R.id.diet_chip_group)),
-            withId(R.id.keto_diet))
+            withId(R.id.high_protein_diet))
     ).perform(click()).check(matches(isChecked()));
 
     onView(allOf(
             isDescendantOfA(withId(R.id.allergy_chip_group)),
-            withId(R.id.glutten)
+            withId(R.id.gluten_free)
     )).perform(click()).check(matches(isChecked()));
   }
 
@@ -80,13 +85,13 @@ public class UserDetailsActivityInstrumentationTest {
     // Select diet
     onView(allOf(
             isDescendantOfA(withId(R.id.diet_chip_group)),
-            withId(R.id.keto_diet))
+            withId(R.id.high_protein_diet))
     ).perform(click()).check(matches(isChecked()));
 
     // Select allergies
     onView(allOf(
             isDescendantOfA(withId(R.id.allergy_chip_group)),
-            withId(R.id.glutten)
+            withId(R.id.gluten_free)
     )).perform(click()).check(matches(isChecked()));
 
     onView(withId(R.id.btn_next)).perform(click());
