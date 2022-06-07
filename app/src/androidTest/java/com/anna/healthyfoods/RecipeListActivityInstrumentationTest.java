@@ -60,7 +60,7 @@ public class RecipeListActivityInstrumentationTest {
   public void clickRecipe_opensRecipeDetailsActivityScreen() {
     // Sleep as data is fetched from the API
     try {
-      Thread.sleep(2000);
+      Thread.sleep(5000);
     } catch (InterruptedException e){
       System.out.println("Got interrupted!");
     }
@@ -78,7 +78,7 @@ public class RecipeListActivityInstrumentationTest {
 
     // Sleep as data is fetched from Edamam API
     try {
-      Thread.sleep(2000);
+      Thread.sleep(5000);
     } catch (InterruptedException e){
       System.out.println("Got interrupted!");
     }
