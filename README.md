@@ -5,7 +5,7 @@ An Android mobile application that provides recipe suggestions taking into accou
 
 ## Description
 
-The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any allergies they might have. Functionalities to be added include allowing users to search for recipes while taking into consideration their preferred diet and any allergies that they may have. Aside from that, users should be able to starr recipes that might have peaked their interest for later cooking. Moreover users should be able view various meal types and their corresponding recipes.
+The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any allergies they might have and allowing users to search for recipes while taking into consideration their preferred diet and any allergies that they may have. Moreover, users can also view various meal types and their corresponding recipes, fetched via the Edamam API. Other functionalities to be added include: users being able to starr recipes that might have peaked their interest for later cooking and authenticating users. 
 
 ## Setup/Installation Requirements
 
@@ -37,6 +37,9 @@ The Mobile Application is still in development. Currently, the existing features
 - Espresso Testing Framework
 - Roboelectric Testing Frameowrk
 - JUnit Testing Framework
+- Retrofit
+- Glide
+- Gson Converter
 
 ## Technologies Used
 
