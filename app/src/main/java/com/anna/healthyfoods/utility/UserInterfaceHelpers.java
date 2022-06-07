@@ -26,6 +26,7 @@ public class UserInterfaceHelpers {
 
     for(int selectedChip: selectedChips){
       Chip chip = chipGroup.findViewById(selectedChip);
+      // Transform string to match allowed API query parameter values
       String transformed = transformString(chip.getText().toString());
       selectedOptions.add(transformed);
     }
