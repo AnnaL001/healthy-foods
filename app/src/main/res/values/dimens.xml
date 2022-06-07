@@ -11,7 +11,7 @@
   <dimen name="grid_image_width">100dp</dimen>
   <dimen name="view_margin_vertical">8dp</dimen>
   <dimen name="bottom_sheet_image_dimensions">290dp</dimen>
-  <dimen name="bottom_sheet_corner_radius">30dp</dimen>
+  <dimen name="bottom_sheet_corner_radius">50dp</dimen>
   <dimen name="card_corner_radius">30dp</dimen>
   <dimen name="text_input_layout_corner_radius">50dp</dimen>
   <dimen name="screen_margin_vertical_double">16dp</dimen>
