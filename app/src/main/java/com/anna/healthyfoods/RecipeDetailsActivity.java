@@ -81,6 +81,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     // Add listener to recipe source to open website
     openWebsite(recipe.getUrl());
 
+    // Set calories and serving quantity
     binding.caloriesQuantity.setText(String.format(Locale.ENGLISH, "%.2f", recipe.getCalories()));
     binding.yieldQuantity.setText(String.format(Locale.ENGLISH, "%d", recipe.getYield()));
 
