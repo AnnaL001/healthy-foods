@@ -69,7 +69,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
           if(adapter.getItemCount() > 0){
             UserInterfaceHelpers.showRecipes(binding.recipeList);
           } else {
-            UserInterfaceHelpers.showNoRecipesFound(binding.errorText, getApplicationContext());
+            UserInterfaceHelpers.showNoContentFound(binding.errorText, getApplicationContext(), getString(R.string.no_recipes_found));
           }
         } else {
           UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorText, getApplicationContext());
