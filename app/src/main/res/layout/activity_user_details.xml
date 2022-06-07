@@ -8,7 +8,7 @@
     tools:context=".UserDetailsActivity">
 
   <ImageView
-      android:id="@+id/imageView"
+      android:id="@+id/recipe_image"
       android:layout_width="@dimen/bottom_sheet_image_dimensions"
       android:layout_height="@dimen/bottom_sheet_image_dimensions"
       android:layout_gravity="center_horizontal"
