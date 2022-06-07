@@ -1,11 +1,15 @@
 package com.anna.healthyfoods.utility;
 
+import static android.view.View.*;
+
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anna.healthyfoods.R;
@@ -49,30 +53,31 @@ public class UserInterfaceHelpers {
     chipGroup.clearCheck();
   }
 
-  public static void hideProgressBar(ProgressBar progressBar, boolean show){
-    if(show){
-      progressBar.setVisibility(View.VISIBLE);
-    } else {
-      progressBar.setVisibility(View.GONE);
-    }
+  public static void hideProgressBar(ProgressBar progressBar){
+    progressBar.setVisibility(GONE);
   }
 
   public static void showRecipes(RecyclerView recyclerView){
-    recyclerView.setVisibility(View.VISIBLE);
+    recyclerView.setVisibility(VISIBLE);
+  }
+
+  public static void showRecipeDetails(ImageView imageView, Group group){
+    imageView.setVisibility(VISIBLE);
+    group.setVisibility(VISIBLE);
   }
 
   public static void showUnsuccessfulFeedback(TextView textView, Context context){
     textView.setText(context.getString(R.string.unsuccessful_feedback));
-    textView.setVisibility(View.VISIBLE);
+    textView.setVisibility(VISIBLE);
   }
 
   public static void showFailureFeedback(TextView textView, Context context){
     textView.setText(context.getString(R.string.failure_feedback));
-    textView.setVisibility(View.VISIBLE);
+    textView.setVisibility(VISIBLE);
   }
 
   public static void showNoContentFound(TextView textView, Context context, String message){
     textView.setText(message);
-    textView.setVisibility(View.VISIBLE);
+    textView.setVisibility(VISIBLE);
   }
 }
