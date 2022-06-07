@@ -38,6 +38,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     holder.bindRecipe(hits.get(position));
     holder.binding.getRoot().setOnClickListener(view -> {
       String uri = hits.get(position).getRecipe().getUri();
+      // Extract recipe ID from recipe's URI
       String recipeId = uri.substring(uri.indexOf("#") + 1);
       listener.onClick(hits.get(position).getRecipe().getLabel(), recipeId);
     });
