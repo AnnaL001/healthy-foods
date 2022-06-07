@@ -47,6 +47,7 @@ public class RecipeDetailsActivityInstrumentationTest {
 
     Intents.init();
     onView(withText("Serious Eats")).check(matches(isDisplayed())).perform(click());
+    // Confirm web browser is opened when recipe source is clicked
     intended(hasAction(Intent.ACTION_VIEW));
   }
 }

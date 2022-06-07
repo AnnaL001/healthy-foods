@@ -66,7 +66,9 @@ public class RecipeListActivityInstrumentationTest {
     }
 
     Intents.init();
+    // Click first item on the list
     onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+    // Confirm correct activity is launched
     Intents.intended(hasComponent(RecipeDetailsActivity.class.getName()));
   }
 
@@ -82,7 +84,9 @@ public class RecipeListActivityInstrumentationTest {
     }
 
     Intents.init();
+    // Click first item on the list
     onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+    // Confirm display of correct recipe details
     onView(withId(R.id.recipe_label)).check(matches(withText(recipeTitle)));
   }
 }

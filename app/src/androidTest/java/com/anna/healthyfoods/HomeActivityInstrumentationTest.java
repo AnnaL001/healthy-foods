@@ -79,6 +79,8 @@ public class HomeActivityInstrumentationTest {
   public void clickGridItem_displaysRecipeListOfThatCategory() {
     Intents.init();
     onView(withId(R.id.meal_type_grid)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+    // Confirm launch of category's recipe list when grid item is clicked
     Intents.intended(hasComponent(RecipeListActivity.class.getName()));
   }
 }
