@@ -1,44 +1,88 @@
 package com.anna.healthyfoods;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.*;
 
+import android.content.Intent;
 import android.view.View;
 
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+
+import com.anna.healthyfoods.models.Settings;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+@RunWith(AndroidJUnit4.class)
+@LargeTest
 public class RecipeListActivityInstrumentationTest {
-  @Rule
-  public ActivityScenarioRule<RecipeListActivity> recipeListActivityRule = new ActivityScenarioRule<>(RecipeListActivity.class);
+  public static Intent initializeIntent(){
+    Intent intent = new Intent(ApplicationProvider.getApplicationContext(), RecipeListActivity.class);
 
+    // Create lists of selected diets and preferences
+    List<String> selectedDiets = new ArrayList<>(Collections.singletonList("high-protein"));
+    List<String> selectedPreferences = new ArrayList<>(Collections.singletonList("gluten-free"));
+
+    // Populate userSettings with name, selected diets and selected meal preferences
+    Settings userSettings = new Settings("Anna", selectedDiets, selectedPreferences);
+
+    intent.putExtra("userSettings", Parcels.wrap(userSettings));
+    return intent;
+  }
+
+
+  @Rule
+  public ActivityScenarioRule<RecipeListActivity> recipeListActivityRule = new ActivityScenarioRule<>(initializeIntent());
   private View recipeListDecorView;
 
   @Before
-  public void setUp() {
+  public void setUp()  {
     recipeListActivityRule.getScenario().onActivity(activity -> recipeListDecorView = activity.getWindow().getDecorView());
   }
 
   @Test
-  public void clickListItem_displaysToastWithCorrectRecipeTitle() {
-    String recipeTitle = "1. Chicken Vesuvio";
-    onData(anything())
-            .inAdapterView(withId(R.id.recipe_list_view))
-            .atPosition(0)
-            .perform(click());
+  public void clickRecipe_opensRecipeDetailsActivityScreen() {
+    // Sleep as data is fetched from the API
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
 
-    onView(withText(recipeTitle)).inRoot(withDecorView(not(recipeListDecorView)))
-            .check(matches(withText(recipeTitle)));
+    Intents.init();
+    onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+    Intents.intended(hasComponent(RecipeDetailsActivity.class.getName()));
+  }
+
+  @Test
+  public void clickRecipe_displaysClickedRecipeDetails() {
+    String recipeTitle = "Frothy Iced Matcha Green Tea Recipe";
+
+    // Sleep as data is fetched from Edamam API
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
+
+    Intents.init();
+    onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+    onView(withId(R.id.recipe_label)).check(matches(withText(recipeTitle)));
   }
 }
