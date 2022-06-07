@@ -40,7 +40,7 @@ public class RecipeDetailsActivityInstrumentationTest {
   public void clickRecipeSource_opensSourceWebsite() {
     // Sleep as data is fetched from the API
     try {
-      Thread.sleep(2000);
+      Thread.sleep(5000);
     } catch (InterruptedException e){
       System.out.println("Got interrupted!");
     }
