@@ -266,10 +266,9 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/view_margin_vertical_double"
-              android:layout_marginEnd="@dimen/view_margin_horizontal"
-              app:layout_constraintEnd_toStartOf="@id/guideline3"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/cholestrol_label"
+              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintTop_toTopOf="parent"
               tools:text="@string/quantity" />
 
@@ -278,25 +277,26 @@
               style="@style/BoldTextStyle"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/view_margin_vertical_double"
               android:text="@string/sodium"
               android:textColor="@color/healthy_foods_black"
+              app:layout_constraintTop_toBottomOf="@id/cholestrol_label"
               app:layout_constraintEnd_toStartOf="@id/sodium_quantity"
-              app:layout_constraintHorizontal_chainStyle="spread"
-              app:layout_constraintStart_toEndOf="@id/guideline3"
-              app:layout_constraintTop_toTopOf="parent" />
+              app:layout_constraintStart_toStartOf="parent"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
+              android:layout_marginTop="@dimen/view_margin_vertical"
+              app:layout_constraintHorizontal_chainStyle="spread" />
 
           <TextView
               android:id="@+id/sodium_quantity"
               style="@style/NormalTextStyle"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/view_margin_vertical_double"
+              android:layout_marginTop="@dimen/view_margin_vertical"
               android:layout_marginEnd="@dimen/view_margin_horizontal_double"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/sodium_label"
-              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/cholestrol_label"
               tools:text="@string/quantity" />
 
           <TextView
@@ -312,7 +312,7 @@
               app:layout_constraintEnd_toStartOf="@+id/calcium_quantity"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@id/cholestrol_label" />
+              app:layout_constraintTop_toBottomOf="@id/sodium_label" />
 
           <TextView
               android:id="@+id/calcium_quantity"
@@ -321,10 +321,10 @@
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/view_margin_vertical"
               android:layout_marginEnd="@dimen/view_margin_horizontal"
-              app:layout_constraintEnd_toStartOf="@+id/magnesium_label"
+              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/calcium_label"
-              app:layout_constraintTop_toBottomOf="@id/cholestrol_label"
+              app:layout_constraintTop_toBottomOf="@id/sodium_label"
               tools:text="@string/quantity" />
 
           <TextView
@@ -333,12 +333,13 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/view_margin_vertical"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:text="@string/magnesium"
               android:textColor="@color/healthy_foods_black"
               app:layout_constraintEnd_toStartOf="@id/magnesium_quantity"
               app:layout_constraintHorizontal_chainStyle="spread"
-              app:layout_constraintStart_toEndOf="@id/guideline3"
-              app:layout_constraintTop_toBottomOf="@id/sodium_label" />
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/calcium_label" />
 
           <TextView
               android:id="@+id/magnesium_quantity"
@@ -350,7 +351,7 @@
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/magnesium_label"
-              app:layout_constraintTop_toBottomOf="@id/sodium_label"
+              app:layout_constraintTop_toBottomOf="@id/calcium_label"
               tools:text="@string/quantity" />
 
           <TextView
@@ -360,14 +361,12 @@
               android:layout_height="wrap_content"
               android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:layout_marginTop="@dimen/view_margin_vertical"
-              android:layout_marginBottom="@dimen/view_margin_vertical_double"
               android:text="@string/potassium"
               android:textColor="@color/healthy_foods_black"
-              app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toStartOf="@+id/potassium_quantity"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@id/calcium_label" />
+              app:layout_constraintTop_toBottomOf="@id/magnesium_label" />
 
           <TextView
               android:id="@+id/potassium_quantity"
@@ -375,13 +374,11 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/view_margin_vertical"
-              android:layout_marginEnd="@dimen/view_margin_horizontal"
               android:layout_marginBottom="@dimen/view_margin_vertical_double"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toStartOf="@id/guideline3"
               app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toEndOf="@id/potassium_label"
-              app:layout_constraintTop_toBottomOf="@id/calcium_label"
+              app:layout_constraintTop_toBottomOf="@id/magnesium_label"
               tools:text="@string/quantity" />
 
           <TextView
@@ -391,13 +388,14 @@
               android:layout_height="wrap_content"
               android:layout_marginTop="8dp"
               android:layout_marginBottom="16dp"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:text="@string/iron"
               android:textColor="@color/healthy_foods_black"
               app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintEnd_toStartOf="@id/iron_quantity"
               app:layout_constraintHorizontal_chainStyle="spread"
-              app:layout_constraintStart_toEndOf="@id/guideline3"
-              app:layout_constraintTop_toBottomOf="@+id/magnesium_label" />
+              app:layout_constraintTop_toBottomOf="@+id/potassium_label" />
 
           <TextView
               android:id="@+id/iron_quantity"
@@ -411,16 +409,9 @@
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/iron_label"
-              app:layout_constraintTop_toBottomOf="@id/magnesium_label"
+              app:layout_constraintTop_toBottomOf="@id/potassium_label"
               app:layout_constraintVertical_bias="0.0"
               tools:text="@string/quantity" />
-
-          <androidx.constraintlayout.widget.Guideline
-              android:id="@+id/guideline3"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              app:layout_constraintGuide_percent="@fraction/guideline_percent_2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
