@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.databinding.ItemRecipeListBinding;
 import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.Hit;
@@ -58,7 +59,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
     private void bindRecipe(Hit hit) {
-      Glide.with(context).asBitmap().load(hit.getRecipe().getImages().getThumbnail().getUrl()).into(binding.recipeImageView);
+      Glide.with(context).asBitmap().load(hit.getRecipe().getImages().getThumbnail().getUrl()).placeholder(R.drawable.brunch_dining).into(binding.recipeImageView);
       binding.recipeLabel.setText(hit.getRecipe().getLabel());
       binding.recipeSource.setText(hit.getRecipe().getSource());
     }
