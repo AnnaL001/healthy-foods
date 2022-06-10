@@ -9,12 +9,12 @@
 
   <ImageView
       android:id="@+id/recipe_image"
-      android:layout_width="@dimen/bottom_sheet_image_dimensions"
-      android:layout_height="@dimen/bottom_sheet_image_dimensions"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
       android:layout_gravity="center_horizontal"
       android:scaleType="fitStart"
       app:srcCompat="@drawable/healthy_cooking"
-      tools:ignore="ContentDescription"/>
+      tools:ignore="ContentDescription" />
 
   <androidx.core.widget.NestedScrollView
       android:id="@+id/details_bottom_sheet"
