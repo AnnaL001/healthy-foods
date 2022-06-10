@@ -17,7 +17,7 @@
       tools:ignore="ContentDescription" />
 
   <androidx.core.widget.NestedScrollView
-      android:id="@+id/details_bottom_sheet"
+      android:id="@+id/login_details_bottom_sheet"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       style="@style/BottomSheetStyle"
@@ -114,7 +114,7 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginStart="@dimen/screen_margin_horizontal_double"
-          android:layout_marginTop="@dimen/view_margin_vertical_quadraple"
+          android:layout_marginTop="@dimen/view_margin_vertical_six_times"
           android:layout_marginEnd="@dimen/screen_margin_horizontal_double"
           android:text="@string/login"
           android:textColor="#455A64"
