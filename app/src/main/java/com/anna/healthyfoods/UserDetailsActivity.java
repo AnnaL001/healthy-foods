@@ -48,7 +48,7 @@ public class UserDetailsActivity extends AppCompatActivity {
   // Validate user input before populating intent extras
   private void validateFormInputs(Intent intent, String name, List<String> diets, List<String> allergies){
     if(Validator.validateRequiredUserDetailsFormInput(name, diets, allergies)){
-      if(Validator.validateCorrectNameInput(name)){
+      if(Validator.validateNameInput(name)){
         Settings userSettings = new Settings(name, diets, allergies);
         intent.putExtra("userSettings", Parcels.wrap(userSettings));
 
@@ -59,7 +59,7 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         Log.i(TAG, "Navigating to MealTypesActivity...");
       } else {
-        Toast.makeText(getApplicationContext(), getString(R.string.toast_correct_name_input), Toast.LENGTH_SHORT).show();
+        binding.nameTextInputLayout.setError(getString(R.string.toast_correct_name_input));
         Log.e(TAG, "Error: Name contains less than four characters");
       }
     } else {
