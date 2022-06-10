@@ -20,7 +20,7 @@
   <string name="dairy_free">Dairy Free</string>
   <string name="alcohol_free">Alcohol Free</string>
   <string name="next">Next</string>
-  <string name="welcome">Welcome %1$s</string>
+  <string name="welcome">Welcome %1$s,</string>
   <string name="meal_inquiry">What would you like to eat today?</string>
   <string name="meal_type_label">Meal type label</string>
   <string name="meal_types">Meal types</string>
@@ -62,7 +62,7 @@
   <string name="potassium">Potassium</string>
   <string name="iron">Iron</string>
   <string name="ingredients">Ingredients</string>
-  <string name="diet_health_labels"><![CDATA[Diet & Health Labels]]></string>
+  <string name="diet_health_labels">Diet &amp; Health Labels</string>
   <string name="nutritional_info">Nutritional information</string>
   <string name="no_starred_recipes">No starred recipes found</string>
 </resources>
