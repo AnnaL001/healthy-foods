@@ -72,4 +72,8 @@
   <string name="login_account">Login to your account</string>
   <string name="login_additional_text">Kindly enter your details below to login into your account</string>
   <string name="proceed_to_signup">Don\'t have an account?Sign up here</string>
+  <string name="getting_started">Getting Started</string>
+  <string name="signup_additional_text">Create an account to continue</string>
+  <string name="confirm_password">Confirm password</string>
+  <string name="proceed_to_login">Already have an account? Login here</string>
 </resources>
