@@ -22,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void handleButtonClick(){
-    binding.btnGetStarted.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), UserDetailsActivity.class)));
-    Log.i(TAG, "Navigating to UserDetailsActivity ...");
+    binding.btnGetStarted.setOnClickListener(view -> {
+      Log.i(TAG, "Navigating to LoginActivity ...");
+      startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+      finish();
+    });
   }
 }
