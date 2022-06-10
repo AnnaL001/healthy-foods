@@ -65,4 +65,11 @@
   <string name="diet_health_labels">Diet &amp; Health Labels</string>
   <string name="nutritional_info">Nutritional information</string>
   <string name="no_starred_recipes">No starred recipes found</string>
+  <string name="email">Email</string>
+  <string name="password">Password</string>
+  <string name="sign_up">Sign up</string>
+  <string name="login">Login</string>
+  <string name="login_account">Login to your account</string>
+  <string name="login_additional_text">Kindly enter your details below to login into your account</string>
+  <string name="proceed_to_signup">Don\'t have an account?Sign up here</string>
 </resources>
