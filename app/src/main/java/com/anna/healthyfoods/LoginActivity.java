@@ -24,7 +24,8 @@ public class LoginActivity extends AppCompatActivity {
   private void setUpLinkToSignUp(){
     binding.linkToSignup.setPaintFlags(binding.linkToSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     binding.linkToSignup.setOnClickListener(view -> {
-      // Redirect to sign up
+      startActivity(new Intent(getApplicationContext(), SignupActivity.class));
+      finish();
     });
   }
 
