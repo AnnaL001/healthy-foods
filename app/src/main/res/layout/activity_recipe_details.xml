@@ -24,7 +24,7 @@
       tools:srcCompat="@drawable/breakfast" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/floatingActionButton"
+      android:id="@+id/floating_action_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="@dimen/view_margin_horizontal_double"
