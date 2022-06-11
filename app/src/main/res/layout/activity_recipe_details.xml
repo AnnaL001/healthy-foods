@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/healthy_foods_white">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/healthy_foods_white">
 
   <ProgressBar
       android:id="@+id/progressBar"
@@ -24,14 +23,25 @@
       android:visibility="gone"
       tools:srcCompat="@drawable/breakfast" />
 
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/floatingActionButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/view_margin_horizontal_double"
+      android:clickable="true"
+      android:contentDescription="@string/content_desc_star_recipe"
+      app:layout_anchor="@id/recipe_details_bottom_sheet"
+      app:layout_anchorGravity="top|end"
+      app:srcCompat="@drawable/ic_baseline_star_border" />
+
   <androidx.core.widget.NestedScrollView
       android:id="@+id/recipe_details_bottom_sheet"
+      style="@style/BottomSheetStyle"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      style="@style/BottomSheetStyle"
+      app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+      app:layout_constraintStart_toStartOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -289,9 +299,9 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/view_margin_vertical_double"
+              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/cholestrol_label"
-              app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintTop_toTopOf="parent"
               tools:text="@string/quantity" />
 
@@ -300,14 +310,14 @@
               style="@style/BoldTextStyle"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:text="@string/sodium"
-              android:textColor="@color/healthy_foods_black"
-              app:layout_constraintTop_toBottomOf="@id/cholestrol_label"
-              app:layout_constraintEnd_toStartOf="@id/sodium_quantity"
-              app:layout_constraintStart_toStartOf="parent"
               android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:layout_marginTop="@dimen/view_margin_vertical"
-              app:layout_constraintHorizontal_chainStyle="spread" />
+              android:text="@string/sodium"
+              android:textColor="@color/healthy_foods_black"
+              app:layout_constraintEnd_toStartOf="@id/sodium_quantity"
+              app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/cholestrol_label" />
 
           <TextView
               android:id="@+id/sodium_quantity"
@@ -355,8 +365,8 @@
               style="@style/BoldTextStyle"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/view_margin_vertical"
               android:layout_marginStart="@dimen/view_margin_horizontal_double"
+              android:layout_marginTop="@dimen/view_margin_vertical"
               android:text="@string/magnesium"
               android:textColor="@color/healthy_foods_black"
               app:layout_constraintEnd_toStartOf="@id/magnesium_quantity"
@@ -398,8 +408,8 @@
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/view_margin_vertical"
               android:layout_marginBottom="@dimen/view_margin_vertical_double"
-              app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_chainStyle="spread"
               app:layout_constraintStart_toEndOf="@id/potassium_label"
               app:layout_constraintTop_toBottomOf="@id/magnesium_label"
               tools:text="@string/quantity" />
@@ -409,15 +419,15 @@
               style="@style/BoldTextStyle"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
+              android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:layout_marginTop="8dp"
               android:layout_marginBottom="16dp"
-              android:layout_marginStart="@dimen/view_margin_horizontal_double"
               android:text="@string/iron"
               android:textColor="@color/healthy_foods_black"
               app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintEnd_toStartOf="@id/iron_quantity"
               app:layout_constraintHorizontal_chainStyle="spread"
+              app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toBottomOf="@+id/potassium_label" />
 
           <TextView
@@ -463,4 +473,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
