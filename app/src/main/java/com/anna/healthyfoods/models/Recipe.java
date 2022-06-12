@@ -1,10 +1,12 @@
 
 package com.anna.healthyfoods.models;
 
-import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+import javax.annotation.Generated;
 
 @Generated("jsonschema2pojo")
 public class Recipe {
@@ -39,9 +41,6 @@ public class Recipe {
     @SerializedName("healthLabels")
     @Expose
     private List<String> healthLabels = null;
-    @SerializedName("cautions")
-    @Expose
-    private List<Object> cautions = null;
     @SerializedName("ingredientLines")
     @Expose
     private List<String> ingredientLines = null;
@@ -56,7 +55,7 @@ public class Recipe {
     private Double totalWeight;
     @SerializedName("totalTime")
     @Expose
-    private Integer totalTime;
+    private Double totalTime;
     @SerializedName("cuisineType")
     @Expose
     private List<String> cuisineType = null;
@@ -69,6 +68,8 @@ public class Recipe {
     @SerializedName("totalNutrients")
     @Expose
     private TotalNutrients totalNutrients;
+    private String id;
+    private boolean isStarred;
 
     /**
      * No args constructor for use in serialization
@@ -100,7 +101,7 @@ public class Recipe {
      * @param ingredients
      * @param ingredientLines
      */
-    public Recipe(String uri, String label, String image, Images images, String source, String url, String shareAs, Integer yield, List<String> dietLabels, List<String> healthLabels, List<Object> cautions, List<String> ingredientLines, List<Ingredient> ingredients, Double calories, Double totalWeight, Integer totalTime, List<String> cuisineType, List<String> mealType, List<String> dishType, TotalNutrients totalNutrients) {
+    public Recipe(String uri, String label, String image, Images images, String source, String url, String shareAs, Integer yield, List<String> dietLabels, List<String> healthLabels, List<String> ingredientLines, List<Ingredient> ingredients, Double calories, Double totalWeight, Double totalTime, List<String> cuisineType, List<String> mealType, List<String> dishType, TotalNutrients totalNutrients) {
         super();
         this.uri = uri;
         this.label = label;
@@ -112,7 +113,6 @@ public class Recipe {
         this.yield = yield;
         this.dietLabels = dietLabels;
         this.healthLabels = healthLabels;
-        this.cautions = cautions;
         this.ingredientLines = ingredientLines;
         this.ingredients = ingredients;
         this.calories = calories;
@@ -122,6 +122,23 @@ public class Recipe {
         this.mealType = mealType;
         this.dishType = dishType;
         this.totalNutrients = totalNutrients;
+        this.setStarred(false);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isStarred() {
+        return isStarred;
+    }
+
+    public void setStarred(boolean starred) {
+        isStarred = starred;
     }
 
     public String getUri() {
@@ -204,14 +221,6 @@ public class Recipe {
         this.healthLabels = healthLabels;
     }
 
-    public List<Object> getCautions() {
-        return cautions;
-    }
-
-    public void setCautions(List<Object> cautions) {
-        this.cautions = cautions;
-    }
-
     public List<String> getIngredientLines() {
         return ingredientLines;
     }
@@ -244,11 +253,11 @@ public class Recipe {
         this.totalWeight = totalWeight;
     }
 
-    public Integer getTotalTime() {
+    public Double getTotalTime() {
         return totalTime;
     }
 
-    public void setTotalTime(Integer totalTime) {
+    public void setTotalTime(Double totalTime) {
         this.totalTime = totalTime;
     }
 
