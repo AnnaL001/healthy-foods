@@ -28,4 +28,5 @@
   <dimen name="search_padding">10dp</dimen>
   <dimen name="screen_margin_horizontal_triple">24dp</dimen>
   <dimen name="medium_font_size">20sp</dimen>
+  <dimen name="small_font_size">16sp</dimen>
 </resources>

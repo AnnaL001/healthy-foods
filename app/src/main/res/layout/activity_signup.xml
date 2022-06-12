@@ -160,6 +160,7 @@
           android:layout_marginEnd="@dimen/screen_margin_horizontal_double"
           android:gravity="center_horizontal"
           android:text="@string/proceed_to_login"
+          android:textSize="@dimen/small_font_size"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="parent"
