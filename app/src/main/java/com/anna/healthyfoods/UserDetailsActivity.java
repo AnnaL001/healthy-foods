@@ -9,10 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.anna.healthyfoods.databinding.ActivityUserDetailsBinding;
 import com.anna.healthyfoods.models.Settings;
+import com.anna.healthyfoods.utility.Constants;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.anna.healthyfoods.utility.Validator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import org.parceler.Parcels;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,29 +36,29 @@ public class UserDetailsActivity extends AppCompatActivity {
 
   private void initializeButton(){
     binding.btnNext.setOnClickListener(view -> {
-      Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-
       // Capture user input
       String name = Objects.requireNonNull(binding.nameTextInputLayout.getEditText()).getText().toString();
       List<String> diets = UserInterfaceHelpers.getSelectedChips(binding.dietChipGroup);
       List<String> allergies = UserInterfaceHelpers.getSelectedChips(binding.allergyChipGroup);
 
       // Validate user input
-      validateFormInputs(intent, name, diets, allergies);
+      validateFormInputs(name, diets, allergies);
     });
   }
 
+
   // Validate user input before populating intent extras
-  private void validateFormInputs(Intent intent, String name, List<String> diets, List<String> allergies){
-    if(Validator.validateRequiredUserDetailsFormInput(name, diets, allergies)){
+  private void validateFormInputs(String name, List<String> diets, List<String> healthPreferences){
+    if(Validator.validateRequiredUserDetailsFormInput(name, diets, healthPreferences)){
       if(Validator.validateNameInput(name)){
-        Settings userSettings = new Settings(name, diets, allergies);
-        intent.putExtra("userSettings", Parcels.wrap(userSettings));
+        Settings userSettings = new Settings(name, diets, healthPreferences);
+        // Save settings to Firebase
+        saveUserSettings(userSettings);
 
         // Clear form after capturing data
         clearFormInputs();
 
-        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
 
         Log.i(TAG, "Navigating to MealTypesActivity...");
       } else {
@@ -74,4 +77,10 @@ public class UserDetailsActivity extends AppCompatActivity {
     UserInterfaceHelpers.clearFormInput(binding.allergyChipGroup);
   }
 
+  private void saveUserSettings(Settings userSettings){
+    String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SETTINGS_LOCATION).child(userId);
+    databaseReference.setValue(userSettings);
+    Toast.makeText(getApplicationContext(), R.string.saved, Toast.LENGTH_SHORT).show();
+  }
 }
