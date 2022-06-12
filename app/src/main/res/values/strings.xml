@@ -80,4 +80,6 @@
   <string name="required_valid_email_error">Please enter a valid email address</string>
   <string name="required_confirm_password_error">Confirm password should match password</string>
   <string name="required_valid_password_error">Password should have at least 8 characters with uppercase, lowercase, digits and special characters</string>
+  <string name="failed_registration">Registration failed</string>
+  <string name="verification_prompt">Email verification sent</string>
 </resources>

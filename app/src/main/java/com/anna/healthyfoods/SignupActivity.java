@@ -1,5 +1,7 @@
 package com.anna.healthyfoods;
 
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressBar;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressBar;
 import static com.anna.healthyfoods.utility.Validator.validateConfirmPasswordInput;
 import static com.anna.healthyfoods.utility.Validator.validateEmailInput;
 import static com.anna.healthyfoods.utility.Validator.validatePasswordInput;
@@ -9,11 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.anna.healthyfoods.databinding.ActivitySignupBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
+  public static final String TAG = SignupActivity.class.getSimpleName();
   private ActivitySignupBinding binding;
+  private FirebaseAuth auth;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +33,52 @@ public class SignupActivity extends AppCompatActivity {
 
     setUpLinkToLogin();
 
-    binding.btnSignup.setOnClickListener(view -> {
+    auth = FirebaseAuth.getInstance();
 
-    });
+    binding.btnSignup.setOnClickListener(view -> signUpUser(
+            Objects.requireNonNull(binding.emailTextInputLayout.getEditText()).getText().toString(),
+            Objects.requireNonNull(binding.passwordTextInputLayout.getEditText()).getText().toString(),
+            Objects.requireNonNull(binding.confirmPasswordTextInputLayout.getEditText()).getText().toString()
+    ));
   }
 
   private void setUpLinkToLogin(){
     // Add an underline to text
     binding.linkToLogin.setPaintFlags(binding.linkToLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     binding.linkToLogin.setOnClickListener(view -> redirectToLogin());
+  }
+
+  // Register a user
+  private void signUpUser(String email, String password, String confirmPassword) {
+    if(validateCredentials(email, password, confirmPassword)) {
+      showProgressBar(binding.signupProgressBar);
+
+      auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, signUpTask -> {
+        hideProgressBar(binding.signupProgressBar);
+        if(signUpTask.isSuccessful()){
+          // Display feedback to user
+          Log.d(TAG, "Registration successful");
+          verifyUser(Objects.requireNonNull(auth.getCurrentUser()));
+          redirectToLogin();
+        } else {
+          // Display feedback to user
+          Toast.makeText(this, getString(R.string.failed_registration) , Toast.LENGTH_SHORT).show();
+          Log.e(TAG, "Registration failed", signUpTask.getException());
+        }
+      });
+    }
+  }
+
+  // Verify user
+  private void verifyUser(FirebaseUser user) {
+    user.sendEmailVerification().addOnCompleteListener(this, verifyTask -> {
+      if(verifyTask.isSuccessful()){
+        Toast.makeText(this, getString(R.string.verification_prompt) , Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "User successfully verified");
+      } else {
+        Log.e(TAG, "Sending email verification failed", verifyTask.getException());
+      }
+    });
   }
 
   private void redirectToLogin(){
@@ -41,6 +88,7 @@ public class SignupActivity extends AppCompatActivity {
     finish();
   }
 
+  // Combine email, password and confirm password validation and return result; true/false
   private boolean validateCredentials(String email, String password, String confirmPassword) {
     return isEmailValid(email) && isPasswordValid(password) && isConfirmPasswordValid(password, confirmPassword);
   }
