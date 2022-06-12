@@ -98,7 +98,8 @@
           android:layout_marginEnd="@dimen/screen_margin_horizontal_double"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout">
+          app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout"
+          app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
