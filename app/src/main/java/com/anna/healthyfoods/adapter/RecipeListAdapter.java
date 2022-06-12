@@ -1,7 +1,6 @@
 package com.anna.healthyfoods.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,7 +11,9 @@ import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.databinding.ItemRecipeListBinding;
 import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.Hit;
+import com.anna.healthyfoods.models.Recipe;
 import com.bumptech.glide.Glide;
+
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
   @Override
   public void onBindViewHolder(@NonNull RecipeListViewHolder holder, int position) {
-    holder.bindRecipe(hits.get(position));
+    holder.bindRecipe(hits.get(position).getRecipe());
     holder.binding.getRoot().setOnClickListener(view -> {
       String uri = hits.get(position).getRecipe().getUri();
       // Extract recipe ID from recipe's URI
@@ -59,10 +60,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
       this.context = binding.getRoot().getContext();
     }
 
-    private void bindRecipe(Hit hit) {
-      Glide.with(context).asBitmap().load(hit.getRecipe().getImages().getThumbnail().getUrl()).placeholder(R.drawable.brunch_dining).into(binding.recipeImageView);
-      binding.recipeLabel.setText(hit.getRecipe().getLabel());
-      binding.recipeSource.setText(hit.getRecipe().getSource());
+    private void bindRecipe(Recipe recipe) {
+      Glide.with(context).asBitmap().load(recipe.getImages().getThumbnail().getUrl()).placeholder(R.drawable.brunch_dining).into(binding.recipeImageView);
+      binding.recipeLabel.setText(recipe.getLabel());
+      binding.recipeSource.setText(recipe.getSource());
     }
   }
 }
