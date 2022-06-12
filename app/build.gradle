@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+def apiConfigPropertiesFile = rootProject.file("api_config.properties")
+def apiConfigProperties = new Properties()
+apiConfigProperties.load(new FileInputStream(apiConfigPropertiesFile))
+
 android {
     compileSdk 32
 
@@ -35,8 +39,8 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'EDAMAM_API_ID', EdamamApiId
-        it.buildConfigField 'String', 'EDAMAM_API_KEY', EdamamApiKey
+        it.buildConfigField 'String', 'EDAMAM_API_ID', apiConfigProperties['EDAMAM_API_ID']
+        it.buildConfigField 'String', 'EDAMAM_API_KEY', apiConfigProperties['EDAMAM_API_KEY']
     }
 }
 
