@@ -82,4 +82,7 @@
   <string name="required_valid_password_error">Password should have at least 8 characters with uppercase, lowercase, digits and special characters</string>
   <string name="failed_registration">Registration failed</string>
   <string name="verification_prompt">Email verification sent</string>
+  <string name="successful_authentication">Authentication successful</string>
+  <string name="failed_authentication">Authentication failed</string>
+  <string name="email_verification_prompt">Please verify your email before proceeding</string>
 </resources>
