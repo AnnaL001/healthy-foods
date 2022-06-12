@@ -108,9 +108,8 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
   }
 
   @Override
-  public void onClick(String title, String id) {
+  public void onClick(String id) {
     Intent intent = new Intent(getContext(), RecipeDetailsActivity.class);
-    intent.putExtra("recipe_title", title);
     intent.putExtra("recipe_id", id);
     Log.d(TAG, "Recipe ID: " + id);
     startActivity(intent);
