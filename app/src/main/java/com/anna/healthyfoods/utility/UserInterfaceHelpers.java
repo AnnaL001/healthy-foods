@@ -57,6 +57,8 @@ public class UserInterfaceHelpers {
     progressBar.setVisibility(GONE);
   }
 
+  public static void showProgressBar(ProgressBar progressBar) { progressBar.setVisibility(VISIBLE); }
+
   public static void showRecipes(RecyclerView recyclerView){
     recyclerView.setVisibility(VISIBLE);
   }
