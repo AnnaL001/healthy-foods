@@ -13,4 +13,5 @@ public class Constants {
   public static final String HEALTH_LABEL_QUERY_PARAMETER = "health";
   public static final String SEARCH_QUERY_PARAMETER = "q";
   public static final String SEARCH_TYPE_QUERY_PARAMETER = "type";
+  public static final String FIREBASE_CHILD_SETTINGS_LOCATION = "settings";
 }
