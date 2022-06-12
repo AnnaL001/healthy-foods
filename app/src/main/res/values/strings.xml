@@ -76,10 +76,8 @@
   <string name="signup_additional_text">Create an account to continue</string>
   <string name="confirm_password">Confirm password</string>
   <string name="proceed_to_login">Already have an account? Login here</string>
-  <string name="required_password_length_error">Password should have atleast 8 characters</string>
-  <string name="required_password_with_digit_error">Password should have atleast one digit</string>
-  <string name="required_password_with_uppercase_error">Password should have atleast one uppercase character</string>
-  <string name="required_password_with_lowercase_error">Password should have atleast one lowercase character</string>
-  <string name="required_password_with_special_char_error">Password should have atleast one special character</string>
   <string name="starr">Starr</string>
+  <string name="required_valid_email_error">Please enter a valid email address</string>
+  <string name="required_confirm_password_error">Confirm password should match password</string>
+  <string name="required_valid_password_error">Password should have at least 8 characters with uppercase, lowercase, digits and special characters</string>
 </resources>
