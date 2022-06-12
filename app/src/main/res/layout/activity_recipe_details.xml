@@ -23,17 +23,6 @@
       android:visibility="gone"
       tools:srcCompat="@drawable/breakfast" />
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/floating_action_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="@dimen/view_margin_horizontal_double"
-      android:clickable="true"
-      android:contentDescription="@string/content_desc_star_recipe"
-      app:layout_anchor="@id/recipe_details_bottom_sheet"
-      app:layout_anchorGravity="top|end"
-      app:srcCompat="@drawable/ic_baseline_star_border" />
-
   <androidx.core.widget.NestedScrollView
       android:id="@+id/recipe_details_bottom_sheet"
       style="@style/BottomSheetStyle"
