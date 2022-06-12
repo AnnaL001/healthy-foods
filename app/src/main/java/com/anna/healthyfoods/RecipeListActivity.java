@@ -1,13 +1,13 @@
 package com.anna.healthyfoods;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;

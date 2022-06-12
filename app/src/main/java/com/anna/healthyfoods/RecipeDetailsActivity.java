@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +20,12 @@ import com.anna.healthyfoods.utility.Constants;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +49,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             "public", Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY);
 
     loadRecipe(call);
+  }
+
+  private void setUpSaveButton(Recipe recipe) {
+    binding.btnSave.setOnClickListener(view -> saveRecipe(recipe));
   }
 
   private void loadRecipe(Call<Hit> call){
@@ -73,6 +80,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
   }
 
   private void setRecipeDetails(Recipe recipe){
+    // Setup action bar title
+    Objects.requireNonNull(getSupportActionBar()).setTitle(recipe.getLabel());
+
     Glide.with(getApplicationContext()).asBitmap().load(recipe.getImages().getRegular().getUrl()).placeholder(R.drawable.brunch_dining).into(binding.recipeImage);
     binding.recipeLabel.setText(recipe.getLabel());
     binding.recipeSource.setText(recipe.getSource());
@@ -127,6 +137,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     binding.magnesiumQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getMg().getQuantity(), recipe.getTotalNutrients().getMg().getUnit()));
     binding.potassiumQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getK().getQuantity(), recipe.getTotalNutrients().getK().getUnit()));
     binding.ironQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getFe().getQuantity(), recipe.getTotalNutrients().getFe().getUnit()));
+
+    // Set up save button
+    setUpSaveButton(recipe);
   }
 
   private void openWebsite(String websiteUrl){
@@ -136,17 +149,11 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     });
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.recipe_details_menu, menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    if (item.getItemId() == R.id.action_starr) {
-      return true;
-    }
-    return super.onOptionsItemSelected(item);
+  private void saveRecipe(Recipe recipe) {
+    String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE_LOCATION).child(userId).child(recipeId);
+    recipe.setId(recipeId);
+    recipeReference.setValue(recipe);
+    Toast.makeText(getApplicationContext(), R.string.saved, Toast.LENGTH_SHORT).show();
   }
 }

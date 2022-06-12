@@ -23,9 +23,7 @@ import com.anna.healthyfoods.models.RecipeSearchResponse;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
-
 import org.parceler.Parcels;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
