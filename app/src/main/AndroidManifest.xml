@@ -23,11 +23,7 @@
         android:exported="false" />
     <activity
         android:name=".RecipeDetailsActivity"
-        android:exported="false"
-        android:label="">
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.anna.healthyfoods.RecipeListActivity" />
+        android:exported="false">
     </activity>
     <activity
         android:name=".HomeActivity"
@@ -36,9 +32,6 @@
     <activity
         android:name=".RecipeListActivity"
         android:exported="false">
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.anna.healthyfoods.HomeActivity" />
     </activity>
     <activity
         android:name=".UserDetailsActivity"
