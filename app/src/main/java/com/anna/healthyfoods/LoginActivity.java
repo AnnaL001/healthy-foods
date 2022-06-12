@@ -11,10 +11,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.anna.healthyfoods.databinding.ActivityLoginBinding;
+import com.anna.healthyfoods.models.Settings;
+import com.anna.healthyfoods.utility.Constants;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -23,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
   private ActivityLoginBinding binding;
   private FirebaseAuth auth;
   private FirebaseAuth.AuthStateListener authStateListener;
+  private ValueEventListener settingsListener;
+  private DatabaseReference settingsReference;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     setUpLinkToSignUp();
 
     // Login user upon button click
+    setUpLoginButton();
+  }
+
+  private void setUpLoginButton(){
     binding.btnLogin.setOnClickListener(view -> loginUser(
-          Objects.requireNonNull(binding.emailTextInputLayout.getEditText()).getText().toString(),
-          Objects.requireNonNull(binding.passwordTextInputLayout.getEditText()).getText().toString()
+            Objects.requireNonNull(binding.emailTextInputLayout.getEditText()).getText().toString(),
+            Objects.requireNonNull(binding.passwordTextInputLayout.getEditText()).getText().toString()
     ));
   }
 
@@ -62,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
           if(loginTask.isSuccessful()){
             if(Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()){
               Toast.makeText(getApplicationContext(), getString(R.string.successful_authentication), Toast.LENGTH_SHORT).show();
-              redirectToUserDetails();
+              redirectToNextScreen();
               Log.d(TAG, "Authentication successful");
             } else {
               Toast.makeText(getApplicationContext(), getString(R.string.email_verification_prompt), Toast.LENGTH_SHORT).show();
@@ -125,9 +139,30 @@ public class LoginActivity extends AppCompatActivity {
   private void initializeAuthStateListener() {
     authStateListener = firebaseAuth -> {
       if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()){
-        redirectToUserDetails();
+        redirectToNextScreen();
       }
     };
+  }
+
+  private void redirectToNextScreen() {
+    String userId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+    settingsReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SETTINGS_LOCATION).child(userId);
+    settingsListener = settingsReference.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot) {
+        Settings userSettings = snapshot.getValue(Settings.class);
+        if(userSettings != null){
+          redirectToHome();
+        } else {
+          redirectToUserDetails();
+        }
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError error) {
+        Log.e(TAG, "Error while fetching user settings: ", error.toException());
+      }
+    });
   }
 
   @Override
@@ -142,5 +177,11 @@ public class LoginActivity extends AppCompatActivity {
       auth.removeAuthStateListener(authStateListener);
     }
     super.onStop();
+  }
+
+  @Override
+  protected void onDestroy() {
+    settingsReference.removeEventListener(settingsListener);
+    super.onDestroy();
   }
 }
