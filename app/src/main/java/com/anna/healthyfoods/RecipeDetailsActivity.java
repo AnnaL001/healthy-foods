@@ -1,13 +1,15 @@
 package com.anna.healthyfoods;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.anna.healthyfoods.adapter.IngredientListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
@@ -21,7 +23,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 
 import java.util.Locale;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,8 +39,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     binding = ActivityRecipeDetailsBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
-    // Set action bar title
-    Objects.requireNonNull(getSupportActionBar()).setTitle(getIntent().getStringExtra("recipe_title"));
     recipeId =  getIntent().getStringExtra("recipe_id");
 
     EdamamApi client = EdamamClient.getClient();
@@ -137,4 +136,17 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     });
   }
 
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.recipe_details_menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    if (item.getItemId() == R.id.action_starr) {
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
 }
