@@ -59,6 +59,8 @@ public class SignupActivity extends AppCompatActivity {
           // Display feedback to user
           Log.d(TAG, "Registration successful");
           verifyUser(Objects.requireNonNull(auth.getCurrentUser()));
+          // Sign out user because of automatic Firebase login upon sign up & to allow for checking of email verification
+          FirebaseAuth.getInstance().signOut();
           redirectToLogin();
         } else {
           // Display feedback to user
@@ -87,6 +89,7 @@ public class SignupActivity extends AppCompatActivity {
     startActivity(intent);
     finish();
   }
+
 
   // Combine email, password and confirm password validation and return result; true/false
   private boolean validateCredentials(String email, String password, String confirmPassword) {
