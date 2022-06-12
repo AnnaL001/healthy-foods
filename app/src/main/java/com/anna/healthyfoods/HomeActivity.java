@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
           tab.setText(getString(R.string.search));
           break;
         case 2:
-          tab.setText(getString(R.string.starred));
+          tab.setText(getString(R.string.saved));
           break;
       }
     }).attach();
