@@ -85,4 +85,5 @@
   <string name="successful_authentication">Authentication successful</string>
   <string name="failed_authentication">Authentication failed</string>
   <string name="email_verification_prompt">Please verify your email before proceeding</string>
+  <string name="saved">Saved</string>
 </resources>
