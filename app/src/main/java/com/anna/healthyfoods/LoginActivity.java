@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.anna.healthyfoods.databinding.ActivityLoginBinding;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     binding = ActivityLoginBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    FirebaseApp.initializeApp(this);
     auth = FirebaseAuth.getInstance();
     initializeAuthStateListener();
 
