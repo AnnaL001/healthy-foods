@@ -59,7 +59,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     call.enqueue(new Callback<Hit>() {
       @Override
       public void onResponse(@NonNull Call<Hit> call, @NonNull Response<Hit> response) {
-        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
+        UserInterfaceHelpers.hideProgressDialog(binding.progressBar, binding.progressMessage);
 
         if(response.isSuccessful()){
           assert response.body() != null;
@@ -72,7 +72,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
       @Override
       public void onFailure(@NonNull Call<Hit> call, @NonNull Throwable t) {
-        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
+        UserInterfaceHelpers.hideProgressDialog(binding.progressBar, binding.progressMessage);
         UserInterfaceHelpers.showFailureFeedback(binding.errorFeedback, getApplicationContext());
         Log.e(TAG, "Error while fetching recipe with ID: " + recipeId, t);
       }

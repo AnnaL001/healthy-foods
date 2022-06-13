@@ -1,5 +1,12 @@
 package com.anna.healthyfoods.ui;
 
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDialog;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showFailureFeedback;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showNoContentFound;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressDialog;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showRecipes;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showUnsuccessfulFeedback;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -105,9 +112,13 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
 
   private void loadRecipes(String recipe, String[] diets, String[] preferences){
     Call<RecipeSearchResponse> call = client.getRecipesByKeyword("public", recipe, Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
+    showProgressDialog(binding.progressBar, binding.progressMessage);
+
     call.enqueue(new Callback<RecipeSearchResponse>() {
       @Override
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
+        hideProgressDialog(binding.progressBar, binding.progressMessage);
+
         if(response.isSuccessful()){
           assert response.body() != null;
           adapter = new RecipeListAdapter(getContext(), response.body().getHits(), SearchFragment.this);
@@ -115,18 +126,19 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
           binding.recipeResultList.setAdapter(adapter);
 
           if(adapter.getItemCount() > 0){
-            UserInterfaceHelpers.showRecipes(binding.recipeResultList);
+            showRecipes(binding.recipeResultList);
           } else {
-            UserInterfaceHelpers.showNoContentFound(binding.errorText, requireContext(), getString(R.string.no_recipes_found));
+            showNoContentFound(binding.errorText, getString(R.string.no_recipes_found));
           }
         } else {
-          UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorText, requireContext());
+          showUnsuccessfulFeedback(binding.errorText, requireContext());
         }
       }
 
       @Override
       public void onFailure(@NonNull Call<RecipeSearchResponse> call, @NonNull Throwable t) {
-        UserInterfaceHelpers.showFailureFeedback(binding.errorText, requireContext());
+        hideProgressDialog(binding.progressBar, binding.progressMessage);
+        showFailureFeedback(binding.errorText, requireContext());
         Log.e(TAG, "Error: ", t);
       }
     });

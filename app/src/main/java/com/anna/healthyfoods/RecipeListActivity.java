@@ -58,7 +58,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
     call.enqueue(new Callback<RecipeSearchResponse>() {
       @Override
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
-        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
+        UserInterfaceHelpers.hideProgressDialog(binding.progressBar, binding.progressMessage);
 
         if(response.isSuccessful()){
           assert response.body() != null;
@@ -69,7 +69,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
           if(adapter.getItemCount() > 0){
             UserInterfaceHelpers.showRecipes(binding.recipeList);
           } else {
-            UserInterfaceHelpers.showNoContentFound(binding.errorText, getApplicationContext(), getString(R.string.no_recipes_found));
+            UserInterfaceHelpers.showNoContentFound(binding.errorText, getString(R.string.no_recipes_found));
           }
         } else {
           UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorText, getApplicationContext());
@@ -78,7 +78,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
 
       @Override
       public void onFailure(@NonNull Call<RecipeSearchResponse> call, @NonNull Throwable t) {
-        UserInterfaceHelpers.hideProgressBar(binding.progressBar);
+        UserInterfaceHelpers.hideProgressDialog(binding.progressBar, binding.progressMessage);
         UserInterfaceHelpers.showFailureFeedback(binding.errorText, getApplicationContext());
         Log.e(TAG, "Error: ", t);
       }

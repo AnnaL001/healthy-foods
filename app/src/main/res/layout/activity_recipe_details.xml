@@ -13,6 +13,18 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal" />
 
+  <TextView
+      android:id="@+id/progress_message"
+      style="@style/NormalTextStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/screen_margin_horizontal_double"
+      android:layout_marginTop="@dimen/view_margin_vertical_six_times"
+      android:layout_marginEnd="@dimen/screen_margin_horizontal_double"
+      android:gravity="center_horizontal"
+      android:textSize="@dimen/small_font_size"
+      android:text="@string/progress_dialog_message"/>
+
   <ImageView
       android:id="@+id/recipe_image"
       android:layout_width="match_parent"
@@ -472,7 +484,7 @@
           android:id="@+id/details_bottom_sheet_group"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:visibility="visible"
+          android:visibility="gone"
           app:constraint_referenced_ids="recipe_label, recipe_source, recipe_type_labels, calories_card, yield_card, ingredient_title, ingredient_list, diet_health_title, recipe_diet_health_labels, nutrition_title, nutrients_card, btn_save" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

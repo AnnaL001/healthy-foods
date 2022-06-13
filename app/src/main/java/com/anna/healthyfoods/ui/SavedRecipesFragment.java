@@ -1,6 +1,6 @@
 package com.anna.healthyfoods.ui;
 
-import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressBar;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDialog;
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showNoContentFound;
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showRecipes;
 
@@ -52,7 +52,7 @@ public class SavedRecipesFragment extends Fragment {
 
     //For now, until database connection is added
     setUpFirebaseAdapter();
-    hideProgressBar(binding.progressBar);
+    hideProgressDialog(binding.progressBar, binding.progressMessage);
     showRecipes(binding.starredRecipeList);
   }
 
@@ -79,7 +79,7 @@ public class SavedRecipesFragment extends Fragment {
 
     binding.starredRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
     if (firebaseAdapter.getItemCount() < 1) {
-      showNoContentFound(binding.errorText, requireContext(), getString(R.string.no_saved_recipes));
+      showNoContentFound(binding.errorText, getString(R.string.no_saved_recipes));
     }
     binding.starredRecipeList.setAdapter(firebaseAdapter);
   }

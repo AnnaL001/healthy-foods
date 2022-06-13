@@ -1,7 +1,7 @@
 package com.anna.healthyfoods;
 
-import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressBar;
-import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressBar;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDialog;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressDialog;
 import static com.anna.healthyfoods.utility.Validator.validateEmailInput;
 import static com.anna.healthyfoods.utility.Validator.validatePasswordInput;
 
@@ -67,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
 
   private void loginUser(String email, String password) {
     if(validateCredentials(email, password)) {
-      showProgressBar(binding.loginProgressBar);
+      showProgressDialog(binding.loginProgressBar, binding.progressMessage);
 
       auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, loginTask -> {
-        hideProgressBar(binding.loginProgressBar);
+        hideProgressDialog(binding.loginProgressBar, binding.progressMessage);
 
         // Only login user if there email is verified
           if(loginTask.isSuccessful()){
@@ -173,15 +173,17 @@ public class LoginActivity extends AppCompatActivity {
 
   @Override
   protected void onStop() {
+    super.onStop();
     if(authStateListener != null){
       auth.removeAuthStateListener(authStateListener);
     }
-    super.onStop();
   }
 
   @Override
   protected void onDestroy() {
-    settingsReference.removeEventListener(settingsListener);
     super.onDestroy();
+    if(settingsReference != null){
+      settingsReference.removeEventListener(settingsListener);
+    }
   }
 }

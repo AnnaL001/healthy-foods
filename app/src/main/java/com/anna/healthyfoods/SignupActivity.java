@@ -1,7 +1,7 @@
 package com.anna.healthyfoods;
 
-import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressBar;
-import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressBar;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDialog;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressDialog;
 import static com.anna.healthyfoods.utility.Validator.validateConfirmPasswordInput;
 import static com.anna.healthyfoods.utility.Validator.validateEmailInput;
 import static com.anna.healthyfoods.utility.Validator.validatePasswordInput;
@@ -51,10 +51,10 @@ public class SignupActivity extends AppCompatActivity {
   // Register a user
   private void signUpUser(String email, String password, String confirmPassword) {
     if(validateCredentials(email, password, confirmPassword)) {
-      showProgressBar(binding.signupProgressBar);
+      showProgressDialog(binding.signupProgressBar, binding.progressMessage);
 
       auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, signUpTask -> {
-        hideProgressBar(binding.signupProgressBar);
+        hideProgressDialog(binding.signupProgressBar, binding.progressMessage);
         if(signUpTask.isSuccessful()){
           // Display feedback to user
           Log.d(TAG, "Registration successful");
