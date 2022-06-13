@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "162810111157",
+    "project_id": "healthyfoods-2a220",
+    "storage_bucket": "healthyfoods-2a220.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162810111157:android:40af7385e37c8cf0144afc",
+        "android_client_info": {
+          "package_name": "com.anna.healthyfoods"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162810111157-hp92mi810ejpm76h6ourb4qmndg8uck0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anna.healthyfoods",
+            "certificate_hash": "06f5aa2ff8ae6ff1473fd86010b54ce8ddf34524"
+          }
+        },
+        {
+          "client_id": "162810111157-nmdug2jtikm6gtvvihrl6odrki8odrgm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzl2Y0w8zTefB4W3Eomy1kYWhWOjpy5L0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162810111157-nmdug2jtikm6gtvvihrl6odrki8odrgm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
