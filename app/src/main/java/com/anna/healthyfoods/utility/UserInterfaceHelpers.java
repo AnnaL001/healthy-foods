@@ -4,7 +4,6 @@ import static android.view.View.*;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class UserInterfaceHelpers {
@@ -53,11 +51,15 @@ public class UserInterfaceHelpers {
     chipGroup.clearCheck();
   }
 
-  public static void hideProgressBar(ProgressBar progressBar){
+  public static void hideProgressDialog(ProgressBar progressBar, TextView textView){
     progressBar.setVisibility(GONE);
+    textView.setVisibility(GONE);
   }
 
-  public static void showProgressBar(ProgressBar progressBar) { progressBar.setVisibility(VISIBLE); }
+  public static void showProgressDialog(ProgressBar progressBar, TextView textView) {
+    progressBar.setVisibility(VISIBLE);
+    textView.setVisibility(VISIBLE);
+  }
 
   public static void showRecipes(RecyclerView recyclerView){
     recyclerView.setVisibility(VISIBLE);
@@ -78,7 +80,7 @@ public class UserInterfaceHelpers {
     textView.setVisibility(VISIBLE);
   }
 
-  public static void showNoContentFound(TextView textView, Context context, String message){
+  public static void showNoContentFound(TextView textView, String message){
     textView.setText(message);
     textView.setVisibility(VISIBLE);
   }
