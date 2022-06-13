@@ -86,4 +86,7 @@
   <string name="saved">Saved</string>
   <string name="save_recipe">Save recipe</string>
   <string name="logout">Logout</string>
+  <string name="progress_dialog_message">Loading…</string>
+  <string name="progress_dialog_message_login">Authenticating …</string>
+  <string name="progress_dialog_message_signup">Signing up …</string>
 </resources>
