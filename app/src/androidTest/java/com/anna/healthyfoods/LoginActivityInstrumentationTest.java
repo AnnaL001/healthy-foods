@@ -1,6 +1,7 @@
 package com.anna.healthyfoods;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -8,6 +9,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.anna.healthyfoods.custom_matcher.TextInputLayoutMatcher.hasDisplayedErrorText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.*;
@@ -47,5 +49,53 @@ public class LoginActivityInstrumentationTest {
             isDescendantOfA(withId(R.id.password_text_input_layout)),
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("Lanna001$")).check(matches(withText("Lanna001$"))).perform(closeSoftKeyboard());
+  }
+
+  @Test
+  public void typeInvalidEmail_displaysErrorMessage() {
+    // Type invalid email address
+    onView(allOf(
+            isDescendantOfA(withId(R.id.email_text_input_layout)),
+            withClassName(endsWith("TextInputEditText"))
+    )).perform(typeText("anna")).check(matches(withText("anna"))).perform(closeSoftKeyboard());
+
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
+
+    onView(withId(R.id.btn_login)).perform(click());
+    onView(withId(R.id.email_text_input_layout)).check(matches(hasDisplayedErrorText("Please enter a valid email address")));
+  }
+
+  @Test
+  public void typeInvalidPassword_displaysErrorMessage() {
+    // Type valid email address
+    onView(allOf(
+            isDescendantOfA(withId(R.id.email_text_input_layout)),
+            withClassName(endsWith("TextInputEditText"))
+    )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
+
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
+
+    // Type invalid password
+    onView(allOf(
+            isDescendantOfA(withId(R.id.password_text_input_layout)),
+            withClassName(endsWith("TextInputEditText"))
+    )).perform(typeText("12345678")).check(matches(withText("12345678"))).perform(closeSoftKeyboard());
+
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
+
+    onView(withId(R.id.btn_login)).perform(click());
+    onView(withId(R.id.password_text_input_layout)).check(matches(hasDisplayedErrorText("Password should have at least 8 characters with uppercase, lowercase, digits and special characters")));
   }
 }
