@@ -35,7 +35,7 @@ public class HomeActivityTest {
 
     assertEquals(activity.getString(R.string.meal_types), Objects.requireNonNull(mealTypes).getText());
     assertEquals(activity.getString(R.string.search), Objects.requireNonNull(search).getText());
-    assertEquals(activity.getString(R.string.starred), Objects.requireNonNull(starred).getText());
+    assertEquals(activity.getString(R.string.saved), Objects.requireNonNull(starred).getText());
   }
 
 }
