@@ -1,7 +1,9 @@
 package com.anna.healthyfoods.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,8 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
   private FragmentSearchBinding binding;
   private Settings userSettings;
   private RecipeListAdapter adapter;
+  private EdamamApi client;
+  private SharedPreferences sharedPreferences;
 
   public SearchFragment(){
   }
@@ -69,17 +73,26 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
     String[] diets = new String[userSettings.getDiets().size()];
     String[] preferences = new String[userSettings.getPreferences().size()];
 
+    client = EdamamClient.getClient();
+
+    // Set up shared preferences
+    sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+    String recentSearch = sharedPreferences.getString(Constants.PREFERENCES_RECIPE_SEARCH_KEY, null);
+    Log.d(TAG, "Recently searched recipe: " + recentSearch);
+
+    // Initial display of recipes based on previous search
+    loadRecipes(recentSearch, diets, preferences);
+
     // Load recipes based on search
     setUpSearchView(diets, preferences);
   }
 
   private void setUpSearchView(String[] diets, String[] preferences){
-    EdamamApi client = EdamamClient.getClient();
     binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String recipe) {
-        Call<RecipeSearchResponse> call = client.getRecipesByKeyword("public", recipe, Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
-        loadRecipes(call);
+        saveToSharedPreferences(recipe);
+        loadRecipes(recipe, diets, preferences);
         return false;
       }
 
@@ -90,7 +103,8 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
     });
   }
 
-  private void loadRecipes(Call<RecipeSearchResponse> call){
+  private void loadRecipes(String recipe, String[] diets, String[] preferences){
+    Call<RecipeSearchResponse> call = client.getRecipesByKeyword("public", recipe, Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
     call.enqueue(new Callback<RecipeSearchResponse>() {
       @Override
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
@@ -116,6 +130,11 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
         Log.e(TAG, "Error: ", t);
       }
     });
+  }
+
+  private void saveToSharedPreferences(String recipeSearch) {
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putString(Constants.PREFERENCES_RECIPE_SEARCH_KEY, recipeSearch).apply();
   }
 
   @Override
