@@ -43,7 +43,7 @@ public class MainActivityTest {
   @Test
   public void handleButtonClick_startsSecondActivity_true() {
     activity.findViewById(R.id.btn_get_started).performClick();
-    Intent expectedIntent = new Intent(activity, UserDetailsActivity.class);
+    Intent expectedIntent = new Intent(activity, LoginActivity.class);
     Intent actualIntent = shadowOf(activity).getNextStartedActivity();
     assertTrue(actualIntent.filterEquals(expectedIntent));
   }
