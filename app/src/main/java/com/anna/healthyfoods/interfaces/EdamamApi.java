@@ -1,7 +1,6 @@
 package com.anna.healthyfoods.interfaces;
 
 import com.anna.healthyfoods.models.Hit;
-import com.anna.healthyfoods.models.Recipe;
 import com.anna.healthyfoods.models.RecipeSearchResponse;
 import com.anna.healthyfoods.utility.Constants;
 

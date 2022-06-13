@@ -1,13 +1,8 @@
 package com.anna.healthyfoods.utility;
 
-import android.content.Context;
 import android.util.Patterns;
 
-import com.anna.healthyfoods.R;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Validator {
   /**

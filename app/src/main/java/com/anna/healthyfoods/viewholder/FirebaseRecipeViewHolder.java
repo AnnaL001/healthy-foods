@@ -3,7 +3,6 @@ package com.anna.healthyfoods.viewholder;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,8 +25,8 @@ import java.util.Objects;
 
 public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements ItemOnClickListener {
   public static final String TAG = FirebaseRecipeViewHolder.class.getSimpleName();
-  private ItemRecipeListBinding binding;
-  private Context context;
+  private final ItemRecipeListBinding binding;
+  private final Context context;
 
   public FirebaseRecipeViewHolder(ItemRecipeListBinding binding) {
     super(binding.getRoot());
