@@ -65,14 +65,19 @@ public class HomeActivityInstrumentationTest {
 
   @Test
   public void clickSearchTab_swipesToSearchFragment() {
-    onView(allOf(withText((R.string.search)), isDescendantOfA(withId(R.id.tab_layout)))).perform(click());
+    onView(allOf(withText(getInstrumentation().getTargetContext().getString(R.string.search)), isDescendantOfA(withId(R.id.tab_layout)))).perform(click());
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
     onView(withId(R.id.search_view)).check(matches(isDisplayed()));
   }
 
   @Test
   public void clickStarredTab_swipesToStarredFragment() {
-    onView(allOf(withText(getInstrumentation().getTargetContext().getString(R.string.starred)), isDescendantOfA(withId(R.id.tab_layout)))).perform(click());
-    onView(withText(R.string.no_starred_recipes)).check(matches(isDisplayed()));
+    onView(allOf(withText(getInstrumentation().getTargetContext().getString(R.string.saved)), isDescendantOfA(withId(R.id.tab_layout)))).perform(click());
+    onView(withId(R.id.starred_recipe_list)).check(matches(isDisplayed()));
   }
 
   @Test
