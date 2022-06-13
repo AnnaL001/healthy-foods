@@ -3,6 +3,7 @@ package com.anna.healthyfoods;
 import static org.junit.Assert.assertEquals;
 
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.w3c.dom.Text;
 
 import java.util.Objects;
 
@@ -25,6 +27,14 @@ public class SignupActivityTest {
             .start()
             .resume()
             .get();
+  }
+
+  @Test
+  public void validateTextViewContent() {
+    TextView gettingStartedTextView = activity.findViewById(R.id.getting_started_text);
+    TextView signUpAdditionalTextView = activity.findViewById(R.id.signup_additional_text);
+    assertEquals(activity.getString(R.string.getting_started), gettingStartedTextView.getText());
+    assertEquals(activity.getString(R.string.signup_additional_text), signUpAdditionalTextView.getText());
   }
 
   @Test
