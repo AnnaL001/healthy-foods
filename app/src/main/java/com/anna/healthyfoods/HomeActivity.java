@@ -15,6 +15,7 @@ import com.anna.healthyfoods.databinding.ActivityHomeBinding;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     binding = ActivityHomeBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    FirebaseApp.initializeApp(this);
     auth = FirebaseAuth.getInstance();
     initializeAuthStateListener();
 
