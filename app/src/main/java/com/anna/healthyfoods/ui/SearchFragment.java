@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,12 +69,24 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
     String[] diets = new String[userSettings.getDiets().size()];
     String[] preferences = new String[userSettings.getPreferences().size()];
 
-    EdamamApi client = EdamamClient.getClient();
-
     // Load recipes based on search
-    binding.btnSearch.setOnClickListener(buttonView -> {
-      Call<RecipeSearchResponse> call = client.getRecipesByKeyword("public", binding.searchView.getQuery().toString(), Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
-      loadRecipes(call);
+    setUpSearchView(diets, preferences);
+  }
+
+  private void setUpSearchView(String[] diets, String[] preferences){
+    EdamamApi client = EdamamClient.getClient();
+    binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String recipe) {
+        Call<RecipeSearchResponse> call = client.getRecipesByKeyword("public", recipe, Constants.EDAMAM_API_ID, Constants.EDAMAM_API_KEY, userSettings.getDiets().toArray(diets), userSettings.getPreferences().toArray(preferences));
+        loadRecipes(call);
+        return false;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String s) {
+        return false;
+      }
     });
   }
 
