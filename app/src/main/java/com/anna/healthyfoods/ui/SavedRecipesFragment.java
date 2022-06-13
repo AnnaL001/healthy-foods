@@ -81,6 +81,7 @@ public class SavedRecipesFragment extends Fragment {
     if (firebaseAdapter.getItemCount() < 1) {
       showNoContentFound(binding.errorText, getString(R.string.no_saved_recipes));
     }
+    binding.errorText.setVisibility(View.GONE);
     binding.starredRecipeList.setAdapter(firebaseAdapter);
   }
 
