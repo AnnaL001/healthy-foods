@@ -28,7 +28,7 @@ public class ValidatorTest {
 
   @Test
   public void validateCorrectNameInput_returnsTrueIfNameHasMoreThanThreeCharacters_true() {
-    assertTrue(Validator.validateCorrectNameInput(name));
+    assertTrue(Validator.validateNameInput(name));
   }
 
   @Test
@@ -52,12 +52,12 @@ public class ValidatorTest {
   @Test
   public void validateCorrectNameInput_returnsFalseIfNameHasLessThanFourCharacters() {
     String incorrectNameInput = "L";
-    assertFalse(Validator.validateCorrectNameInput(incorrectNameInput));
+    assertFalse(Validator.validateNameInput(incorrectNameInput));
   }
 
   @Test
   public void validateCorrectNameInput_returnsFalseIfNameHasDigits() {
     String incorrectNameInput = "L123";
-    assertFalse(Validator.validateCorrectNameInput(incorrectNameInput));
+    assertFalse(Validator.validateNameInput(incorrectNameInput));
   }
 }
