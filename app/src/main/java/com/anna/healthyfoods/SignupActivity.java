@@ -15,6 +15,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.anna.healthyfoods.databinding.ActivitySignupBinding;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,6 +34,7 @@ public class SignupActivity extends AppCompatActivity {
 
     setUpLinkToLogin();
 
+    FirebaseApp.initializeApp(this);
     auth = FirebaseAuth.getInstance();
 
     binding.btnSignup.setOnClickListener(view -> signUpUser(
