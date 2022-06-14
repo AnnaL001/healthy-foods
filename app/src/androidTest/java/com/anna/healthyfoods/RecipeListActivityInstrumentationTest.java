@@ -59,11 +59,7 @@ public class RecipeListActivityInstrumentationTest {
   @Test
   public void clickRecipe_opensRecipeDetailsActivityScreen() {
     // Sleep as data is fetched from the API
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep();
 
     Intents.init();
     // Click first item on the list
@@ -77,16 +73,20 @@ public class RecipeListActivityInstrumentationTest {
     String recipeTitle = "Frothy Iced Matcha Green Tea Recipe";
 
     // Sleep as data is fetched from Edamam API
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep();
 
     Intents.init();
     // Click first item on the list
     onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
     // Confirm display of correct recipe details
     onView(withId(R.id.recipe_label)).check(matches(withText(recipeTitle)));
+  }
+
+  private void sleep(){
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
   }
 }
