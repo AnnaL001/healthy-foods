@@ -14,7 +14,6 @@ import static com.anna.healthyfoods.custom_matcher.TextInputLayoutMatcher.hasDis
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.*;
 
 import android.view.View;
 
