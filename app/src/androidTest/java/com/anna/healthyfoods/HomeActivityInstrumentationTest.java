@@ -31,6 +31,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -65,27 +66,46 @@ public class HomeActivityInstrumentationTest {
 
   @Test
   public void clickSearchTab_swipesToSearchFragment() {
+    // Sleep while settings are fetched from Firebase
+    sleep();
+
     onView(allOf(withText(getInstrumentation().getTargetContext().getString(R.string.search)), isDescendantOfA(withId(R.id.tab_layout)))).perform(click());
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
     onView(withId(R.id.search_view)).check(matches(isDisplayed()));
   }
 
   @Test
   public void clickStarredTab_swipesToStarredFragment() {
+    // Sleep while settings are fetched from Firebase
+    sleep();
+
     onView(allOf(withText(getInstrumentation().getTargetContext().getString(R.string.saved)), isDescendantOfA(withId(R.id.tab_layout)))).perform(click());
+
+    // Sleep while saved recipes are fetched from Firebase
+    sleep();
+
     onView(withId(R.id.starred_recipe_list)).check(matches(isDisplayed()));
   }
 
   @Test
   public void clickGridItem_displaysRecipeListOfThatCategory() {
     Intents.init();
+
+    // Sleep as settings are fetched from Firebase
+    sleep();
+
     onView(withId(R.id.meal_type_grid)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
     // Confirm launch of category's recipe list when grid item is clicked
     Intents.intended(hasComponent(RecipeListActivity.class.getName()));
+    onView(withText(R.string.breakfast)).check(matches(isDisplayed()));
+  }
+
+  // TO BE CHANGED: USE ESPRESSO IDLING RESOURCES
+  private void sleep(){
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
   }
 }
