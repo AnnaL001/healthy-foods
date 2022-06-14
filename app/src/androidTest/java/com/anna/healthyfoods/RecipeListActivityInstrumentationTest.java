@@ -82,6 +82,7 @@ public class RecipeListActivityInstrumentationTest {
     onView(withId(R.id.recipe_label)).check(matches(withText(recipeTitle)));
   }
 
+  // TO BE CHANGED: USE ESPRESSO IDLING RESOURCES
   private void sleep(){
     try {
       Thread.sleep(5000);

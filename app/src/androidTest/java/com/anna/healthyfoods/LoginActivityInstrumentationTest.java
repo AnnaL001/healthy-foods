@@ -7,6 +7,7 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -46,7 +47,7 @@ public class LoginActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
 
-    sleep();
+    sleep(500);
 
     // Type valid password
     onView(allOf(
@@ -63,7 +64,7 @@ public class LoginActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna")).check(matches(withText("anna"))).perform(closeSoftKeyboard());
 
-    sleep();
+    sleep(500);
 
     onView(withId(R.id.btn_login)).perform(click());
     onView(withId(R.id.email_text_input_layout)).check(matches(hasDisplayedErrorText("Please enter a valid email address")));
@@ -77,7 +78,7 @@ public class LoginActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
 
-    sleep();
+    sleep(500);
 
     // Type invalid password
     onView(allOf(
@@ -85,7 +86,7 @@ public class LoginActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("12345678")).check(matches(withText("12345678"))).perform(closeSoftKeyboard());
 
-    sleep();
+    sleep(500);
 
     onView(withId(R.id.btn_login)).perform(click());
     onView(withId(R.id.password_text_input_layout)).check(matches(hasDisplayedErrorText("Password should have at least 8 characters with uppercase, lowercase, digits and special characters")));
@@ -93,29 +94,61 @@ public class LoginActivityInstrumentationTest {
 
   @Test
   public void clickingButton_verificationToastDisplaysIfNotVerified() {
+    String emailAddress = "anna@gmail.com";
+    String password = "Lanna001$";
+
     // Type valid email address
     onView(allOf(
             isDescendantOfA(withId(R.id.email_text_input_layout)),
             withClassName(endsWith("TextInputEditText"))
-    )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
+    )).perform(typeText(emailAddress)).check(matches(withText(emailAddress))).perform(closeSoftKeyboard());
 
-    sleep();
+    sleep(500);
 
     // Type valid password
     onView(allOf(
             isDescendantOfA(withId(R.id.password_text_input_layout)),
             withClassName(endsWith("TextInputEditText"))
-    )).perform(typeText("Lanna001$")).check(matches(withText("Lanna001$"))).perform(closeSoftKeyboard());
+    )).perform(typeText(password)).check(matches(withText(password))).perform(closeSoftKeyboard());
 
-    sleep();
+    sleep(500);
 
     onView(withId(R.id.btn_login)).perform(click());
     onView(withText(R.string.email_verification_prompt)).inRoot(withDecorView(not(activityDecorView))).check(matches(withText(R.string.email_verification_prompt)));
   }
 
-  private void sleep(){
+  @Test
+  public void clickingButton_redirectToHomeAfterLogin() {
+    String emailAddress = "lynnanastasia83@gmail.com";
+    String password = "Lanna001$";
+
+    // Type valid email address
+    onView(allOf(
+            isDescendantOfA(withId(R.id.email_text_input_layout)),
+            withClassName(endsWith("TextInputEditText"))
+    )).perform(typeText(emailAddress)).check(matches(withText(emailAddress))).perform(closeSoftKeyboard());
+
+    sleep(500);
+
+    // Type valid password
+    onView(allOf(
+            isDescendantOfA(withId(R.id.password_text_input_layout)),
+            withClassName(endsWith("TextInputEditText"))
+    )).perform(typeText(password)).check(matches(withText(password))).perform(closeSoftKeyboard());
+
+    sleep(500);
+
+    onView(withId(R.id.btn_login)).perform(click());
+
+    sleep(5000);
+
+    onView(withId(R.id.tab_layout)).check(matches(isDisplayed()));
+  }
+
+  // TO BE CHANGED: USE ESPRESSO IDLING RESOURCES
+  private void sleep(int milliseconds){
     try {
-      Thread.sleep(500);
+      Thread.sleep(milliseconds);
     } catch (InterruptedException e){
       System.out.println("Got interrupted!");
     }
