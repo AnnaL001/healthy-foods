@@ -154,6 +154,7 @@ public class SignupActivityInstrumentationTest {
     Intents.intended(hasComponent(LoginActivity.class.getName()));
   }
 
+  // TO BE CHANGED: USE ESPRESSO IDLING RESOURCES
   private void sleep(int milliseconds){
     try {
       Thread.sleep(milliseconds);

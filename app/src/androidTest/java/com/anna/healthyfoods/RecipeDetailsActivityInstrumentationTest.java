@@ -38,7 +38,7 @@ public class RecipeDetailsActivityInstrumentationTest {
 
   @Test
   public void clickRecipeSource_opensSourceWebsite() {
-    // Sleep as data is fetched from the API
+    // Sleep as data is fetched from the API: (TO BE CHANGED: USE ESPRESSO IDLING RESOURCES)
     try {
       Thread.sleep(5000);
     } catch (InterruptedException e){

@@ -1,26 +1,5 @@
 package com.anna.healthyfoods;
 
-import android.content.Intent;
-import android.view.View;
-
-import androidx.test.core.app.ApplicationProvider;
-import androidx.test.espresso.contrib.RecyclerViewActions;
-import androidx.test.espresso.intent.Intents;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-
-import com.anna.healthyfoods.models.Settings;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.parceler.Parcels;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -31,27 +10,25 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.not;
+
+import android.view.View;
+
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.intent.Intents;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class HomeActivityInstrumentationTest {
-  public static Intent initializeIntent(){
-    Intent intent = new Intent(ApplicationProvider.getApplicationContext(), HomeActivity.class);
-
-    // Create lists of selected diets and preferences
-    List<String> selectedDiets = new ArrayList<>(Collections.singletonList("high-protein"));
-    List<String> selectedPreferences = new ArrayList<>(Collections.singletonList("gluten-free"));
-
-    // Populate userSettings with name, selected diets and selected meal preferences
-    Settings userSettings = new Settings("Anna", selectedDiets, selectedPreferences);
-
-    intent.putExtra("userSettings", Parcels.wrap(userSettings));
-    return intent;
-  }
-  
   @Rule
-  public ActivityScenarioRule<HomeActivity> homeActivityRule = new ActivityScenarioRule<>(initializeIntent());
+  public ActivityScenarioRule<HomeActivity> homeActivityRule = new ActivityScenarioRule<>(HomeActivity.class);
   View mealTypeListDecorView;
 
   @Before
@@ -98,6 +75,19 @@ public class HomeActivityInstrumentationTest {
     // Confirm launch of category's recipe list when grid item is clicked
     Intents.intended(hasComponent(RecipeListActivity.class.getName()));
     onView(withText(R.string.breakfast)).check(matches(isDisplayed()));
+  }
+
+  @Test
+  public void clickLogout_redirectsToLaunchScreen() {
+    Intents.init();
+
+    // Sleep as settings are fetched from Firebase
+    sleep();
+    onView(withId(R.id.action_logout)).perform(click());
+
+    // Sleep as user is logged out
+    sleep();
+    onView(withId(R.id.btn_get_started)).check(matches(isDisplayed()));
   }
 
   // TO BE CHANGED: USE ESPRESSO IDLING RESOURCES
