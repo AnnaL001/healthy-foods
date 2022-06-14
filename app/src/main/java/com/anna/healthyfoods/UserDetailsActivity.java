@@ -12,6 +12,7 @@ import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.anna.healthyfoods.utility.Validator;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -78,6 +79,7 @@ public class UserDetailsActivity extends AppCompatActivity {
   }
 
   private void saveUserSettings(Settings userSettings){
+    FirebaseApp.initializeApp(this);
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SETTINGS_LOCATION).child(userId);
     databaseReference.setValue(userSettings);
