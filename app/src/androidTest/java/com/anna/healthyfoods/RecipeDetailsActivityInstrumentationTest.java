@@ -29,7 +29,6 @@ public class RecipeDetailsActivityInstrumentationTest {
   public static Intent initializeIntent(){
     Intent intent = new Intent(ApplicationProvider.getApplicationContext(), RecipeDetailsActivity.class);
     intent.putExtra("recipe_id", "recipe_2f0966f8aedcbd16f233bbb008f5df03");
-    intent.putExtra("recipe_title", "Overnight Sous Vide Canadian Bacon or Breakfast Ham Recipe");
     return intent;
   }
 
