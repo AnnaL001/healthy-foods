@@ -24,6 +24,6 @@ public class MainActivityInstrumentionTest {
   public void handleButtonClick_validateIntent() {
     Intents.init();
     onView(withId(R.id.btn_get_started)).perform(click());
-    Intents.intended(hasComponent(UserDetailsActivity.class.getName()));
+    Intents.intended(hasComponent(LoginActivity.class.getName()));
   }
 }
