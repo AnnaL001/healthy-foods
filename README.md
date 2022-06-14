@@ -1,11 +1,11 @@
 # HealthyFoods
-An Android mobile application that provides recipe suggestions taking into account healthy eating. The mobile application consumes the Edamam API to provide the recipe suggestions
+An Android mobile application that provides recipe suggestions taking into account healthy eating. The mobile application consumes the Edamam recipe search API to provide the recipe suggestions based on selected diets and health preferences.
 
 #### By **[Lynn Nyangon](https://github.com/AnnaL001)**
 
 ## Description
 
-The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any health preferences they might have and allowing users to search for recipes while taking into consideration their preferred diet and health preferences. Moreover, users can also view various meal types and their corresponding recipes, fetched via the Edamam API. Other functionalities to be added include: users being able to starr recipes that might have peaked their interest, for later cooking and authenticating users. 
+The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any health preferences they might have and allowing users to search for recipes while taking into consideration their preferred diet and health preferences. Moreover, users can also view various meal types and their corresponding recipes, fetched via the Edamam API. Other functionalities included are: users being able to starr recipes that might have peaked their interest, for later cooking and authenticating users. Aside from this, users can also search for recipes using keywords like 'Chicken' and others.
 
 ## Setup/Installation Requirements
 
@@ -40,6 +40,7 @@ The Mobile Application is still in development. Currently, the existing features
 - Retrofit
 - Glide
 - Gson Converter
+- Firebase
 
 ## Technologies Used
 
