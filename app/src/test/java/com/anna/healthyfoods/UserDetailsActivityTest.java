@@ -1,13 +1,11 @@
 package com.anna.healthyfoods;
 
-import static org.junit.Assert.*;
-import static org.robolectric.Shadows.shadowOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.UserInterfaceHelpers;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
@@ -15,7 +13,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.parceler.Parcels;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
@@ -24,19 +21,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @RunWith(RobolectricTestRunner.class)
 public class UserDetailsActivityTest {
   private UserDetailsActivity activity;
-  private String name;
   private TextInputLayout nameTextInputLayout;
   private ChipGroup dietChipGroup;
   private ChipGroup allergyChipGroup;
 
   @Before
   public void setUp()  {
-    name = "Anna";
     activity = Robolectric.buildActivity(UserDetailsActivity.class)
             .create()
             .start()
@@ -84,34 +78,5 @@ public class UserDetailsActivityTest {
 
     assertEquals(expectedSelectedDiets, UserInterfaceHelpers.getSelectedChips(dietChipGroup));
     assertEquals(expectedSelectedAllergies, UserInterfaceHelpers.getSelectedChips(allergyChipGroup));
-  }
-
-  @Test
-  public void initializeButton_startsNextActivityWithDataUponAClick() {
-    // Fill in the User details form
-    Objects.requireNonNull(nameTextInputLayout.getEditText()).setText(name);
-    dietChipGroup.check(R.id.high_protein_diet);
-    allergyChipGroup.check(R.id.gluten_free);
-
-    Settings userSettings = new Settings(
-            nameTextInputLayout.getEditText().getText().toString(),
-            UserInterfaceHelpers.getSelectedChips(dietChipGroup),
-            UserInterfaceHelpers.getSelectedChips(allergyChipGroup));
-
-    // Click next button
-    activity.findViewById(R.id.btn_next).performClick();
-
-    //Expected Intent with extras
-    Intent expectedIntent = new Intent(activity, HomeActivity.class);
-    expectedIntent.putExtra("userSettings", Parcels.wrap(userSettings));
-    Settings expectedSettings = Parcels.unwrap(expectedIntent.getParcelableExtra("userSettings"));
-
-    // Actual intent
-    Intent actualIntent = shadowOf(activity).getNextStartedActivity();
-    Settings actualSettings = Parcels.unwrap(actualIntent.getParcelableExtra("userSettings"));
-
-    assertEquals(expectedSettings.getName(), actualSettings.getName());
-    assertEquals(expectedSettings.getDiets(), actualSettings.getDiets());
-    assertEquals(expectedSettings.getPreferences(), actualSettings.getPreferences());
   }
 }
