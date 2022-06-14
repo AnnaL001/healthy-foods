@@ -37,11 +37,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type valid password
     onView(allOf(
@@ -49,11 +45,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("Lanna001$")).check(matches(withText("Lanna001$"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type valid confirm password
     onView(allOf(
@@ -70,11 +62,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna")).check(matches(withText("anna"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     onView(withId(R.id.btn_signup)).perform(click());
     onView(withId(R.id.email_text_input_layout)).check(matches(hasDisplayedErrorText("Please enter a valid email address")));
@@ -88,11 +76,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type invalid password
     onView(allOf(
@@ -100,11 +84,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("12345678")).check(matches(withText("12345678"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     onView(withId(R.id.btn_signup)).perform(click());
     onView(withId(R.id.password_text_input_layout)).check(matches(hasDisplayedErrorText("Password should have at least 8 characters with uppercase, lowercase, digits and special characters")));
@@ -118,11 +98,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type valid password
     onView(allOf(
@@ -130,11 +106,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("Lanna001$")).check(matches(withText("Lanna001$"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type invalid confirm password
     onView(allOf(
@@ -142,11 +114,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("12345678")).check(matches(withText("12345678"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     onView(withId(R.id.btn_signup)).perform(click());
     onView(withId(R.id.confirm_password_text_input_layout)).check(matches(hasDisplayedErrorText("Confirm password should match password")));
@@ -160,11 +128,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("anna@gmail.com")).check(matches(withText("anna@gmail.com"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type valid password
     onView(allOf(
@@ -172,11 +136,7 @@ public class SignupActivityInstrumentationTest {
             withClassName(endsWith("TextInputEditText"))
     )).perform(typeText("Lanna001$")).check(matches(withText("Lanna001$"))).perform(closeSoftKeyboard());
 
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(500);
 
     // Type valid confirm password
     onView(allOf(
@@ -188,14 +148,18 @@ public class SignupActivityInstrumentationTest {
     onView(withId(R.id.btn_signup)).perform(click());
 
     // Sleep while user is signed up
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e){
-      System.out.println("Got interrupted!");
-    }
+    sleep(2000);
 
     // Confirm user is redirected to login
     Intents.intended(hasComponent(LoginActivity.class.getName()));
+  }
+
+  private void sleep(int milliseconds){
+    try {
+      Thread.sleep(milliseconds);
+    } catch (InterruptedException e){
+      System.out.println("Got interrupted!");
+    }
   }
 
 }
