@@ -48,6 +48,7 @@ public class UserDetailsActivityInstrumentationTest {
     )).perform(click()).check(matches(isChecked()));
   }
 
+  // Test only passes when run after test to check for login
   @Test
   public void initializeButton_nameIsSentToMealTypesActivity() {
     // Swipe up

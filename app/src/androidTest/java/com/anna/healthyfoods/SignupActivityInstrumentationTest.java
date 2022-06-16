@@ -120,6 +120,7 @@ public class SignupActivityInstrumentationTest {
     onView(withId(R.id.confirm_password_text_input_layout)).check(matches(hasDisplayedErrorText("Confirm password should match password")));
   }
 
+  // Test only passes when a user has not been already registered in Firebase
   @Test
   public void clickButton_redirectsToLoginAfterSignup() {
     // Type valid email address

@@ -20,6 +20,7 @@ public class MainActivityInstrumentionTest {
   @Rule
   public ActivityScenarioRule<MainActivity> mainActivityRule = new ActivityScenarioRule<>(MainActivity.class);
 
+  // Test only passes if user is not currently logged in
   @Test
   public void handleButtonClick_validateIntent() {
     Intents.init();

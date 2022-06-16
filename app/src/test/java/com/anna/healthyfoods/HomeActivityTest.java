@@ -24,6 +24,7 @@ public class HomeActivityTest {
             .get();
   }
 
+  // TO BE REVISITED: Test does not pass due to user not being authenticated
   @Test
   public void validateTabs() {
     TabLayout tabLayout = activity.findViewById(R.id.tab_layout);

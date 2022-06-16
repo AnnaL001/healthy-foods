@@ -36,11 +36,13 @@ public class HomeActivityInstrumentationTest {
     homeActivityRule.getScenario().onActivity(activity -> mealTypeListDecorView = activity.getWindow().getDecorView());
   }
 
+  // Test only passes if user is logged in
   @Test
   public void launchHomeScreen_displaysTabLayout() {
     onView(withId(R.id.tab_layout)).perform(click()).check(matches(isDisplayed()));
   }
 
+  // Test only passes if user is logged in
   @Test
   public void clickSearchTab_swipesToSearchFragment() {
     // Sleep while settings are fetched from Firebase
@@ -50,6 +52,7 @@ public class HomeActivityInstrumentationTest {
     onView(withId(R.id.search_view)).check(matches(isDisplayed()));
   }
 
+  // Test only passes if user is logged in
   @Test
   public void clickStarredTab_swipesToStarredFragment() {
     // Sleep while settings are fetched from Firebase
@@ -63,6 +66,7 @@ public class HomeActivityInstrumentationTest {
     onView(withId(R.id.starred_recipe_list)).check(matches(isDisplayed()));
   }
 
+  // Test only passes if user is logged in
   @Test
   public void clickGridItem_displaysRecipeListOfThatCategory() {
     Intents.init();
@@ -77,6 +81,7 @@ public class HomeActivityInstrumentationTest {
     onView(withText(R.string.breakfast)).check(matches(isDisplayed()));
   }
 
+  // Test only passes if user is logged in
   @Test
   public void clickLogout_redirectsToLaunchScreen() {
     Intents.init();

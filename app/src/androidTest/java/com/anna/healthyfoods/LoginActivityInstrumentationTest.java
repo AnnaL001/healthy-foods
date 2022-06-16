@@ -39,6 +39,7 @@ public class LoginActivityInstrumentationTest {
     loginActivityRule.getScenario().onActivity(activity -> activityDecorView = activity.getWindow().getDecorView());
   }
 
+  // Test only passes if user is not currently logged in
   @Test
   public void typeIntoEditText_validateEditText() {
     // Type valid email address
@@ -56,6 +57,7 @@ public class LoginActivityInstrumentationTest {
     )).perform(typeText("Lanna001$")).check(matches(withText("Lanna001$"))).perform(closeSoftKeyboard());
   }
 
+  // Test only passes if user is not currently logged in
   @Test
   public void typeInvalidEmail_displaysErrorMessage() {
     // Type invalid email address
@@ -70,6 +72,7 @@ public class LoginActivityInstrumentationTest {
     onView(withId(R.id.email_text_input_layout)).check(matches(hasDisplayedErrorText("Please enter a valid email address")));
   }
 
+  // Test only passes if user is not currently logged in
   @Test
   public void typeInvalidPassword_displaysErrorMessage() {
     // Type valid email address
@@ -92,6 +95,7 @@ public class LoginActivityInstrumentationTest {
     onView(withId(R.id.password_text_input_layout)).check(matches(hasDisplayedErrorText("Password should have at least 8 characters with uppercase, lowercase, digits and special characters")));
   }
 
+  // Test only passes if user is not currently logged in
   @Test
   public void clickingButton_verificationToastDisplaysIfNotVerified() {
     String emailAddress = "anna@gmail.com";
@@ -117,8 +121,9 @@ public class LoginActivityInstrumentationTest {
     onView(withText(R.string.email_verification_prompt)).inRoot(withDecorView(not(activityDecorView))).check(matches(withText(R.string.email_verification_prompt)));
   }
 
+  // Test only passes if user is not currently logged in
   @Test
-  public void clickingButton_redirectToHomeAfterLogin() {
+  public void clickingButton_redirectToHomeAfterLoginIfVerified() {
     String emailAddress = "lynnanastasia83@gmail.com";
     String password = "Lanna001$";
 
