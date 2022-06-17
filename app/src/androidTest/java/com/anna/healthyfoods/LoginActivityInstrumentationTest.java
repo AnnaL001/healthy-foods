@@ -124,7 +124,7 @@ public class LoginActivityInstrumentationTest {
   // Test only passes if user is not currently logged in
   @Test
   public void clickingButton_redirectToHomeAfterLoginIfVerified() {
-    String emailAddress = "lynnanastasia83@gmail.com";
+    String emailAddress = "annie.polaris1@gmail.com";
     String password = "Lanna001$";
 
     // Type valid email address
