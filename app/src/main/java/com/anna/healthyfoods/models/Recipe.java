@@ -69,7 +69,7 @@ public class Recipe {
     @Expose
     private TotalNutrients totalNutrients;
     private String id;
-    private boolean isStarred;
+    private String index;
 
     /**
      * No args constructor for use in serialization
@@ -122,7 +122,7 @@ public class Recipe {
         this.mealType = mealType;
         this.dishType = dishType;
         this.totalNutrients = totalNutrients;
-        this.setStarred(false);
+        this.index = "not set";
     }
 
     public String getId() {
@@ -133,12 +133,12 @@ public class Recipe {
         this.id = id;
     }
 
-    public boolean isStarred() {
-        return isStarred;
+    public String getIndex() {
+        return index;
     }
 
-    public void setStarred(boolean starred) {
-        isStarred = starred;
+    public void setIndex(String index) {
+        this.index = index;
     }
 
     public String getUri() {
