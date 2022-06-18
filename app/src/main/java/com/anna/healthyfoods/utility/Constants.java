@@ -16,4 +16,5 @@ public class Constants {
   public static final String FIREBASE_CHILD_SETTINGS_LOCATION = "settings";
   public static final String FIREBASE_CHILD_RECIPE_LOCATION = "recipes";
   public static final String PREFERENCES_RECIPE_SEARCH_KEY = "recent_recipe_search";
+  public static final String FIREBASE_QUERY_INDEX = "index";
 }

@@ -28,8 +28,8 @@ import com.anna.healthyfoods.viewholder.FirebaseRecipeViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Objects;
 
@@ -61,15 +61,15 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
   private void setUpFirebaseAdapter(){
     // Set up FirebaseAdapter
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-    DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE_LOCATION).child(userId);
 
+    Query dbQuery = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE_LOCATION).child(userId).orderByChild(Constants.FIREBASE_QUERY_INDEX);
     FirebaseRecyclerOptions<Recipe> options =
             new FirebaseRecyclerOptions.Builder<Recipe>()
-                    .setQuery(recipeReference, Recipe.class)
+                    .setQuery(dbQuery, Recipe.class)
                     .build();
 
     binding.starredRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
-    firebaseAdapter = new FirebaseRecipeListAdapter(options, recipeReference, this, getContext());
+    firebaseAdapter = new FirebaseRecipeListAdapter(options, dbQuery.getRef(), this, getContext());
 
     if (firebaseAdapter.getItemCount() < 1) {
       showNoContentFound(binding.errorText, getString(R.string.no_saved_recipes));
@@ -81,12 +81,6 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
     ItemTouchHelper.Callback callback = new AppItemTouchHelperCallback((AppItemTouchHelper) firebaseAdapter);
     itemTouchHelper = new ItemTouchHelper(callback);
     itemTouchHelper.attachToRecyclerView(binding.starredRecipeList);
-  }
-
-  @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    binding = null;
   }
 
   @Override
@@ -104,5 +98,17 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
   @Override
   public void onDrag(RecyclerView.ViewHolder viewHolder) {
     itemTouchHelper.startDrag(viewHolder); // Send touch events to AppItemTouchHelperCallback
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    firebaseAdapter.stopListening();
   }
 }
