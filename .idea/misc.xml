@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/layout/item_meal_type.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_recipe.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_recipe_list.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_recipe_list_drag.xml" value="0.33" />
         <entry key="app/src/main/res/layout/meal_type_grid_item.xml" value="0.25" />
         <entry key="app/src/main/res/menu/app_menu.xml" value="0.25" />
         <entry key="app/src/main/res/menu/recipe_details_menu.xml" value="0.25" />
