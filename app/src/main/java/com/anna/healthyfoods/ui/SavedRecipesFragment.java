@@ -12,13 +12,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.anna.healthyfoods.R;
+import com.anna.healthyfoods.adapter.FirebaseRecipeListAdapter;
 import com.anna.healthyfoods.databinding.FragmentSavedRecipesBinding;
-import com.anna.healthyfoods.databinding.ItemRecipeListBinding;
 import com.anna.healthyfoods.models.Recipe;
 import com.anna.healthyfoods.utility.Constants;
+import com.anna.healthyfoods.utility.gestures.AppItemTouchHelper;
+import com.anna.healthyfoods.utility.gestures.AppItemTouchHelperCallback;
+import com.anna.healthyfoods.utility.gestures.OnTouchScreenDragListener;
 import com.anna.healthyfoods.viewholder.FirebaseRecipeViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -28,10 +33,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-public class SavedRecipesFragment extends Fragment {
+public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragListener {
   private FragmentSavedRecipesBinding binding;
   private FirebaseRecyclerAdapter<Recipe, FirebaseRecipeViewHolder> firebaseAdapter;
-  private DatabaseReference recipeReference;
+  private ItemTouchHelper itemTouchHelper;
 
   public SavedRecipesFragment() {
   }
@@ -47,9 +52,6 @@ public class SavedRecipesFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-    recipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE_LOCATION).child(userId);
-
     //For now, until database connection is added
     setUpFirebaseAdapter();
     hideProgressDialog(binding.progressBar, binding.progressMessage);
@@ -58,31 +60,27 @@ public class SavedRecipesFragment extends Fragment {
 
   private void setUpFirebaseAdapter(){
     // Set up FirebaseAdapter
+    String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE_LOCATION).child(userId);
+
     FirebaseRecyclerOptions<Recipe> options =
             new FirebaseRecyclerOptions.Builder<Recipe>()
                     .setQuery(recipeReference, Recipe.class)
                     .build();
 
-    firebaseAdapter = new FirebaseRecyclerAdapter<Recipe, FirebaseRecipeViewHolder>(options) {
-
-      @NonNull
-      @Override
-      public FirebaseRecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new FirebaseRecipeViewHolder(ItemRecipeListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-      }
-
-      @Override
-      protected void onBindViewHolder(@NonNull FirebaseRecipeViewHolder holder, int position, @NonNull Recipe recipe) {
-        holder.bindRecipe(recipe);
-      }
-    };
-
     binding.starredRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
+    firebaseAdapter = new FirebaseRecipeListAdapter(options, recipeReference, this, getContext());
+
     if (firebaseAdapter.getItemCount() < 1) {
       showNoContentFound(binding.errorText, getString(R.string.no_saved_recipes));
     }
     binding.errorText.setVisibility(View.GONE);
     binding.starredRecipeList.setAdapter(firebaseAdapter);
+
+    // Attach drag listener to viewholder via recyclerview and enable interaction with necessary callbacks
+    ItemTouchHelper.Callback callback = new AppItemTouchHelperCallback((AppItemTouchHelper) firebaseAdapter);
+    itemTouchHelper = new ItemTouchHelper(callback);
+    itemTouchHelper.attachToRecyclerView(binding.starredRecipeList);
   }
 
   @Override
@@ -101,5 +99,10 @@ public class SavedRecipesFragment extends Fragment {
   public void onStop() {
     firebaseAdapter.stopListening();
     super.onStop();
+  }
+
+  @Override
+  public void onDrag(RecyclerView.ViewHolder viewHolder) {
+    itemTouchHelper.startDrag(viewHolder); // Send touch events to AppItemTouchHelperCallback
   }
 }

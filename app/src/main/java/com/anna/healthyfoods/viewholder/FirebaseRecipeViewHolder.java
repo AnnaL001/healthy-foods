@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.RecipeDetailsActivity;
-import com.anna.healthyfoods.databinding.ItemRecipeListBinding;
+import com.anna.healthyfoods.databinding.ItemSavedRecipeListBinding;
 import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.Recipe;
 import com.anna.healthyfoods.utility.Constants;
@@ -25,10 +25,10 @@ import java.util.Objects;
 
 public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements ItemOnClickListener {
   public static final String TAG = FirebaseRecipeViewHolder.class.getSimpleName();
-  private final ItemRecipeListBinding binding;
+  public final ItemSavedRecipeListBinding binding;
   private final Context context;
 
-  public FirebaseRecipeViewHolder(ItemRecipeListBinding binding) {
+  public FirebaseRecipeViewHolder(ItemSavedRecipeListBinding binding) {
     super(binding.getRoot());
     this.binding = binding;
     this.context = binding.getRoot().getContext();
