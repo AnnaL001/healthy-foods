@@ -11,9 +11,10 @@
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_border.xml" value="0.1015" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.171" />
-        <entry key="app/src/main/res/layout-land/fragment_meal_types.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/layout-land/fragment_meal_types.xml" value="0.1836962590731435" />
         <entry key="app/src/main/res/layout-land/fragment_saved_recipes.xml" value="0.25" />
         <entry key="app/src/main/res/layout-land/item_saved_recipe_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_auth.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
@@ -22,10 +23,13 @@
         <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_user_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/fragment_meal_types.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_recipe_details.xml" value="0.17135416666666667" />
+        <entry key="app/src/main/res/layout/fragment_recipe_details.xml" value="0.2873362445414847" />
+        <entry key="app/src/main/res/layout/fragment_recipe_list.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/fragment_saved_recipes.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/fragment_starred.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/item_ingredient_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_meal_type.xml" value="0.22" />

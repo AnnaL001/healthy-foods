@@ -1,4 +1,4 @@
-package com.anna.healthyfoods;
+package com.anna.healthyfoods.ui;
 
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDialog;
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showProgressDialog;
@@ -9,12 +9,19 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import com.anna.healthyfoods.databinding.ActivityLoginBinding;
+import com.anna.healthyfoods.HomeActivity;
+import com.anna.healthyfoods.R;
+import com.anna.healthyfoods.UserDetailsActivity;
+import com.anna.healthyfoods.databinding.FragmentLoginBinding;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
 import com.google.firebase.FirebaseApp;
@@ -26,22 +33,34 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
-public class LoginActivity extends AppCompatActivity {
-  public static final String TAG = LoginActivity.class.getSimpleName();
-  private ActivityLoginBinding binding;
+
+public class LoginFragment extends Fragment {
+  public static final String TAG = LoginFragment.class.getSimpleName();
+  private FragmentLoginBinding binding;
   private FirebaseAuth auth;
   private FirebaseAuth.AuthStateListener authStateListener;
   private ValueEventListener settingsListener;
   private DatabaseReference settingsReference;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    binding = ActivityLoginBinding.inflate(getLayoutInflater());
-    setContentView(binding.getRoot());
+  public LoginFragment() {
+    // Required empty public constructor
+  }
 
-    FirebaseApp.initializeApp(this);
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState) {
+    // Inflate the layout for this fragment
+    binding = FragmentLoginBinding.inflate(inflater, container, false);
+    return binding.getRoot();
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    FirebaseApp.initializeApp(requireContext());
     auth = FirebaseAuth.getInstance();
     initializeAuthStateListener();
 
@@ -61,49 +80,49 @@ public class LoginActivity extends AppCompatActivity {
   private void setUpLinkToSignUp(){
     // Add an underline to text
     binding.linkToSignup.setPaintFlags(binding.linkToSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-    binding.linkToSignup.setOnClickListener(view -> {
-      startActivity(new Intent(getApplicationContext(), SignupActivity.class));
-      finish();
-    });
+    binding.linkToSignup.setOnClickListener(view -> requireActivity().getSupportFragmentManager().beginTransaction()
+            .setReorderingAllowed(true)
+            .add(R.id.fragment_container, new SignupFragment())
+            .commit());
   }
 
   private void loginUser(String email, String password) {
     if(validateCredentials(email, password)) {
       showProgressDialog(binding.loginProgressBar, binding.progressMessage);
 
-      auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, loginTask -> {
+      auth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Executor) this, loginTask -> {
         hideProgressDialog(binding.loginProgressBar, binding.progressMessage);
 
         // Only login user if there email is verified
-          if(loginTask.isSuccessful()){
-            if(Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()){
-              Toast.makeText(getApplicationContext(), getString(R.string.successful_authentication), Toast.LENGTH_SHORT).show();
-              redirectToNextScreen();
-              Log.d(TAG, "Authentication successful");
-            } else {
-              Toast.makeText(getApplicationContext(), getString(R.string.email_verification_prompt), Toast.LENGTH_SHORT).show();
-              Log.d(TAG, "Email verification toast displayed");
-            }
+        if(loginTask.isSuccessful()){
+          if(Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()){
+            Toast.makeText(getContext(), getString(R.string.successful_authentication), Toast.LENGTH_SHORT).show();
+            redirectToNextScreen();
+            Log.d(TAG, "Authentication successful");
           } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.failed_authentication), Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "Authentication failed");
+            Toast.makeText(getContext(), getString(R.string.email_verification_prompt), Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Email verification toast displayed");
           }
+        } else {
+          Toast.makeText(getContext(), getString(R.string.failed_authentication), Toast.LENGTH_SHORT).show();
+          Log.d(TAG, "Authentication failed");
+        }
       });
     }
   }
 
   private void redirectToHome(){
-    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+    Intent intent = new Intent(getContext(), HomeActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    startActivity(intent);
-    finish();
+    requireActivity().startActivity(intent);
+    requireActivity().finish();
   }
 
   private void redirectToUserDetails(){
-    Intent intent = new Intent(getApplicationContext(), UserDetailsActivity.class);
+    Intent intent = new Intent(getContext(), UserDetailsActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    startActivity(intent);
-    finish();
+    requireActivity().startActivity(intent);
+    requireActivity().finish();
   }
 
   private boolean validateCredentials(String email, String password) {
@@ -168,13 +187,13 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void onStart() {
+  public void onStart() {
     super.onStart();
     auth.addAuthStateListener(authStateListener);
   }
 
   @Override
-  protected void onStop() {
+  public void onStop() {
     super.onStop();
     if(authStateListener != null){
       auth.removeAuthStateListener(authStateListener);
@@ -182,8 +201,9 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void onDestroy() {
-    super.onDestroy();
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
     if(settingsReference != null){
       settingsReference.removeEventListener(settingsListener);
     }
