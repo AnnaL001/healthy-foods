@@ -18,4 +18,6 @@ public class Constants {
   public static final String PREFERENCES_RECIPE_SEARCH_KEY = "recent_recipe_search";
   public static final String FIREBASE_QUERY_INDEX = "index";
   public static final String EXTRA_RECIPE_ID = "recipe_id";
+  public static final String EXTRA_USER_SETTINGS = "user_settings";
+  public static final String EXTRA_MEAL_TYPE = "meal_type";
 }
