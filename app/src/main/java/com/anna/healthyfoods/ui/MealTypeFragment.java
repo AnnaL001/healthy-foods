@@ -15,6 +15,7 @@ import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.adapter.MealTypeAdapter;
 import com.anna.healthyfoods.databinding.FragmentMealTypesBinding;
 import com.anna.healthyfoods.models.Settings;
+import com.anna.healthyfoods.utility.Constants;
 
 import org.parceler.Parcels;
 
@@ -34,7 +35,7 @@ public class MealTypeFragment extends Fragment {
   public static MealTypeFragment newInstance(Settings userSettings) {
     MealTypeFragment fragment = new MealTypeFragment();
     Bundle bundle = new Bundle();
-    bundle.putParcelable("userSettings", Parcels.wrap(userSettings));
+    bundle.putParcelable(Constants.EXTRA_USER_SETTINGS, Parcels.wrap(userSettings));
     fragment.setArguments(bundle);
     return fragment;
   }
@@ -43,7 +44,7 @@ public class MealTypeFragment extends Fragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     assert getArguments() != null;
-    userSettings = Parcels.unwrap(getArguments().getParcelable("userSettings"));
+    userSettings = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_USER_SETTINGS));
   }
 
   @Nullable

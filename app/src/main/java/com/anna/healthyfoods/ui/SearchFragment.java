@@ -56,7 +56,7 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
   public static SearchFragment newInstance(Settings userSettings){
     SearchFragment fragment = new SearchFragment();
     Bundle bundle = new Bundle();
-    bundle.putParcelable("userSettings", Parcels.wrap(userSettings));
+    bundle.putParcelable(Constants.EXTRA_USER_SETTINGS, Parcels.wrap(userSettings));
     fragment.setArguments(bundle);
     return fragment;
   }
@@ -65,7 +65,7 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     assert getArguments() != null;
-    userSettings = Parcels.unwrap(getArguments().getParcelable("userSettings"));
+    userSettings = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_USER_SETTINGS));
   }
 
   @Nullable

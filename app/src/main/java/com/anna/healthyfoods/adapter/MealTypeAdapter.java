@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.anna.healthyfoods.RecipeListActivity;
 import com.anna.healthyfoods.databinding.ItemMealTypeBinding;
 import com.anna.healthyfoods.models.Settings;
+import com.anna.healthyfoods.utility.Constants;
 import com.bumptech.glide.Glide;
 
 import org.parceler.Parcels;
@@ -41,9 +42,8 @@ public class MealTypeAdapter extends RecyclerView.Adapter<MealTypeAdapter.MealTy
     holder.bindMealType(mealTypeLabels.get(position), mealTypeImages.get(position));
     holder.binding.getRoot().setOnClickListener(view -> {
       Intent intent = new Intent(context, RecipeListActivity.class);
-      intent.putExtra("meal_type", mealTypeLabels.get(position));
-      intent.putExtra("userSettings", Parcels.wrap(userSettings));
-      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      intent.putExtra(Constants.EXTRA_MEAL_TYPE, mealTypeLabels.get(position));
+      intent.putExtra(Constants.EXTRA_USER_SETTINGS, Parcels.wrap(userSettings));
       context.startActivity(intent);
     });
   }
