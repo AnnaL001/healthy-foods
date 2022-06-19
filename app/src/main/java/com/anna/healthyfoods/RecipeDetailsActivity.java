@@ -28,6 +28,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     inflateFragment();
   }
 
+  // Inflate RecipeDetailsFragment with extras
   private void inflateFragment(){
     getSupportFragmentManager().beginTransaction()
             .setReorderingAllowed(true)

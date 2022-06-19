@@ -22,6 +22,7 @@ public class AuthActivity extends AppCompatActivity {
     inflateFragment();
   }
 
+  // Inflate LoginFragment
   private void inflateFragment(){
     getSupportFragmentManager().beginTransaction()
             .setCustomAnimations(

@@ -56,6 +56,7 @@ public class RecipeListActivity extends AppCompatActivity {
     inflateFragment();
   }
 
+  // Inflate RecipeListFragment with extras
   private void inflateFragment(){
     getSupportFragmentManager().beginTransaction()
             .setReorderingAllowed(true)
