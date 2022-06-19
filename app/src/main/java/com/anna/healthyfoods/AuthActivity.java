@@ -24,7 +24,10 @@ public class AuthActivity extends AppCompatActivity {
 
   private void inflateFragment(){
     getSupportFragmentManager().beginTransaction()
-            .setReorderingAllowed(true)
+            .setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out
+            )
             .replace(R.id.fragment_container, new LoginFragment())
             .commit();
   }

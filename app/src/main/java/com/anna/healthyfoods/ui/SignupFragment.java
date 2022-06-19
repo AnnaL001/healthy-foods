@@ -71,7 +71,7 @@ public class SignupFragment extends Fragment {
     if(validateCredentials(email, password, confirmPassword)) {
       showProgressDialog(binding.signupProgressBar, binding.progressMessage);
 
-      auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((Executor) this, signUpTask -> {
+      auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), signUpTask -> {
         hideProgressDialog(binding.signupProgressBar, binding.progressMessage);
         if(signUpTask.isSuccessful()){
           // Display feedback to user
@@ -91,7 +91,7 @@ public class SignupFragment extends Fragment {
 
   // Verify user
   private void verifyUser(FirebaseUser user) {
-    user.sendEmailVerification().addOnCompleteListener((Executor) this, verifyTask -> {
+    user.sendEmailVerification().addOnCompleteListener(requireActivity(), verifyTask -> {
       if(verifyTask.isSuccessful()){
         Toast.makeText(requireContext(), getString(R.string.verification_prompt) , Toast.LENGTH_SHORT).show();
         Log.d(TAG, "User successfully verified");
@@ -103,8 +103,11 @@ public class SignupFragment extends Fragment {
 
   private void redirectToLogin(){
     requireActivity().getSupportFragmentManager().beginTransaction()
-            .setReorderingAllowed(true)
-            .add(R.id.fragment_container, new LoginFragment())
+            .setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out
+            )
+            .replace(R.id.fragment_container, new LoginFragment())
             .commit();
   }
 

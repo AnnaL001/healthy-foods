@@ -81,7 +81,10 @@ public class LoginFragment extends Fragment {
     // Add an underline to text
     binding.linkToSignup.setPaintFlags(binding.linkToSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     binding.linkToSignup.setOnClickListener(view -> requireActivity().getSupportFragmentManager().beginTransaction()
-            .setReorderingAllowed(true)
+            .setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out
+            )
             .add(R.id.fragment_container, new SignupFragment())
             .commit());
   }
@@ -90,7 +93,7 @@ public class LoginFragment extends Fragment {
     if(validateCredentials(email, password)) {
       showProgressDialog(binding.loginProgressBar, binding.progressMessage);
 
-      auth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Executor) this, loginTask -> {
+      auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), loginTask -> {
         hideProgressDialog(binding.loginProgressBar, binding.progressMessage);
 
         // Only login user if there email is verified
