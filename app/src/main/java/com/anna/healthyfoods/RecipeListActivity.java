@@ -89,7 +89,7 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
   @Override
   public void onClick(String id) {
     Intent intent = new Intent(getApplicationContext(), RecipeDetailsActivity.class);
-    intent.putExtra("recipe_id", id);
+    intent.putExtra(Constants.EXTRA_RECIPE_ID, id);
     Log.d(TAG, "Recipe ID: " + id);
     startActivity(intent);
   }
