@@ -4,8 +4,10 @@ import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDia
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showNoContentFound;
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showRecipes;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anna.healthyfoods.R;
-import com.anna.healthyfoods.RecipeListActivity;
+import com.anna.healthyfoods.RecipeDetailsActivity;
 import com.anna.healthyfoods.adapter.FirebaseRecipeListAdapter;
 import com.anna.healthyfoods.databinding.FragmentSavedRecipesBinding;
+import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.Recipe;
 import com.anna.healthyfoods.utility.Constants;
 import com.anna.healthyfoods.utility.gestures.AppItemTouchHelper;
@@ -36,7 +39,8 @@ import com.google.firebase.database.Query;
 
 import java.util.Objects;
 
-public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragListener {
+public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragListener, ItemOnClickListener {
+  public static final String TAG = SavedRecipesFragment.class.getSimpleName();
   private FragmentSavedRecipesBinding binding;
   private FirebaseRecyclerAdapter<Recipe, FirebaseRecipeViewHolder> firebaseAdapter;
   private ItemTouchHelper itemTouchHelper;
@@ -72,7 +76,7 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
                     .build();
 
     setLayoutManager();
-    firebaseAdapter = new FirebaseRecipeListAdapter(options, dbQuery.getRef(), this, getContext());
+    firebaseAdapter = new FirebaseRecipeListAdapter(options, dbQuery.getRef(), this, getContext(), this);
 
     if (firebaseAdapter.getItemCount() < 1) {
       showNoContentFound(binding.errorText, getString(R.string.no_saved_recipes));
@@ -122,5 +126,14 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
   public void onDestroy() {
     super.onDestroy();
     firebaseAdapter.stopListening();
+  }
+
+  @Override
+  public void onClick(String id) {
+    Intent intent = new Intent(getContext(), RecipeDetailsActivity.class);
+    intent.putExtra(Constants.EXTRA_RECIPE_ID, id);
+    intent.putExtra(Constants.EXTRA_SAVED, "Saved");
+    Log.d(TAG, "Recipe ID: " + id);
+    requireActivity().startActivity(intent);
   }
 }

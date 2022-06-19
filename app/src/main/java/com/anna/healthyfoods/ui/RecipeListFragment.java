@@ -143,6 +143,7 @@ public class RecipeListFragment extends Fragment implements ItemOnClickListener 
   public void onClick(String id) {
     Intent intent = new Intent(getContext(), RecipeDetailsActivity.class);
     intent.putExtra(Constants.EXTRA_RECIPE_ID, id);
+    intent.putExtra(Constants.EXTRA_SAVED, "Not saved");
     Log.d(TAG, "Recipe ID: " + id);
     startActivity(intent);
   }

@@ -37,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,16 +47,19 @@ public class RecipeDetailsFragment extends Fragment {
   public static final String TAG = RecipeDetailsFragment.class.getSimpleName();
   private FragmentRecipeDetailsBinding binding;
   private String recipeId;
+  private String recipeStatus;
   private static final String ARG_RECIPE_ID = "recipe_id";
+  private static final String ARG_RECIPE_STATUS = "recipe_status";
 
   public RecipeDetailsFragment() {
     // Required empty public constructor
   }
 
-  public static RecipeDetailsFragment newInstance(String recipeId) {
+  public static RecipeDetailsFragment newInstance(String recipeId, String recipeStatus) {
     RecipeDetailsFragment fragment = new RecipeDetailsFragment();
     Bundle args = new Bundle();
     args.putString(ARG_RECIPE_ID, recipeId);
+    args.putString(ARG_RECIPE_STATUS, recipeStatus);
     fragment.setArguments(args);
     return fragment;
   }
@@ -65,6 +69,7 @@ public class RecipeDetailsFragment extends Fragment {
     super.onCreate(savedInstanceState);
     if (getArguments() != null) {
       recipeId = getArguments().getString(ARG_RECIPE_ID);
+      recipeStatus = getArguments().getString(ARG_RECIPE_STATUS);
     }
   }
 
@@ -87,7 +92,11 @@ public class RecipeDetailsFragment extends Fragment {
   }
 
   private void setUpSaveButton(Recipe recipe) {
-    binding.btnSave.setOnClickListener(view -> saveRecipe(recipe));
+    if (recipeStatus.equals("Not saved")){
+      binding.btnSave.setOnClickListener(view -> saveRecipe(recipe));
+    } else {
+      binding.btnSave.setVisibility(View.GONE);
+    }
   }
 
   // Load recipe details
@@ -101,6 +110,7 @@ public class RecipeDetailsFragment extends Fragment {
           assert response.body() != null;
           setRecipeDetails(response.body().getRecipe());
           showRecipeDetails(binding.recipeImage, binding.detailsBottomSheetGroup);
+          setUpSaveButton(response.body().getRecipe());
         } else {
           showUnsuccessfulFeedback(binding.errorFeedback, requireContext());
         }
@@ -174,9 +184,6 @@ public class RecipeDetailsFragment extends Fragment {
     binding.magnesiumQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getMg().getQuantity(), recipe.getTotalNutrients().getMg().getUnit()));
     binding.potassiumQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getK().getQuantity(), recipe.getTotalNutrients().getK().getUnit()));
     binding.ironQuantity.setText(String.format(Locale.ENGLISH, "%.2f %s", recipe.getTotalNutrients().getFe().getQuantity(), recipe.getTotalNutrients().getFe().getUnit()));
-
-    // Set up save button
-    setUpSaveButton(recipe);
   }
 
   private void openWebsite(String websiteUrl){
@@ -190,8 +197,16 @@ public class RecipeDetailsFragment extends Fragment {
     String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPE_LOCATION).child(userId).child(recipeId);
     recipe.setId(recipeId);
-    recipeReference.setValue(recipe);
-    Toast.makeText(getContext(), R.string.saved, Toast.LENGTH_SHORT).show();
+    recipeReference.setValue(recipe).addOnCompleteListener(requireActivity(), insertTask -> {
+      if(insertTask.isSuccessful()){
+        Toast.makeText(getContext(), R.string.saved, Toast.LENGTH_SHORT).show();
+        binding.btnSave.setVisibility(View.GONE);
+      } else {
+        Log.d(TAG, "Error while saving recipes", insertTask.getException());
+        Toast.makeText(getContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();
+      }
+    });
+
   }
 
   @Override

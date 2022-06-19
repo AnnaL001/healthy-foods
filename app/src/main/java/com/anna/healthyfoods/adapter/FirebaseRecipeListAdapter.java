@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.anna.healthyfoods.databinding.ItemSavedRecipeListBinding;
+import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.Recipe;
 import com.anna.healthyfoods.utility.gestures.AppItemTouchHelper;
 import com.anna.healthyfoods.utility.gestures.OnTouchScreenDragListener;
@@ -30,12 +31,14 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
   private final Context context;
   private final ChildEventListener childEventListener;
   private final ArrayList<Recipe> recipes = new ArrayList<>();
+  private final ItemOnClickListener itemOnClickListener;
 
-  public FirebaseRecipeListAdapter(@NonNull FirebaseRecyclerOptions<Recipe> options, DatabaseReference databaseReference, OnTouchScreenDragListener dragListener, Context context) {
+  public FirebaseRecipeListAdapter(@NonNull FirebaseRecyclerOptions<Recipe> options, DatabaseReference databaseReference, OnTouchScreenDragListener dragListener, Context context, ItemOnClickListener itemOnClickListener) {
     super(options);
     this.databaseReference = databaseReference;
     this.dragListener = dragListener;
     this.context = context;
+    this.itemOnClickListener = itemOnClickListener;
 
     this.childEventListener = databaseReference.addChildEventListener(new ChildEventListener() {
       @Override
@@ -77,6 +80,13 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
         dragListener.onDrag(holder);
       }
       return true;
+    });
+
+    holder.binding.getRoot().setOnClickListener(view -> {
+      String uri = recipe.getUri();
+      // Extract recipe ID from recipe's URI
+      String recipeId = uri.substring(uri.indexOf("#") + 1);
+      itemOnClickListener.onClick(recipeId);
     });
   }
 

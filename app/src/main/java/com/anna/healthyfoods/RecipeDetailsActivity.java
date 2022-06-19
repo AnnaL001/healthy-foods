@@ -12,6 +12,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
   public static final String TAG = RecipeDetailsActivity.class.getSimpleName();
   private ActivityRecipeDetailsBinding binding;
   private String recipeId;
+  private String recipeStatus;
 
 
   @Override
@@ -20,14 +21,17 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     binding = ActivityRecipeDetailsBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    // Retrieve intent extras
     recipeId = getIntent().getStringExtra(Constants.EXTRA_RECIPE_ID);
+    recipeStatus = getIntent().getStringExtra(Constants.EXTRA_SAVED);
+
     inflateFragment();
   }
 
   private void inflateFragment(){
     getSupportFragmentManager().beginTransaction()
             .setReorderingAllowed(true)
-            .add(R.id.fragment_container, RecipeDetailsFragment.newInstance(recipeId))
+            .add(R.id.fragment_container, RecipeDetailsFragment.newInstance(recipeId, recipeStatus))
             .commit();
   }
 
