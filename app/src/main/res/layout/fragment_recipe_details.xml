@@ -247,9 +247,9 @@
           style="@style/Widget.MaterialComponents.ChipGroup"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
           android:layout_marginTop="@dimen/view_margin_vertical_double"
-          android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
+          android:layout_marginEnd="@dimen/view_margin_horizontal_double"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/diet_health_title">
@@ -274,9 +274,9 @@
           style="@style/CardViewStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/screen_margin_horizontal_triple"
+          android:layout_marginStart="@dimen/view_margin_horizontal_double"
           android:layout_marginTop="@dimen/view_margin_vertical"
-          android:layout_marginEnd="@dimen/screen_margin_horizontal_triple"
+          android:layout_marginEnd="@dimen/view_margin_horizontal_double"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/nutrition_title">
