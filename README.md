@@ -5,7 +5,7 @@ An Android mobile application that provides recipe suggestions taking into accou
 
 ## Description
 
-The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any health preferences they might have and allowing users to search for recipes while taking into consideration their preferred diet and health preferences. Moreover, users can also view various meal types and their corresponding recipes, fetched via the Edamam API. Other functionalities included are: users being able to starr recipes that might have peaked their interest, for later cooking and authenticating users. Aside from this, users can also search for recipes using keywords like 'Chicken' and others.
+The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any health preferences they might have and allowing users to search for recipes while taking into consideration their preferred diet and health preferences. Moreover, users can also view various meal types and their corresponding recipes, fetched via the Edamam API. Other functionalities included are: users being able to starr/save recipes that might have peaked their interest(for later cooking), reordering starred recipes, swiping to delete starred recipes and authenticating users. Aside from this, users can also search for recipes using keywords like 'Chicken' and others.
 
 ## Setup/Installation Requirements
 
