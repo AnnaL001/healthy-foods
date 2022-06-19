@@ -59,7 +59,6 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    //For now, until database connection is added
     setUpFirebaseAdapter();
     hideProgressDialog(binding.progressBar, binding.progressMessage);
     showRecipes(binding.starredRecipeList);
