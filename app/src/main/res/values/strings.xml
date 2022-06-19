@@ -90,4 +90,5 @@
   <string name="progress_dialog_message_login">Authenticating …</string>
   <string name="progress_dialog_message_signup">Signing up …</string>
   <string name="content_desc_drag">Icon to reorder recipe list</string>
+  <string name="not_saved">Something went wrong</string>
 </resources>
