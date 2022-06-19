@@ -22,7 +22,8 @@
         <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_user_details.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_meal_types.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_meal_types.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_recipe_details.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/fragment_saved_recipes.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_starred.xml" value="0.1703125" />
