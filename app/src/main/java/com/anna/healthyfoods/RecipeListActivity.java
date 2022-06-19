@@ -1,12 +1,20 @@
 package com.anna.healthyfoods;
 
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDialog;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showFailureFeedback;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showNoContentFound;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showRecipes;
+import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showUnsuccessfulFeedback;
+
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
@@ -58,31 +66,42 @@ public class RecipeListActivity extends AppCompatActivity implements ItemOnClick
     call.enqueue(new Callback<RecipeSearchResponse>() {
       @Override
       public void onResponse(@NonNull Call<RecipeSearchResponse> call, @NonNull Response<RecipeSearchResponse> response) {
-        UserInterfaceHelpers.hideProgressDialog(binding.progressBar, binding.progressMessage);
+        hideProgressDialog(binding.progressBar, binding.progressMessage);
 
         if(response.isSuccessful()){
           assert response.body() != null;
           adapter = new RecipeListAdapter(RecipeListActivity.this, response.body().getHits(), RecipeListActivity.this);
-          binding.recipeList.setLayoutManager(new LinearLayoutManager(RecipeListActivity.this));
+
+          setLayoutManager();
+
           binding.recipeList.setAdapter(adapter);
 
           if(adapter.getItemCount() > 0){
-            UserInterfaceHelpers.showRecipes(binding.recipeList);
+            showRecipes(binding.recipeList);
           } else {
-            UserInterfaceHelpers.showNoContentFound(binding.errorText, getString(R.string.no_recipes_found));
+            showNoContentFound(binding.errorText, getString(R.string.no_recipes_found));
           }
         } else {
-          UserInterfaceHelpers.showUnsuccessfulFeedback(binding.errorText, getApplicationContext());
+          showUnsuccessfulFeedback(binding.errorText, getApplicationContext());
         }
       }
 
       @Override
       public void onFailure(@NonNull Call<RecipeSearchResponse> call, @NonNull Throwable t) {
-        UserInterfaceHelpers.hideProgressDialog(binding.progressBar, binding.progressMessage);
-        UserInterfaceHelpers.showFailureFeedback(binding.errorText, getApplicationContext());
+        hideProgressDialog(binding.progressBar, binding.progressMessage);
+        showFailureFeedback(binding.errorText, getApplicationContext());
         Log.e(TAG, "Error: ", t);
       }
     });
+  }
+
+  private void setLayoutManager(){
+    // Set layout manager based on orientation
+    if(binding.getRoot().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+      binding.recipeList.setLayoutManager(new GridLayoutManager(RecipeListActivity.this, 2));
+    } else {
+      binding.recipeList.setLayoutManager(new LinearLayoutManager(RecipeListActivity.this));
+    }
   }
 
 

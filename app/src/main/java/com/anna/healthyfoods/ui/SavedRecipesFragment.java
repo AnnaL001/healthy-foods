@@ -4,6 +4,7 @@ import static com.anna.healthyfoods.utility.UserInterfaceHelpers.hideProgressDia
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showNoContentFound;
 import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showRecipes;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anna.healthyfoods.R;
+import com.anna.healthyfoods.RecipeListActivity;
 import com.anna.healthyfoods.adapter.FirebaseRecipeListAdapter;
 import com.anna.healthyfoods.databinding.FragmentSavedRecipesBinding;
 import com.anna.healthyfoods.models.Recipe;
@@ -68,7 +71,7 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
                     .setQuery(dbQuery, Recipe.class)
                     .build();
 
-    binding.starredRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
+    setLayoutManager();
     firebaseAdapter = new FirebaseRecipeListAdapter(options, dbQuery.getRef(), this, getContext());
 
     if (firebaseAdapter.getItemCount() < 1) {
@@ -93,6 +96,15 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
   public void onStop() {
     firebaseAdapter.stopListening();
     super.onStop();
+  }
+
+  private void setLayoutManager(){
+    // Set layout manager based on orientation
+    if(binding.getRoot().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+      binding.starredRecipeList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+    } else {
+      binding.starredRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
   }
 
   @Override

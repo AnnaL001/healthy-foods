@@ -9,6 +9,7 @@ import static com.anna.healthyfoods.utility.UserInterfaceHelpers.showUnsuccessfu
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -20,10 +21,12 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.RecipeDetailsActivity;
+import com.anna.healthyfoods.RecipeListActivity;
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
 import com.anna.healthyfoods.databinding.FragmentSearchBinding;
@@ -122,7 +125,7 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
         if(response.isSuccessful()){
           assert response.body() != null;
           adapter = new RecipeListAdapter(getContext(), response.body().getHits(), SearchFragment.this);
-          binding.recipeResultList.setLayoutManager(new LinearLayoutManager(getContext()));
+          setLayoutManager();
           binding.recipeResultList.setAdapter(adapter);
 
           if(adapter.getItemCount() > 0){
@@ -142,6 +145,15 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
         Log.e(TAG, "Error: ", t);
       }
     });
+  }
+
+  private void setLayoutManager(){
+    // Set layout manager based on orientation
+    if(binding.getRoot().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+      binding.recipeResultList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+    } else {
+      binding.recipeResultList.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
   }
 
   private void saveToSharedPreferences(String recipeSearch) {
