@@ -20,4 +20,5 @@ public class Constants {
   public static final String EXTRA_RECIPE_ID = "recipe_id";
   public static final String EXTRA_USER_SETTINGS = "user_settings";
   public static final String EXTRA_MEAL_TYPE = "meal_type";
+  public static final String EXTRA_SAVED = "saved";
 }
