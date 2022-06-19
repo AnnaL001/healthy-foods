@@ -16,23 +16,25 @@
         android:layout_marginStart="@dimen/screen_margin_horizontal_default"
         android:layout_marginTop="@dimen/screen_margin_vertical_triple"
         android:layout_marginEnd="@dimen/screen_margin_horizontal_default"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/welcome" />
 
-      <TextView
-          android:id="@+id/meal_inquiry"
-          style="@style/NormalTextStyle"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/screen_margin_horizontal_default"
-          android:layout_marginTop="@dimen/view_margin_vertical"
-          android:layout_marginEnd="@dimen/screen_margin_horizontal_default"
-          android:text="@string/meal_inquiry"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+    <TextView
+        android:id="@+id/meal_inquiry"
+        style="@style/NormalTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_margin_horizontal_default"
+        android:layout_marginTop="@dimen/view_margin_vertical"
+        android:layout_marginEnd="@dimen/screen_margin_horizontal_default"
+        android:gravity="center_horizontal"
+        android:text="@string/meal_inquiry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/meal_type_grid"
