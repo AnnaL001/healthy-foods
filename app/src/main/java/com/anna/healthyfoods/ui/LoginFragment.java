@@ -33,7 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
 
 public class LoginFragment extends Fragment {
@@ -207,6 +206,11 @@ public class LoginFragment extends Fragment {
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
     if(settingsReference != null){
       settingsReference.removeEventListener(settingsListener);
     }

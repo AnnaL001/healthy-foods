@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
 public class SignupFragment extends Fragment {
   public static final String TAG = SignupFragment.class.getSimpleName();

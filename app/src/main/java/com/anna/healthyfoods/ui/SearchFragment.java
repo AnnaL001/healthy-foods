@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.anna.healthyfoods.R;
 import com.anna.healthyfoods.RecipeDetailsActivity;
-import com.anna.healthyfoods.RecipeListActivity;
 import com.anna.healthyfoods.adapter.RecipeListAdapter;
 import com.anna.healthyfoods.client.EdamamClient;
 import com.anna.healthyfoods.databinding.FragmentSearchBinding;
@@ -35,7 +34,7 @@ import com.anna.healthyfoods.interfaces.ItemOnClickListener;
 import com.anna.healthyfoods.models.RecipeSearchResponse;
 import com.anna.healthyfoods.models.Settings;
 import com.anna.healthyfoods.utility.Constants;
-import com.anna.healthyfoods.utility.UserInterfaceHelpers;
+
 import org.parceler.Parcels;
 
 import retrofit2.Call;
