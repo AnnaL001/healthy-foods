@@ -2,6 +2,7 @@ package com.anna.healthyfoods.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, FirebaseRecipeViewHolder> implements AppItemTouchHelper {
+  public static final String TAG = FirebaseRecipeListAdapter.class.getSimpleName();
   private final DatabaseReference databaseReference;
   private final OnTouchScreenDragListener dragListener;
   private final Context context;
@@ -84,9 +86,12 @@ public class FirebaseRecipeListAdapter extends FirebaseRecyclerAdapter<Recipe, F
 
     holder.binding.getRoot().setOnClickListener(view -> {
       String uri = recipe.getUri();
+      // Set isSaved property to determine 'Save' button display in RecipeDetailsFragment
+      recipe.setIsSaved(true);
       // Extract recipe ID from recipe's URI
       String recipeId = uri.substring(uri.indexOf("#") + 1);
-      itemOnClickListener.onClick(recipeId);
+      itemOnClickListener.onClick(recipeId, recipe.getIsSaved());
+      Log.d(TAG, "Saved status: " + recipe.getIsSaved());
     });
   }
 

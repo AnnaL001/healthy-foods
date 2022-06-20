@@ -1,6 +1,7 @@
 package com.anna.healthyfoods.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeListViewHolder> {
+  public static final String TAG = RecipeListAdapter.class.getSimpleName();
   private final Context context;
   private final List<Hit> hits;
   private final ItemOnClickListener listener;
@@ -36,12 +38,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
   @Override
   public void onBindViewHolder(@NonNull RecipeListViewHolder holder, int position) {
-    holder.bindRecipe(hits.get(position).getRecipe());
+    Recipe recipe = hits.get(position).getRecipe();
+    holder.bindRecipe(recipe);
     holder.binding.getRoot().setOnClickListener(view -> {
-      String uri = hits.get(position).getRecipe().getUri();
+      String uri = recipe.getUri();
       // Extract recipe ID from recipe's URI
       String recipeId = uri.substring(uri.indexOf("#") + 1);
-      listener.onClick(recipeId);
+      listener.onClick(recipeId, recipe.getIsSaved());
+      Log.d(TAG, "Saved status: " + recipe.getIsSaved());
     });
   }
 
