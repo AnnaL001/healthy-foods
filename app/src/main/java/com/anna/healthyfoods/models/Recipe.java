@@ -70,6 +70,7 @@ public class Recipe {
     private TotalNutrients totalNutrients;
     private String id;
     private String index;
+    private boolean isSaved;
 
     /**
      * No args constructor for use in serialization
@@ -123,6 +124,7 @@ public class Recipe {
         this.dishType = dishType;
         this.totalNutrients = totalNutrients;
         this.index = "not set";
+        this.isSaved = false;
     }
 
     public String getId() {
@@ -131,6 +133,14 @@ public class Recipe {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean getIsSaved() {
+        return isSaved;
+    }
+
+    public void setIsSaved(boolean isSaved) {
+        this.isSaved = isSaved;
     }
 
     public String getIndex() {
