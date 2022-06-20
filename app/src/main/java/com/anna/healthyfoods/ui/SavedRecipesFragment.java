@@ -128,10 +128,10 @@ public class SavedRecipesFragment extends Fragment implements OnTouchScreenDragL
   }
 
   @Override
-  public void onClick(String id) {
+  public void onClick(String id, boolean isSaved) {
     Intent intent = new Intent(getContext(), RecipeDetailsActivity.class);
     intent.putExtra(Constants.EXTRA_RECIPE_ID, id);
-    intent.putExtra(Constants.EXTRA_SAVED, "Saved");
+    intent.putExtra(Constants.EXTRA_SAVED, isSaved);
     Log.d(TAG, "Recipe ID: " + id);
     requireActivity().startActivity(intent);
   }

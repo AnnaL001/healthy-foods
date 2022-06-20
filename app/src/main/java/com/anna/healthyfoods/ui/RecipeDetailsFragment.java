@@ -46,7 +46,7 @@ public class RecipeDetailsFragment extends Fragment {
   public static final String TAG = RecipeDetailsFragment.class.getSimpleName();
   private FragmentRecipeDetailsBinding binding;
   private String recipeId;
-  private String recipeStatus;
+  private boolean recipeStatus;
   private static final String ARG_RECIPE_ID = "recipe_id";
   private static final String ARG_RECIPE_STATUS = "recipe_status";
 
@@ -54,11 +54,11 @@ public class RecipeDetailsFragment extends Fragment {
     // Required empty public constructor
   }
 
-  public static RecipeDetailsFragment newInstance(String recipeId, String recipeStatus) {
+  public static RecipeDetailsFragment newInstance(String recipeId, boolean recipeStatus) {
     RecipeDetailsFragment fragment = new RecipeDetailsFragment();
     Bundle args = new Bundle();
     args.putString(ARG_RECIPE_ID, recipeId);
-    args.putString(ARG_RECIPE_STATUS, recipeStatus);
+    args.putBoolean(ARG_RECIPE_STATUS, recipeStatus);
     fragment.setArguments(args);
     return fragment;
   }
@@ -68,7 +68,7 @@ public class RecipeDetailsFragment extends Fragment {
     super.onCreate(savedInstanceState);
     if (getArguments() != null) {
       recipeId = getArguments().getString(ARG_RECIPE_ID);
-      recipeStatus = getArguments().getString(ARG_RECIPE_STATUS);
+      recipeStatus = getArguments().getBoolean(ARG_RECIPE_STATUS);
     }
   }
 
@@ -91,10 +91,10 @@ public class RecipeDetailsFragment extends Fragment {
   }
 
   private void setUpSaveButton(Recipe recipe) {
-    if (recipeStatus.equals("Not saved")){
-      binding.btnSave.setOnClickListener(view -> saveRecipe(recipe));
-    } else {
+    if (recipeStatus){
       binding.btnSave.setVisibility(View.GONE);
+    } else {
+      binding.btnSave.setOnClickListener(view -> saveRecipe(recipe));
     }
   }
 
@@ -198,8 +198,8 @@ public class RecipeDetailsFragment extends Fragment {
     recipe.setId(recipeId);
     recipeReference.setValue(recipe).addOnCompleteListener(requireActivity(), insertTask -> {
       if(insertTask.isSuccessful()){
-        Toast.makeText(getContext(), R.string.saved, Toast.LENGTH_SHORT).show();
         binding.btnSave.setVisibility(View.GONE);
+        Toast.makeText(getContext(), R.string.saved, Toast.LENGTH_SHORT).show();
       } else {
         Log.d(TAG, "Error while saving recipes", insertTask.getException());
         Toast.makeText(getContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();

@@ -12,7 +12,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
   public static final String TAG = RecipeDetailsActivity.class.getSimpleName();
   private ActivityRecipeDetailsBinding binding;
   private String recipeId;
-  private String recipeStatus;
+  private boolean recipeStatus;
 
 
   @Override
@@ -23,7 +23,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
     // Retrieve intent extras
     recipeId = getIntent().getStringExtra(Constants.EXTRA_RECIPE_ID);
-    recipeStatus = getIntent().getStringExtra(Constants.EXTRA_SAVED);
+    recipeStatus = getIntent().getBooleanExtra(Constants.EXTRA_SAVED, false);
 
     inflateFragment();
   }

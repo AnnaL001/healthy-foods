@@ -161,10 +161,10 @@ public class SearchFragment extends Fragment implements ItemOnClickListener {
   }
 
   @Override
-  public void onClick(String id) {
+  public void onClick(String id, boolean isSaved) {
     Intent intent = new Intent(getContext(), RecipeDetailsActivity.class);
     intent.putExtra(Constants.EXTRA_RECIPE_ID, id);
-    intent.putExtra(Constants.EXTRA_SAVED, "Not saved");
+    intent.putExtra(Constants.EXTRA_SAVED, isSaved);
     Log.d(TAG, "Recipe ID: " + id);
     startActivity(intent);
   }
