@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
   private void handleButtonClick(){
     binding.btnGetStarted.setOnClickListener(view -> {
       Log.i(TAG, "Navigating to LoginActivity ...");
-      startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+      startActivity(new Intent(getApplicationContext(), LoginActivity.class));
       finish();
     });
   }
