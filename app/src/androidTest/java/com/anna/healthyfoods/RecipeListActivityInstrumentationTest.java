@@ -42,7 +42,7 @@ public class RecipeListActivityInstrumentationTest {
     // Populate userSettings with name, selected diets and selected meal preferences
     Settings userSettings = new Settings("Anna", selectedDiets, selectedPreferences);
 
-    intent.putExtra("userSettings", Parcels.wrap(userSettings));
+    intent.putExtra("user_settings", Parcels.wrap(userSettings));
     return intent;
   }
 
