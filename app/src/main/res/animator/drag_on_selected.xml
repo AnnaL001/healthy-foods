@@ -10,6 +10,6 @@
       android:duration="800" />
   <objectAnimator
       android:propertyName="alpha"
-      android:valueTo="0.6f"
+      android:valueTo="0.7f"
       android:duration="800" />
 </set>
