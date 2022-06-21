@@ -83,5 +83,4 @@ public class MealTypeFragment extends Fragment {
     super.onDestroyView();
     binding = null;
   }
-
 }
