@@ -1,7 +1,7 @@
 # HealthyFoods
 An Android mobile application that provides recipe suggestions taking into account healthy eating. The mobile application consumes the Edamam recipe search API to provide the recipe suggestions based on selected diets and health preferences.
 
-**Refactoring of app to follow recommended Android development app architecture and practices is ongoing.**
+**Refactoring of app to follow recommended Android development app architecture and practices is ongoing. Find code on repository [HealthyFoods2.0](https://github.com/AnnaL001/healthyfoods2.0.git).**
 
 #### By **[Lynn Nyangon](https://github.com/AnnaL001)**
 
