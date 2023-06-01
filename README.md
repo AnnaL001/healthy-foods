@@ -9,6 +9,10 @@ An Android mobile application that provides recipe suggestions taking into accou
 
 The Mobile Application is still in development. Currently, the existing features include form validation, capturing inputs such as the name of the user, their preferred diets and any health preferences they might have and allowing users to search for recipes while taking into consideration their preferred diet and health preferences. Moreover, users can also view various meal types and their corresponding recipes, fetched via the Edamam API. Other functionalities included are: users being able to starr/save recipes that might have peaked their interest(for later cooking), reordering starred recipes, swiping to delete starred recipes and authenticating users. Aside from this, users can also search for recipes using keywords like 'Chicken' and others.
 
+## Screenshots
+![LIGHT-MODE-SLIDE](https://github.com/AnnaL001/healthy-foods/assets/43697008/68a6444f-6294-418c-aad1-4a848a5af4d7)
+
+
 ## Setup/Installation Requirements
 
 - Using a mobile device/laptop ensure you have access to stable internet connection
